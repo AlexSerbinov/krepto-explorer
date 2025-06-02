@@ -11,7 +11,7 @@ module.exports =
     "moment.min.js": "sha384-CJyhAlbbRZX14Q8KxKBt0na1ad4KBs9PklAiNk2Efxs9sgimbIZm9kYLJQeNMUfM",
     "sentry.min.js": "sha384-da/Bo2Ah6Uw3mlhl6VINMblg2SyGbSnULKrukse3P5D9PTJi4np9HoKvR19D7zOL",
     "site.js": "sha384-G8o2io5zIdQiiVN+4CAGGXPO4UvV8jGkSMlfddSPbqIUd3x5Rv01pNH6ec8QOATu",
-    "bootstrap-icons.css": "sha384-rJFhkIguED0Z4GX6r6ReHpTCkwWtiPHZnQtWVP0DQWcKHzeJAlYb1m/xdYkeEk+f",
+    "bootstrap-icons.css": "sha384-c9aQfSemzm1Ta9l869Y7lpXKZwuiiudY4Hr1pq2jfVsp0WYKHYn6uWkN9U6adIFR",
     "dark-v1.min.css": "sha384-NJK2FF+pcgXOxhCACC4A35Noub6HxksU2B0JXRUWaCqpSksqX+6UWUG1wXugc/8W",
     "dark.min.css": "sha384-+DbPLnXtdAT+C2GMbf14OD2QDEPgBDF47Vf/EzY2sdOrg8stc+u3yqvKYqnct5Ck",
     "dataTables.bootstrap4.min.css": "sha384-EkHEUZ6lErauT712zSr0DZ2uuCmi3DoQj6ecNdHQXpMpFNGAQ48WjfXCE5n20W+R",
