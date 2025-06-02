@@ -100,7 +100,7 @@ block content
 							+summaryItem("RBF", "Whether this unconfirmed transaction is replaceable using Replace-By-Fee.")
 								- var replaceable = false;
 								each vin, vinIndex in tx.vin
-									// ref: https://github.com/bitcoin/bips/blob/master/bip-0125.mediawiki#summary
+									// ref: https://github.com/krepto/bips/blob/master/bip-0125.mediawiki#summary
 									if (vin.sequence < 4294967295 - 1)
 										- replaceable = true;
 
@@ -109,7 +109,7 @@ block content
 
 								else if (mempoolDetails.ancestors.length > 0)
 									span.border-dotted(title="RBF may be signaled explicitly or implicitly. This transaction does not explicitly opt in, but if any of its unconfirmed ancestor transactions are replaceable then this one is too.", data-bs-toggle="tooltip") Not explicit…
-									a.ms-2(href="https://github.com/bitcoin/bips/blob/master/bip-0125.mediawiki#summary", data-bs-toggle="tooltip", title="More info about RBF", target="_blank")
+									a.ms-2(href="https://github.com/krepto/bips/blob/master/bip-0125.mediawiki#summary", data-bs-toggle="tooltip", title="More info about RBF", target="_blank")
 										i.bi-info-circle
 								else
 									span No
@@ -149,7 +149,7 @@ block content
 								+valueDisplay(currencyValue)
 
 						else
-							+summaryItem("Fee Rate", null, "sat/vB")
+							+summaryItem("Fee Rate", null, "kat/vB")
 								if (!mempoolDetails && !global.txindexAvailable)
 									span.border-dotted(title="Determining the fee of confirmed transactions requires txindex to be enabled", data-bs-toggle="tooltip")
 										i.bi-backspace.text-danger.me-2

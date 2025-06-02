@@ -232,12 +232,12 @@ mixin txList(visibleTxs, txCount, limit, offset, inputsByTxid, options={})
 							else if (txFee)
 								+infoBadge
 									span.border-dotted.fw-bold.me-1(title="The miner fee (and fee rate) paid by this transaction. The fee equals the difference between the total input value and the total output value.", data-bs-toggle="tooltip") fee
-									+_valueDisplaySat(txFee, 1000)
+									+_valueDisplayKat(txFee, 1000)
 
 									if (txFee > 0)
 										span.ms-2 (
 											| #{parseInt(txFee.dividedBy(tx.vsize).times(coinConfig.baseCurrencyUnit.multiplier)).toLocaleString()}
-											span.text-tiny.ms-1 sat/vB
+											span.text-tiny.ms-1 kat/vB
 											span )
 								
 
@@ -361,11 +361,11 @@ mixin pageTab(name, defaultActive=false)
 
 mixin valueDisplay(val, options={})
 	if (val > 0)
-		if (userSettings.displayCurrency == "btc")
-			+_valueDisplayBtc(val, options)
+		if (userSettings.displayCurrency == "krepto")
+			+_valueDisplayKrepto(val, options)
 
-		else if (userSettings.displayCurrency == "sat")
-			+_valueDisplaySat(val, 1000000)
+		else if (userSettings.displayCurrency == "kat")
+			+_valueDisplayKat(val, 1000000)
 
 		else if (userSettings.displayCurrency == "local")
 			+_valueDisplayLocal(val, 1000000)
@@ -374,7 +374,7 @@ mixin valueDisplay(val, options={})
 		span 0
 
 
-mixin _valueDisplayBtc(val, options={})
+mixin _valueDisplayKrepto(val, options={})
 	- var parts = utils.formatCurrencyAmount(val, userSettings.displayCurrency);
 
 	//span #{JSON.stringify(parts)}
@@ -394,9 +394,9 @@ mixin _valueDisplayBtc(val, options={})
 		span.xs-hidden.d-none.d-sm-inline.text-tiny.text-tight-spacing.fw-light.ms-1 #{parts.currencyUnit}
 
 
-mixin _valueDisplaySat(val, summarizeMin=Infinity, summarizeDecimals=3)
+mixin _valueDisplayKat(val, summarizeMin=Infinity, summarizeDecimals=3)
 	- var localCurrencyDisplay = userSettings.displayCurrency == "local";
-	- var parts = utils.formatCurrencyAmount(val, "sat");
+	- var parts = utils.formatCurrencyAmount(val, "kat");
 
 	//span #{JSON.stringify(parts)}
 	
@@ -408,7 +408,7 @@ mixin _valueDisplaySat(val, summarizeMin=Infinity, summarizeDecimals=3)
 		span #{largeNumberData[1].abbreviation}
 		
 	else
-		span(class=(localCurrencyDisplay ? "border-dotted" : false), title=(localCurrencyDisplay ? `${utils.formatCurrencyAmount(val, coinConfig.defaultCurrencyUnit.name.toLowerCase()).simpleVal} BTC` : false), data-bs-toggle=(localCurrencyDisplay ? "tooltip" : false)) #{parts.intVal.toLocaleString()}
+		span(class=(localCurrencyDisplay ? "border-dotted" : false), title=(localCurrencyDisplay ? `${utils.formatCurrencyAmount(val, coinConfig.defaultCurrencyUnit.name.toLowerCase()).simpleVal} KREPTO` : false), data-bs-toggle=(localCurrencyDisplay ? "tooltip" : false)) #{parts.intVal.toLocaleString()}
 
 
 	if (exchangeRates)
@@ -431,12 +431,12 @@ mixin _valueDisplayLocal(val, summarizeMin=Infinity, summarizeDecimals=3)
 	if (Math.abs(parts.intVal) >= summarizeMin)
 		- var largeNumberData = utils.formatLargeNumberSignificant(parts.intVal, summarizeDecimals >= 0 ? summarizeDecimals : 3);
 		//span #{JSON.stringify(largeNumberData)} #{parts.intVal}
-		span.border-dotted(title=`${global.currencySymbols[userSettings.localCurrency]}${parts.intVal.toLocaleString()}<br/>${utils.formatCurrencyAmount(val, coinConfig.defaultCurrencyUnit.name.toLowerCase()).simpleVal} BTC`, data-bs-toggle="tooltip", data-bs-html="true")
+		span.border-dotted(title=`${global.currencySymbols[userSettings.localCurrency]}${parts.intVal.toLocaleString()}<br/>${utils.formatCurrencyAmount(val, coinConfig.defaultCurrencyUnit.name.toLowerCase()).simpleVal} KREPTO`, data-bs-toggle="tooltip", data-bs-html="true")
 			span #{largeNumberData[0]}
 			span.ms-1 #{largeNumberData[1].textDesc}
 
 	else
-		span.border-dotted(title=`${utils.formatCurrencyAmount(val, coinConfig.defaultCurrencyUnit.name.toLowerCase()).simpleVal} BTC`, data-bs-toggle="tooltip") #{parts.val}
+		span.border-dotted(title=`${utils.formatCurrencyAmount(val, coinConfig.defaultCurrencyUnit.name.toLowerCase()).simpleVal} KREPTO`, data-bs-toggle="tooltip") #{parts.val}
 	
 
 mixin valueDisplaySpecial(val, maxDecimals=-1, summarizeAlways=false, summarizeMin=Infinity, summarizeDecimals=-1)
@@ -462,16 +462,16 @@ mixin valueDisplaySpecial(val, maxDecimals=-1, summarizeAlways=false, summarizeM
 				//span #{JSON.stringify(parts)}
 				- var largeNumberData = utils.formatLargeNumberSignificant(parts.intVal, summarizeDecimals >= 0 ? summarizeDecimals : 2);
 				//span #{JSON.stringify(largeNumberData)} #{parts.intVal}
-				span(class=(localCurrencyDisplay ? "border-dotted" : false), title=(localCurrencyDisplay ? `${utils.formatCurrencyAmount(val, coinConfig.defaultCurrencyUnit.name.toLowerCase()).simpleVal} BTC` : false), data-bs-toggle=(localCurrencyDisplay ? "tooltip" : false)) #{largeNumberData[0]} #{largeNumberData[1].textDesc}
+				span(class=(localCurrencyDisplay ? "border-dotted" : false), title=(localCurrencyDisplay ? `${utils.formatCurrencyAmount(val, coinConfig.defaultCurrencyUnit.name.toLowerCase()).simpleVal} KREPTO` : false), data-bs-toggle=(localCurrencyDisplay ? "tooltip" : false)) #{largeNumberData[0]} #{largeNumberData[1].textDesc}
 			
 			else if (maxDecimals == 0)
-				span(class=(localCurrencyDisplay ? "border-dotted" : false), title=(localCurrencyDisplay ? `${utils.formatCurrencyAmount(val, coinConfig.defaultCurrencyUnit.name.toLowerCase()).simpleVal} BTC` : false), data-bs-toggle=(localCurrencyDisplay ? "tooltip" : false)) #{parts.intVal.toLocaleString()}
+				span(class=(localCurrencyDisplay ? "border-dotted" : false), title=(localCurrencyDisplay ? `${utils.formatCurrencyAmount(val, coinConfig.defaultCurrencyUnit.name.toLowerCase()).simpleVal} KREPTO` : false), data-bs-toggle=(localCurrencyDisplay ? "tooltip" : false)) #{parts.intVal.toLocaleString()}
 
 			else if (maxDecimals > 0)
-				span(class=(localCurrencyDisplay ? "border-dotted" : false), title=(localCurrencyDisplay ? `${utils.formatCurrencyAmount(val, coinConfig.defaultCurrencyUnit.name.toLowerCase()).simpleVal} BTC` : false), data-bs-toggle=(localCurrencyDisplay ? "tooltip" : false)) #{parts.val}
+				span(class=(localCurrencyDisplay ? "border-dotted" : false), title=(localCurrencyDisplay ? `${utils.formatCurrencyAmount(val, coinConfig.defaultCurrencyUnit.name.toLowerCase()).simpleVal} KREPTO` : false), data-bs-toggle=(localCurrencyDisplay ? "tooltip" : false)) #{parts.val}
 			
 			else
-				span(class=(localCurrencyDisplay ? "border-dotted" : false), title=(localCurrencyDisplay ? `${utils.formatCurrencyAmount(val, coinConfig.defaultCurrencyUnit.name.toLowerCase()).simpleVal} BTC` : false), data-bs-toggle=(localCurrencyDisplay ? "tooltip" : false)) #{parts.val}
+				span(class=(localCurrencyDisplay ? "border-dotted" : false), title=(localCurrencyDisplay ? `${utils.formatCurrencyAmount(val, coinConfig.defaultCurrencyUnit.name.toLowerCase()).simpleVal} KREPTO` : false), data-bs-toggle=(localCurrencyDisplay ? "tooltip" : false)) #{parts.val}
 					if (parts.lessSignificantDigits)
 						span.text-small.text-muted.ms-1 #{parts.lessSignificantDigits}
 

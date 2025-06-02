@@ -7,8 +7,8 @@ block content
 	+pageTitle("Extended Public Key", extendedPubkey, true)
 
 	+dismissableInfoAlert("xpubPageNoteDismissed", "About Extended Public Keys...")
-		.mb-3 !{markdown("**Extended Public Keys** (colloquially \"XPUBs\") are **parent** public keys from which many **children** public keys can be mathematically *derived* using the [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) standard. Each **child** key represents a Bitcoin address. Therefore, an XPUB represents a unique set of Bitcoin addresses.")}
-		.mb-n3 !{markdown("Wallet software often presents users with an XPUB. Exposure of your XPUB, although it doesn't risk theft of your bitcoin, **harms your privacy** by allowing anyone with access to your XPUB to know all of your addresses and the details of all transactions sent to and from them. This page is meant to demonstrate that fact - search for any XPUB (xpub, ypub, zpub...) and this tool will display all of the addresses derived from that key.")}
+		.mb-3 !{markdown("**Extended Public Keys** (colloquially \"XPUBs\") are **parent** public keys from which many **children** public keys can be mathematically *derived* using the [BIP32](https://github.com/krepto/bips/blob/master/bip-0032.mediawiki) standard. Each **child** key represents a Krepto address. Therefore, an XPUB represents a unique set of Krepto addresses.")}
+		.mb-n3 !{markdown("Wallet software often presents users with an XPUB. Exposure of your XPUB, although it doesn't risk theft of your krepto, **harms your privacy** by allowing anyone with access to your XPUB to know all of your addresses and the details of all transactions sent to and from them. This page is meant to demonstrate that fact - search for any XPUB (xpub, ypub, zpub...) and this tool will display all of the addresses derived from that key.")}
 
 	+contentSection("Summary")
 		+summaryRow(4)
@@ -25,8 +25,8 @@ block content
 				| #{bip32Path}
 
 			+summaryItem(`Balance (addr: ${offset}-${(offset + limit - 1)})`, "Sum of the balances of the current page of addresses (receive and change) derived from this extended public key.")
-				span(class=(balanceSat > 0 ? "text-success" : false))
-					- var currencyValue = new Decimal(balanceSat).dividedBy(coinConfig.baseCurrencyUnit.multiplier);
+				span(class=(balanceKat > 0 ? "text-success" : false))
+					- var currencyValue = new Decimal(balanceKat).dividedBy(coinConfig.baseCurrencyUnit.multiplier);
 					+valueDisplay(currencyValue)
 
 
@@ -109,8 +109,8 @@ block content
 										td.text-end #{addressDetails.txCount.toLocaleString()}
 
 										td
-											span(class=(addressDetails.balanceSat > 0 ? "text-success" : false))
-												- var currencyValue = new Decimal(addressDetails.balanceSat).dividedBy(coinConfig.baseCurrencyUnit.multiplier);
+											span(class=(addressDetails.balanceKat > 0 ? "text-success" : false))
+												- var currencyValue = new Decimal(addressDetails.balanceKat).dividedBy(coinConfig.baseCurrencyUnit.multiplier);
 												+valueDisplay(currencyValue)
 
 
@@ -136,8 +136,8 @@ block content
 									td.text-end #{addressDetails.txCount.toLocaleString()}
 
 									td
-										span(class=(addressDetails.balanceSat > 0 ? "text-success" : false))
-											- var currencyValue = new Decimal(addressDetails.balanceSat).dividedBy(coinConfig.baseCurrencyUnit.multiplier);
+										span(class=(addressDetails.balanceKat > 0 ? "text-success" : false))
+											- var currencyValue = new Decimal(addressDetails.balanceKat).dividedBy(coinConfig.baseCurrencyUnit.multiplier);
 											+valueDisplay(currencyValue)
 
 

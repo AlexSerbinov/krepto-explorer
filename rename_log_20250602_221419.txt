@@ -1,0 +1,98 @@
+Rename and content replacement operations log - Mon Jun  2 22:14:19 EEST 2025
+CONTENT_UPDATED: ./.env (12 lines)
+CONTENT_UPDATED: ./.env-sample (232 lines)
+CONTENT_UPDATED: ./.github/ISSUE_TEMPLATE/bug_report.md (42 lines)
+CONTENT_UPDATED: ./app.js (1302 lines)
+CONTENT_UPDATED: ./app/api/blockchainAddressApi.js (104 lines)
+CONTENT_UPDATED: ./app/api/blockchairAddressApi.js (59 lines)
+CONTENT_UPDATED: ./app/api/blockcypherAddressApi.js (66 lines)
+CONTENT_UPDATED: ./app/api/coreApi.js (2287 lines)
+CONTENT_UPDATED: ./app/api/electrumAddressApi.js (384 lines)
+CONTENT_UPDATED: ./app/api/rpcApi.js (644 lines)
+CONTENT_UPDATED: ./app/cacheUtils.js (102 lines)
+CONTENT_UPDATED: ./app/coins.js (9 lines)
+CONTENT_UPDATED: ./app/coins/krepto.js (571 lines)
+CONTENT_UPDATED: ./app/coins/kreptoFun.js (639 lines)
+CONTENT_UPDATED: ./app/coins/kreptoHolidays.js (170 lines)
+CONTENT_UPDATED: ./app/coins/kreptoQuotes.js (817 lines)
+CONTENT_UPDATED: ./app/config.js (279 lines)
+CONTENT_UPDATED: ./app/credentials.js (78 lines)
+CONTENT_UPDATED: ./app/currencies.js (48 lines)
+CONTENT_UPDATED: ./app/sso.js (85 lines)
+CONTENT_UPDATED: ./app/utils.js (1723 lines)
+CONTENT_UPDATED: ./bin/cli.js (94 lines)
+CONTENT_UPDATED: ./bin/www (28 lines)
+CONTENT_UPDATED: ./CHANGELOG-API.md (60 lines)
+CONTENT_UPDATED: ./CHANGELOG.md (379 lines)
+CONTENT_UPDATED: ./docker-compose.yml (26 lines)
+CONTENT_UPDATED: ./docs/api.js (271 lines)
+CONTENT_UPDATED: ./docs/krepto-explorer.com.conf (32 lines)
+CONTENT_UPDATED: ./docs/explorer.krepto21.org.conf (32 lines)
+CONTENT_UPDATED: ./docs/Server-Setup-Docker.md (17 lines)
+CONTENT_UPDATED: ./docs/Server-Setup.md (68 lines)
+CONTENT_UPDATED: ./KREPTO-EXPLORER-README.md (70 lines)
+CONTENT_UPDATED: ./public/style/bootstrap-icons.css (1869 lines)
+SKIPPED: Large file ./public/txt/mining-pools-configs/KREPTO/3.json (2150078 bytes)
+CONTENT_UPDATED: ./README.md (175 lines)
+CONTENT_UPDATED: ./rename_log_20250602_221419.txt (36 lines)
+CONTENT_UPDATED: ./roadmap.md (35 lines)
+CONTENT_UPDATED: ./routes/adminRouter.js (167 lines)
+CONTENT_UPDATED: ./routes/apiRouter.js (1144 lines)
+CONTENT_UPDATED: ./routes/baseRouter.js (2476 lines)
+CONTENT_UPDATED: ./routes/cleanupRouter.js (116 lines)
+CONTENT_UPDATED: ./routes/internalApiRouter.js (445 lines)
+CONTENT_UPDATED: ./routes/snippetRouter.js (173 lines)
+CONTENT_UPDATED: ./routes/testRouter.js (68 lines)
+CONTENT_UPDATED: ./views/about.pug (16 lines)
+CONTENT_UPDATED: ./views/address.pug (303 lines)
+CONTENT_UPDATED: ./views/api-docs.pug (57 lines)
+CONTENT_UPDATED: ./views/bitcoin-whitepaper.pug (24 lines)
+CONTENT_UPDATED: ./views/block-analysis.pug (799 lines)
+CONTENT_UPDATED: ./views/block-stats.pug (434 lines)
+CONTENT_UPDATED: ./views/block.pug (299 lines)
+CONTENT_UPDATED: ./views/difficulty-history.pug (483 lines)
+CONTENT_UPDATED: ./views/error.pug (42 lines)
+CONTENT_UPDATED: ./views/extended-public-key.pug (148 lines)
+CONTENT_UPDATED: ./views/fun.pug (106 lines)
+CONTENT_UPDATED: ./views/holidays.pug (39 lines)
+CONTENT_UPDATED: ./views/includes/blocks-list.pug (269 lines)
+CONTENT_UPDATED: ./views/includes/index-network-summary.pug (384 lines)
+CONTENT_UPDATED: ./views/includes/shared-mixins.pug (1028 lines)
+CONTENT_UPDATED: ./views/includes/tx-mixins.pug (362 lines)
+CONTENT_UPDATED: ./views/index.pug (170 lines)
+CONTENT_UPDATED: ./views/layout-iframe.pug (103 lines)
+CONTENT_UPDATED: ./views/layout.pug (414 lines)
+CONTENT_UPDATED: ./views/mempool-summary.pug (761 lines)
+CONTENT_UPDATED: ./views/mining-summary.pug (353 lines)
+CONTENT_UPDATED: ./views/next-block.pug (97 lines)
+CONTENT_UPDATED: ./views/next-halving.pug (49 lines)
+CONTENT_UPDATED: ./views/node-details.pug (361 lines)
+CONTENT_UPDATED: ./views/predicted-blocks.pug (215 lines)
+CONTENT_UPDATED: ./views/projected-blocks-old.pug (102 lines)
+CONTENT_UPDATED: ./views/quote.pug (14 lines)
+CONTENT_UPDATED: ./views/quotes.pug (66 lines)
+CONTENT_UPDATED: ./views/rpc-browser.pug (164 lines)
+CONTENT_UPDATED: ./views/snippets/index-next-block.pug (61 lines)
+CONTENT_UPDATED: ./views/snippets/utxo-set.pug (55 lines)
+CONTENT_UPDATED: ./views/transaction.pug (458 lines)
+CONTENT_UPDATED: ./views/utxo-set.pug (64 lines)
+RENAME: ./views/bitcoin-whitepaper.pug -> ./views/krepto-whitepaper.pug
+SUCCESS: Renamed ./views/bitcoin-whitepaper.pug to ./views/krepto-whitepaper.pug
+RENAME: ./public/img/qr-btc.png -> ./public/img/qr-krepto.png
+SUCCESS: Renamed ./public/img/qr-btc.png to ./public/img/qr-krepto.png
+RENAME: ./public/img/logo/btc.png -> ./public/img/logo/krepto.png
+SUCCESS: Renamed ./public/img/logo/btc.png to ./public/img/logo/krepto.png
+RENAME: ./docs/explorer.btc21.org.conf -> ./docs/explorer.krepto21.org.conf
+SUCCESS: Renamed ./docs/explorer.btc21.org.conf to ./docs/explorer.krepto21.org.conf
+RENAME: ./docs/btc-explorer.com.conf -> ./docs/krepto-explorer.com.conf
+SUCCESS: Renamed ./docs/btc-explorer.com.conf to ./docs/krepto-explorer.com.conf
+RENAME: ./app/coins/btcQuotes.js -> ./app/coins/kreptoQuotes.js
+SUCCESS: Renamed ./app/coins/btcQuotes.js to ./app/coins/kreptoQuotes.js
+RENAME: ./app/coins/btcHolidays.js -> ./app/coins/kreptoHolidays.js
+SUCCESS: Renamed ./app/coins/btcHolidays.js to ./app/coins/kreptoHolidays.js
+RENAME: ./app/coins/btcFun.js -> ./app/coins/kreptoFun.js
+SUCCESS: Renamed ./app/coins/btcFun.js to ./app/coins/kreptoFun.js
+RENAME: ./app/coins/btc.js -> ./app/coins/krepto.js
+SUCCESS: Renamed ./app/coins/btc.js to ./app/coins/krepto.js
+RENAME: ./public/txt/mining-pools-configs/BTC -> ./public/txt/mining-pools-configs/KREPTO
+SUCCESS: Renamed ./public/txt/mining-pools-configs/BTC to ./public/txt/mining-pools-configs/KREPTO

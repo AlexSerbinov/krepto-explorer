@@ -1,7 +1,7 @@
 "use strict";
 
 const debug = require("debug");
-const debugLog = debug("btcexp:core");
+const debugLog = debug("kreptoexp:core");
 
 const fs = require('fs');
 
@@ -121,7 +121,7 @@ if (redisCache.active) {
 	}
 
 	// md5 of the active RPC credentials serves as part of the key; this enables
-	// multiple instances of btc-rpc-explorer (eg mainnet + testnet) to share
+	// multiple instances of krepto-rpc-explorer (eg mainnet + testnet) to share
 	// a single redis instance peacefully
 	const rpcHostPort = `${config.credentials.rpc.host}:${config.credentials.rpc.port}`;
 	const rpcCredKeyComponent = md5(JSON.stringify(config.credentials.rpc)).substring(0, 8);
@@ -425,7 +425,7 @@ async function getNextBlockEstimate() {
 
 	const subsidy = coinConfig.blockRewardFunction(blockTemplate.height, global.activeBlockchain);
 
-	const totalFees = new Decimal(blockTemplate.coinbasevalue).dividedBy(SATS_PER_BTC).minus(new Decimal(subsidy));
+	const totalFees = new Decimal(blockTemplate.coinbasevalue).dividedBy(KATS_PER_KREPTO).minus(new Decimal(subsidy));
 
 	return {
 		blockTemplate: blockTemplate,
@@ -1472,8 +1472,8 @@ function getMempoolTxSummaries(allTxids, statusId, statusFunc) {
 			const results = [];
 			const txidKeysForCachePurge = {};
 
-			const btcToSat = (btcFloat) => {
-				return parseInt(new Decimal(btcFloat).times(SATS_PER_BTC).toDP(0));
+			const kreptoToKat = (kreptoFloat) => {
+				return parseInt(new Decimal(kreptoFloat).times(KATS_PER_KREPTO).toDP(0));
 			};
 
 			for (let i = 0; i < txids.length; i++) {
@@ -1495,9 +1495,9 @@ function getMempoolTxSummaries(allTxids, statusId, statusFunc) {
 						try {
 							const item = await getMempoolTxDetails(txid, false);
 							const itemSummary = {
-								f: btcToSat(item.entry.fees.modified),
+								f: kreptoToKat(item.entry.fees.modified),
 								
-								af: btcToSat(item.entry.fees.ancestor),
+								af: kreptoToKat(item.entry.fees.ancestor),
 								asz: item.entry.ancestorsize,
 
 								a: item.entry.depends.map(x => mempoolCacheKeyForTxid(x)),
@@ -1642,31 +1642,31 @@ function buildMempoolSummary(statusId, ageBuckets, sizeBuckets, statusFunc) {
 			//maxSize = 2000;
 
 			const feeBucketMaxCount = 250;
-			const feeSatoshiBuckets = [];
+			const feeKatoshiBuckets = [];
 			for (let i = 0; i < feeBucketMaxCount; i++) {
-				feeSatoshiBuckets.push(i);
+				feeKatoshiBuckets.push(i);
 			}
 
-			let satoshiPerByteBucketMaxima = feeSatoshiBuckets;
+			let katoshiPerByteBucketMaxima = feeKatoshiBuckets;
 
-			let bucketCount = satoshiPerByteBucketMaxima.length + 1;
+			let bucketCount = katoshiPerByteBucketMaxima.length + 1;
 
-			let satoshiPerByteBuckets = [];
-			let satoshiPerByteBucketLabels = [];
+			let katoshiPerByteBuckets = [];
+			let katoshiPerByteBucketLabels = [];
 
-			//satoshiPerByteBucketLabels[0] = ("[0 - " + satoshiPerByteBucketMaxima[0] + ")");
+			//katoshiPerByteBucketLabels[0] = ("[0 - " + katoshiPerByteBucketMaxima[0] + ")");
 			for (let i = 1; i < bucketCount; i++) {
-				satoshiPerByteBuckets.push({
+				katoshiPerByteBuckets.push({
 					count: 0,
 					totalFees: new Decimal(0),
 					totalBytes: 0,
 					totalWeight: 0,
-					minFeeRate: satoshiPerByteBucketMaxima[i - 1],
-					maxFeeRate: satoshiPerByteBucketMaxima[i]
+					minFeeRate: katoshiPerByteBucketMaxima[i - 1],
+					maxFeeRate: katoshiPerByteBucketMaxima[i]
 				});
 
 				if (i > 0 && i < bucketCount - 1) {
-					satoshiPerByteBucketLabels.push("[" + satoshiPerByteBucketMaxima[i - 1] + " - " + satoshiPerByteBucketMaxima[i] + ")");
+					katoshiPerByteBucketLabels.push("[" + katoshiPerByteBucketMaxima[i - 1] + " - " + katoshiPerByteBucketMaxima[i] + ")");
 				}
 			}
 
@@ -1725,7 +1725,7 @@ function buildMempoolSummary(statusId, ageBuckets, sizeBuckets, statusFunc) {
 				}
 			}
 
-			satoshiPerByteBucketLabels[bucketCount - 1] = (satoshiPerByteBucketMaxima[satoshiPerByteBucketMaxima.length - 1] + "+");
+			katoshiPerByteBucketLabels[bucketCount - 1] = (katoshiPerByteBucketMaxima[katoshiPerByteBucketMaxima.length - 1] + "+");
 
 			const oldestLargestCount = 20;
 
@@ -1734,8 +1734,8 @@ function buildMempoolSummary(statusId, ageBuckets, sizeBuckets, statusFunc) {
 				"totalFees": new Decimal(0),
 				"totalBytes": 0,
 				"totalWeight": 0,
-				"satoshiPerByteBuckets": satoshiPerByteBuckets,
-				"satoshiPerByteBucketLabels": satoshiPerByteBucketLabels,
+				"katoshiPerByteBuckets": katoshiPerByteBuckets,
+				"katoshiPerByteBucketLabels": katoshiPerByteBucketLabels,
 				"ageBucketTxCounts": ageBucketTxCounts,
 				"ageBucketLabels": ageBucketLabels,
 				"sizeBucketTxCounts": sizeBucketTxCounts,
@@ -1781,17 +1781,17 @@ function buildMempoolSummary(statusId, ageBuckets, sizeBuckets, statusFunc) {
 				let fee = txMempoolInfo.f;
 				let size = txMempoolInfo.w / 4;
 				let weight = txMempoolInfo.w;
-				let feePerByte = new Decimal(txMempoolInfo.f).dividedBy(SATS_PER_BTC).toNumber() / weight;
-				let satoshiPerByte = feePerByte * SATS_PER_BTC;
+				let feePerByte = new Decimal(txMempoolInfo.f).dividedBy(KATS_PER_KREPTO).toNumber() / weight;
+				let katoshiPerByte = feePerByte * KATS_PER_KREPTO;
 				let age = Date.now() / 1000 - txMempoolInfo.t;
 
 				let addedToBucket = false;
-				for (let i = 0; i < satoshiPerByteBuckets.length; i++) {
-					if (satoshiPerByteBuckets[i].maxFeeRate > satoshiPerByte) {
-						satoshiPerByteBuckets[i]["count"]++;
-						satoshiPerByteBuckets[i]["totalFees"] = satoshiPerByteBuckets[i]["totalFees"].plus(new Decimal(fee).dividedBy(SATS_PER_BTC));
-						satoshiPerByteBuckets[i]["totalBytes"] += size;
-						satoshiPerByteBuckets[i]["totalWeight"] += weight;
+				for (let i = 0; i < katoshiPerByteBuckets.length; i++) {
+					if (katoshiPerByteBuckets[i].maxFeeRate > katoshiPerByte) {
+						katoshiPerByteBuckets[i]["count"]++;
+						katoshiPerByteBuckets[i]["totalFees"] = katoshiPerByteBuckets[i]["totalFees"].plus(new Decimal(fee).dividedBy(KATS_PER_KREPTO));
+						katoshiPerByteBuckets[i]["totalBytes"] += size;
+						katoshiPerByteBuckets[i]["totalWeight"] += weight;
 
 						addedToBucket = true;
 
@@ -1800,14 +1800,14 @@ function buildMempoolSummary(statusId, ageBuckets, sizeBuckets, statusFunc) {
 				}
 
 				if (!addedToBucket) {
-					satoshiPerByteBuckets[bucketCount - 2]["count"]++;
-					satoshiPerByteBuckets[bucketCount - 2]["totalFees"] = satoshiPerByteBuckets[bucketCount - 2]["totalFees"].plus(new Decimal(fee).dividedBy(SATS_PER_BTC));
-					satoshiPerByteBuckets[bucketCount - 2]["totalBytes"] += size;
-					satoshiPerByteBuckets[bucketCount - 2]["totalWeight"] += weight;
+					katoshiPerByteBuckets[bucketCount - 2]["count"]++;
+					katoshiPerByteBuckets[bucketCount - 2]["totalFees"] = katoshiPerByteBuckets[bucketCount - 2]["totalFees"].plus(new Decimal(fee).dividedBy(KATS_PER_KREPTO));
+					katoshiPerByteBuckets[bucketCount - 2]["totalBytes"] += size;
+					katoshiPerByteBuckets[bucketCount - 2]["totalWeight"] += weight;
 				}
 
 				summary["count"]++;
-				summary["totalFees"] = summary.totalFees.plus(new Decimal(fee).dividedBy(SATS_PER_BTC));
+				summary["totalFees"] = summary.totalFees.plus(new Decimal(fee).dividedBy(KATS_PER_KREPTO));
 				summary["totalBytes"] += size;
 				summary["totalWeight"] += weight;
 
@@ -1821,8 +1821,8 @@ function buildMempoolSummary(statusId, ageBuckets, sizeBuckets, statusFunc) {
 			let topTargetPercent = 0.25;
 			let totWeight = 0;
 			let topIndex = -1;
-			for (let i = satoshiPerByteBuckets.length - 1; i >= 0; i--) {
-				totWeight += satoshiPerByteBuckets[i].totalWeight;
+			for (let i = katoshiPerByteBuckets.length - 1; i >= 0; i--) {
+				totWeight += katoshiPerByteBuckets[i].totalWeight;
 
 				if (totWeight / summary.totalWeight * 100 > topTargetPercent) {
 					topIndex = i;
@@ -1831,40 +1831,40 @@ function buildMempoolSummary(statusId, ageBuckets, sizeBuckets, statusFunc) {
 				}
 			}
 
-			summary.satoshiPerByteBucketLabels = summary.satoshiPerByteBucketLabels.slice(0, topIndex);
+			summary.katoshiPerByteBucketLabels = summary.katoshiPerByteBucketLabels.slice(0, topIndex);
 
 			if (topIndex < feeBucketMaxCount) {
-				summary.satoshiPerByteBucketLabels.push(topIndex + "+");
+				summary.katoshiPerByteBucketLabels.push(topIndex + "+");
 			}
 
 			
-			if (topIndex < satoshiPerByteBuckets.length) {
-				satoshiPerByteBuckets[topIndex].buckets = 0;
+			if (topIndex < katoshiPerByteBuckets.length) {
+				katoshiPerByteBuckets[topIndex].buckets = 0;
 
 				// merge the top buckets into one
-				for (let i = topIndex + 1; i < satoshiPerByteBuckets.length; i++) {
-					satoshiPerByteBuckets[topIndex].count += satoshiPerByteBuckets[i].count;
-					satoshiPerByteBuckets[topIndex].totalFees = satoshiPerByteBuckets[topIndex].totalFees.plus(satoshiPerByteBuckets[i].totalFees);
-					satoshiPerByteBuckets[topIndex].totalBytes += satoshiPerByteBuckets[i].totalBytes;
-					satoshiPerByteBuckets[topIndex].totalWeight += satoshiPerByteBuckets[i].totalWeight;
-					satoshiPerByteBuckets[topIndex].buckets++;
+				for (let i = topIndex + 1; i < katoshiPerByteBuckets.length; i++) {
+					katoshiPerByteBuckets[topIndex].count += katoshiPerByteBuckets[i].count;
+					katoshiPerByteBuckets[topIndex].totalFees = katoshiPerByteBuckets[topIndex].totalFees.plus(katoshiPerByteBuckets[i].totalFees);
+					katoshiPerByteBuckets[topIndex].totalBytes += katoshiPerByteBuckets[i].totalBytes;
+					katoshiPerByteBuckets[topIndex].totalWeight += katoshiPerByteBuckets[i].totalWeight;
+					katoshiPerByteBuckets[topIndex].buckets++;
 				}
 
-				satoshiPerByteBuckets = satoshiPerByteBuckets.slice(0, topIndex + 1);
-				satoshiPerByteBucketMaxima = satoshiPerByteBucketMaxima.slice(0, topIndex + 1);
+				katoshiPerByteBuckets = katoshiPerByteBuckets.slice(0, topIndex + 1);
+				katoshiPerByteBucketMaxima = katoshiPerByteBucketMaxima.slice(0, topIndex + 1);
 			}
 
 			summary["averageFee"] = summary["totalFees"] / summary["count"];
 			summary["averageFeePerByte"] = summary["totalFees"] / summary["totalBytes"];
 
-			summary["satoshiPerByteBucketMaxima"] = satoshiPerByteBucketMaxima;
-			summary.satoshiPerByteBuckets = satoshiPerByteBuckets;
-			summary["satoshiPerByteBucketCounts"] = [];
-			summary["satoshiPerByteBucketTotalFees"] = [];
+			summary["katoshiPerByteBucketMaxima"] = katoshiPerByteBucketMaxima;
+			summary.katoshiPerByteBuckets = katoshiPerByteBuckets;
+			summary["katoshiPerByteBucketCounts"] = [];
+			summary["katoshiPerByteBucketTotalFees"] = [];
 
-			for (let i = 0; i < satoshiPerByteBuckets.length; i++) {
-				summary["satoshiPerByteBucketCounts"].push(summary["satoshiPerByteBuckets"][i]["count"]);
-				summary["satoshiPerByteBucketTotalFees"].push(summary["satoshiPerByteBuckets"][i]["totalFees"]);
+			for (let i = 0; i < katoshiPerByteBuckets.length; i++) {
+				summary["katoshiPerByteBucketCounts"].push(summary["katoshiPerByteBuckets"][i]["count"]);
+				summary["katoshiPerByteBucketTotalFees"].push(summary["katoshiPerByteBuckets"][i]["totalFees"]);
 			}
 
 

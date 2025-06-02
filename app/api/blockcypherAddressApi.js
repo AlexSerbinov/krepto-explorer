@@ -13,8 +13,8 @@ function getAddressDetails(address, scriptPubkey, sort, limit, offset) {
 		}
 
 		var limitOffset = limit + offset;
-		var mainnetUrl = `https://api.blockcypher.com/v1/btc/main/addrs/${address}?limit=${limitOffset}`;
-		var testnetUrl = `https://api.blockcypher.com/v1/btc/test3/addrs/${address}?limit=${limitOffset}`;
+		var mainnetUrl = `https://api.blockcypher.com/v1/krepto/main/addrs/${address}?limit=${limitOffset}`;
+		var testnetUrl = `https://api.blockcypher.com/v1/krepto/test3/addrs/${address}?limit=${limitOffset}`;
 		var url = (global.activeBlockchain == "main") ? mainnetUrl : ((global.activeBlockchain == "test") ? testnetUrl : mainnetUrl);
 
 		var options = {
@@ -45,9 +45,9 @@ function getAddressDetails(address, scriptPubkey, sort, limit, offset) {
 			}
 
 			response.txCount = blockcypherJson.n_tx;
-			response.totalReceivedSat = blockcypherJson.total_received;
-			response.totalSentSat = blockcypherJson.total_sent;
-			response.balanceSat = blockcypherJson.final_balance;
+			response.totalReceivedKat = blockcypherJson.total_received;
+			response.totalSentKat = blockcypherJson.total_sent;
+			response.balanceKat = blockcypherJson.final_balance;
 			response.source = "blockcypher.com";
 
 			resolve({addressDetails:response});

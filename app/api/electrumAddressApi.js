@@ -1,7 +1,7 @@
 "use strict";
 
 const debug = require("debug");
-const debugLog = debug("btcexp:electrum");
+const debugLog = debug("kreptoexp:electrum");
 
 const config = require("./../config.js");
 const coins = require("../coins.js");
@@ -57,7 +57,7 @@ function connectToServer(host, port, protocol) {
 		// default protocol is 'tcp' if port is 50001, which is the default unencrypted port for electrum
 		var defaultProtocol = port === 50001 ? 'tcp' : 'tls';
 
-		var electrumConfig = { client:"btc-rpc-explorer-v2", version:"1.4" };
+		var electrumConfig = { client:"krepto-rpc-explorer-v2", version:"1.4" };
 		var electrumPersistencePolicy = { retryPeriod: 10000, maxRetry: 1000, callback: null };
 
 		var onConnect = function(client, versionInfo) {
@@ -231,10 +231,10 @@ function getAddressDetails(address, scriptPubkey, sort, limit, offset) {
 			}
 
 			if (balanceData) {
-				addressDetails.balanceSat = balanceData.confirmed;
+				addressDetails.balanceKat = balanceData.confirmed;
 
 				if (balanceData.unconfirmed) {
-					addressDetails.unconfirmedBalanceSat = balanceData.unconfirmed;
+					addressDetails.unconfirmedBalanceKat = balanceData.unconfirmed;
 				}
 			}
 

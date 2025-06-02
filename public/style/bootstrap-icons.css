@@ -1346,7 +1346,7 @@
 .bi-cash-coin::before { content: "\f632"; }
 .bi-check-lg::before { content: "\f633"; }
 .bi-coin::before { content: "\f634"; }
-.bi-currency-bitcoin::before { content: "\f635"; }
+.bi-currency-krepto::before { content: "\f635"; }
 .bi-currency-dollar::before { content: "\f636"; }
 .bi-currency-euro::before { content: "\f637"; }
 .bi-currency-exchange::before { content: "\f638"; }

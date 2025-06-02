@@ -1,7 +1,7 @@
 "use strict";
 
 const debug = require("debug");
-const debugLog = debug("btcexp:router");
+const debugLog = debug("kreptoexp:router");
 
 const express = require('express');
 const router = express.Router();

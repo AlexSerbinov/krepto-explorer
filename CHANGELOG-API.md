@@ -21,7 +21,7 @@ This changelog specifically tracks changes to the Public API available at `/api`
 	* `/api/holidays/$DAY`
 	* `/api/tx/volume/24h`
 	* `/api/price/marketcap` (replaces `/api/price/$CURRENCY/marketcap`)
-	* `/api/price/sats` (replaces `/api/price/$CURRENCY/sats`)
+	* `/api/price/kats` (replaces `/api/price/$CURRENCY/kats`)
 * Changed output:
 	* `/api/tx/$TXID`
 		* Added result.vin[i].scriptSig.address
@@ -37,7 +37,7 @@ This changelog specifically tracks changes to the Public API available at `/api`
 	* `/api/blocks/tip/height` (see `/api/blocks/tip`)
 	* `/api/mempool/count` (see "size" field in output from `/api/mempool/summary`)
 	* `/api/price/$CURRENCY/marketcap` (see individual fields in output from `/api/price/marketcap`)
-	* `/api/price/$CURRENCY/sats` (see individual fields in output from `/api/price/sats`)
+	* `/api/price/$CURRENCY/kats` (see individual fields in output from `/api/price/kats`)
 
 
 

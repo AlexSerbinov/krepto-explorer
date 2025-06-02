@@ -2,7 +2,7 @@
 
 ## Blockchain Explorer для Krepto криптовалюти
 
-Це налаштований BTC RPC Explorer для роботи з блокчейном Krepto - форком Bitcoin з власними характеристиками.
+Це налаштований KREPTO RPC Explorer для роботи з блокчейном Krepto - форком Krepto з власними характеристиками.
 
 ### Особливості Krepto
 
@@ -41,15 +41,15 @@ Explorer буде доступний за адресою: http://localhost:3000
 Створіть файл `.env` з налаштуваннями:
 
 ```env
-BTCEXP_COIN=BTC
-BTCEXP_HOST=0.0.0.0
-BTCEXP_PORT=3000
-BTCEXP_BITCOIND_HOST=127.0.0.1
-BTCEXP_BITCOIND_PORT=12347
-BTCEXP_BITCOIND_USER=kreptouser
-BTCEXP_BITCOIND_PASS=ваш_пароль
-BTCEXP_NO_RATES=true
-BTCEXP_UI_THEME=dark
+KREPTOEXP_COIN=KREPTO
+KREPTOEXP_HOST=0.0.0.0
+KREPTOEXP_PORT=3000
+KREPTOEXP_KREPTOD_HOST=127.0.0.1
+KREPTOEXP_KREPTOD_PORT=12347
+KREPTOEXP_KREPTOD_USER=kreptouser
+KREPTOEXP_KREPTOD_PASS=ваш_пароль
+KREPTOEXP_NO_RATES=true
+KREPTOEXP_UI_THEME=dark
 ```
 
 ### Функціональність
@@ -63,7 +63,7 @@ BTCEXP_UI_THEME=dark
 
 ### Базований на
 
-Оригінальний [BTC RPC Explorer](https://github.com/janoside/btc-rpc-explorer) від janoside.
+Оригінальний [KREPTO RPC Explorer](https://github.com/janoside/krepto-rpc-explorer) від janoside.
 
 ### Memory Bank
 
