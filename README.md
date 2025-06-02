@@ -75,7 +75,7 @@ krepto-rpc-explorer
 
 #### Run from source:
 
-1. `git clone https://github.com/janoside/krepto-rpc-explorer`
+1. `git clone https://`
 2. `cd krepto-rpc-explorer`
 3. `npm install`
 4. `npm start`

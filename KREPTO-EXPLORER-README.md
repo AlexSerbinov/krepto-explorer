@@ -63,7 +63,7 @@ KREPTOEXP_UI_THEME=dark
 
 ### Базований на
 
-Оригінальний [KREPTO RPC Explorer](https://github.com/janoside/krepto-rpc-explorer) від janoside.
+Оригінальний [KREPTO RPC Explorer](https://) від janoside.
 
 ### Memory Bank
 

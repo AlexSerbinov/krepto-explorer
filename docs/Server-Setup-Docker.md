@@ -6,7 +6,7 @@
 	apt install docker.io
 	
 	# get source, npm install
-	git clone https://github.com/janoside/krepto-rpc-explorer.git
+	git clone https://.git
 	cd krepto-rpc-explorer
 	
 	# build docker image

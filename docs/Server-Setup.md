@@ -31,7 +31,7 @@ Misc setup
 Get source, npm install
 
     cd /home/krepto
-    git clone https://github.com/janoside/krepto-rpc-explorer.git
+    git clone https://.git
     cd /home/krepto/krepto-rpc-explorer
     npm install
     

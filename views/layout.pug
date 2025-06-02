@@ -246,49 +246,42 @@ html(lang="en")
 
 				div(style="margin-bottom: 30px;")
 
-		footer.footer.border-top.border-primary.bg-header-footer.pt-3.pb-1.px-3.text-white(style="border-width: 5px !important;")
+		footer.footer.bg-header-footer.pt-3.pb-1.px-3.text-white
 			.container
-				if (!crawlerBot && global.rpcConnected)
-					.mb-4.mx-6
-						iframe(id="quoteIframe", title="A Krepto Quote of the Day", src="./snippet/quote/random", onload="iframeLoaded('quoteIframe');", scrolling="no", height="0", style="width: 100%;")
-
-					hr
-
-				
 				.row.mt-4.mb-6
 					.col-lg-3
-						.mb-4
-							h6 Project
+						//- .mb-4
+							//- h6 Project
 
-							.ms-2
-								a.footer-link(href="https://github.com/janoside/krepto-rpc-explorer") github.com/janoside/krepto-rpc-explorer
+							//- .ms-2
+							//- 	a.footer-link(href="https://") 
 									
-								if (global.sourcecodeProjectMetadata)
-									div.mt-2
-										a.btn.btn-primary.btn-sm.me-3.mb-1.text-decoration-none(href="https://github.com/janoside/krepto-rpc-explorer")
-											i.bi-star-fill.text-warning.me-2
-											span.badge.bg-white.text-dark #{global.sourcecodeProjectMetadata.stargazers_count}
+							//- 	if (global.sourcecodeProjectMetadata)
+							//- 		div.mt-2
+							//- 			a.btn.btn-primary.btn-sm.me-3.mb-1.text-decoration-none(href="https://")
+							//- 				i.bi-star-fill.text-warning.me-2
+							//- 				span.badge.bg-white.text-dark #{global.sourcecodeProjectMetadata.stargazers_count}
 
-										a.btn.btn-primary.btn-sm.me-3.mb-1.text-decoration-none(href="https://github.com/janoside/krepto-rpc-explorer/fork")
-											i.bi-bezier2.me-2
-											span.badge.bg-white.text-dark #{global.sourcecodeProjectMetadata.forks_count}
+							//- 			a.btn.btn-primary.btn-sm.me-3.mb-1.text-decoration-none(href="https:///fork")
+							//- 				i.bi-bezier2.me-2
+							//- 				span.badge.bg-white.text-dark #{global.sourcecodeProjectMetadata.forks_count}
 
 					.col-lg-3
-						.mb-4
-							h6 App Details
+						//- .mb-4
+						//- 	h6 App Details
 
-							.ms-2
-								span version: #{global.appVersion}
-								if (sourcecodeVersion)
-									br
-									span commit: 
-										a.footer-link(href=`https://github.com/janoside/krepto-rpc-explorer/commit/${sourcecodeVersion}`) #{sourcecodeVersion}
+						//- 	.ms-2
+						//- 		span version: #{global.appVersion}
+						//- 		if (sourcecodeVersion)
+						//- 			br
+						//- 			span commit: 
+						//- 				a.footer-link(href=`https:///commit/${sourcecodeVersion}`) #{sourcecodeVersion}
 								
-								br
-								span released: #{sourcecodeDate}
-								span(style="font-size: 0.9em;")  (
-									a.footer-link(href="./changelog") changelog
-									span )
+						//- 		br
+						//- 		span released: #{sourcecodeDate}
+						//- 		span(style="font-size: 0.9em;")  (
+						//- 			a.footer-link(href="./changelog") changelog
+						//- 			span )
 
 					.col-lg-3
 						if (config.demoSite)
@@ -315,20 +308,20 @@ html(lang="en")
 												img(src=assetUrl(coinConfig.logoUrlsByNetwork[demoSite]), alt=coinConfig.siteTitlesByNetwork[demoSite], style="width: 40px; height: 40px;")
 
 					.col-lg-3
-						.mb-4
-							h6 Links
+						//- .mb-4
+						//- 	h6 Links
 
-							.ms-2
-								span(style="font-size: 1.5rem;")
-									if (global.sourcecodeProjectMetadata)
-										a.text-white.mb-1.me-3(href="https://github.com/janoside/krepto-rpc-explorer", title="View source code", data-bs-toggle="tooltip")
-											i.bi-git
+						//- 	.ms-2
+						//- 		span(style="font-size: 1.5rem;")
+						//- 			if (global.sourcecodeProjectMetadata)
+						//- 				a.text-white.mb-1.me-3(href="https://", title="View source code", data-bs-toggle="tooltip")
+						//- 					i.bi-git
 
-									a.text-danger.mb-1.me-3(href="https://donate.kreptoexplorer.org", target="_blank", title="Support this project with a donation", data-bs-toggle="tooltip")
-										i.bi-heart-fill.text-danger
+						//- 			a.text-danger.mb-1.me-3(href="https://donate.kreptoexplorer.org", target="_blank", title="Support this project with a donation", data-bs-toggle="tooltip")
+						//- 				i.bi-heart-fill.text-danger
 
-									a.text-white.mb-1(href="https://twitter.com/KreptoExplorer", target="_blank", title="Follow @KreptoExplorer on Twitter", data-bs-toggle="tooltip")
-										i.bi-twitter.text-twitter
+						//- 			a.text-white.mb-1(href="https://twitter.com/KreptoExplorer", target="_blank", title="Follow @KreptoExplorer on Twitter", data-bs-toggle="tooltip")
+						//- 				i.bi-twitter.text-twitter
 								
 								
 
