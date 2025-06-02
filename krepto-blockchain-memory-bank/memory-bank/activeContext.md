@@ -1,17 +1,17 @@
 # Active Context - Krepto Development
 
-## 🎯 CURRENT FOCUS: Windows Bitcoin Qt GUI Build (КРИТИЧНА) - ФІНАЛЬНИЙ АНАЛІЗ
+## 🎯 CURRENT FOCUS: Windows Krepto Qt GUI Build (КРИТИЧНА) - ФІНАЛЬНИЙ АНАЛІЗ
 
 ### ❌ ПРОБЛЕМА ВИРІШЕНА: Cross-Compilation Неможлива (27 січня 2025)
-- **Висновок**: Cross-compilation Bitcoin Qt GUI з macOS на Windows є технічно неможливою
+- **Висновок**: Cross-compilation Krepto Qt GUI з macOS на Windows є технічно неможливою
 - **Причина**: Фундаментальні конфлікти між macOS Qt5 та Windows MinGW
 - **Спроби**: 6 різних підходів протестовано, всі невдалі
 - **Рішення**: Потрібна нативна Windows збірка
 
-### 🎯 МЕТА: Зібрати Bitcoin Qt GUI для Windows
-- **Цільовий файл**: bitcoin-qt.exe (перейменувати в krepto-qt.exe)
+### 🎯 МЕТА: Зібрати Krepto Qt GUI для Windows
+- **Цільовий файл**: krepto-qt.exe (перейменувати в krepto-qt.exe)
 - **Не створювати**: Власний GUI інтерфейс
-- **Використовувати**: Існуючий Bitcoin Core Qt GUI
+- **Використовувати**: Існуючий Krepto Core Qt GUI
 - **Платформа**: Windows x86_64
 - **Результат**: Повнофункціональний GUI клієнт з майнінгом
 
@@ -26,11 +26,11 @@ clang: error: argument unused during compilation: '-mmacosx-version-min=10.15'
 
 #### Що Працює ✅
 - **Windows CLI**: kryptod.exe, krepto-cli.exe, krepto-tx.exe, krepto-util.exe, krepto-wallet.exe
-- **macOS Bitcoin Qt GUI**: Повністю функціональний з майнінгом
+- **macOS Krepto Qt GUI**: Повністю функціональний з майнінгом
 - **Cross-compilation базових компонентів**: Успішно
 
 #### Що Не Працює ❌
-- **Windows Bitcoin Qt GUI**: bitcoin-qt.exe не створюється
+- **Windows Krepto Qt GUI**: krepto-qt.exe не створюється
 - **Qt5 збірка для Windows**: Конфлікт macOS/Windows флагів компіляції
 - **libevent для Windows**: sys/uio.h не знайдено
 
@@ -47,7 +47,7 @@ clang: error: argument unused during compilation: '-mmacosx-version-min=10.15'
 - **Переваги**: Повний контроль, можливість налагодження
 - **Час**: 2-3 дні на налаштування
 
-#### 3. Готові Bitcoin Core Збірки
+#### 3. Готові Krepto Core Збірки
 - **Процес**: Завантажити офіційні збірки → ребрендинг → Krepto дистрибутив
 - **Переваги**: Швидко, стабільно, перевірено
 - **Час**: 1 день
@@ -100,7 +100,7 @@ Krepto Проєкт:        █████████████████�
 
 ### 💡 КЛЮЧОВІ ВИСНОВКИ
 
-1. **Cross-compilation Bitcoin Qt GUI з macOS неможлива** через:
+1. **Cross-compilation Krepto Qt GUI з macOS неможлива** через:
    - macOS-специфічні флаги компіляції
    - Несумісність Qt5 frameworks
    - Відсутність Windows headers в MinGW
@@ -124,14 +124,14 @@ Krepto Проєкт:        █████████████████�
 
 ### ✅ JUST COMPLETED (2024-05-28)
 - **Secondary Seed Node Addition**: Successfully added 5.189.133.204:12345
-- **Configuration Updates**: Updated all bitcoin.conf files across the project
+- **Configuration Updates**: Updated all krepto.conf files across the project
 - **DMG Rebuild**: Created new macOS installer with dual seed node support
 - **Quality Assurance**: Verified all configurations include both seed nodes
 
 ### 📋 UPDATED FILES
-1. `Krepto.app/Contents/Resources/bitcoin.conf` - macOS app bundle
-2. `Krepto-Windows-Final/bitcoin.conf` - Windows GUI version
-3. `Krepto-Windows-CLI/bitcoin.conf` - Windows CLI version
+1. `Krepto.app/Contents/Resources/krepto.conf` - macOS app bundle
+2. `Krepto-Windows-Final/krepto.conf` - Windows GUI version
+3. `Krepto-Windows-CLI/krepto.conf` - Windows CLI version
 4. `test_seed_nodes.sh` - Network testing script
 5. `build_professional_dmg.sh` - DMG build script
 
@@ -194,7 +194,7 @@ The network configuration update represents a significant improvement in Krepto'
 ### 🎮 Поточний Стан
 
 #### Standalone GUI Функціональність
-- ✅ **Вбудований демон**: GUI запускає власний bitcoind процес
+- ✅ **Вбудований демон**: GUI запускає власний kreptod процес
 - ✅ **Внутрішній майнінг**: Використовує executeRpc замість зовнішніх процесів
 - ✅ **Автоматичні адреси**: Створює mining адреси автоматично
 - ✅ **Реальний час логування**: Детальна статистика майнінгу
@@ -203,7 +203,7 @@ The network configuration update represents a significant improvement in Krepto'
 #### Запуск Клієнта
 ```bash
 # Одна команда для запуску всього
-./src/qt/bitcoin-qt -datadir=/Users/serbinov/.krepto
+./src/qt/krepto-qt -datadir=/Users/serbinov/.krepto
 
 # Майнінг через GUI: Tools → Mining Console → Start Mining
 ```
@@ -234,7 +234,7 @@ The network configuration update represents a significant improvement in Krepto'
 ```cpp
 // Старий підхід (проблемний)
 QProcess *process = new QProcess(this);
-process->start("./src/bitcoin-cli", arguments);
+process->start("./src/krepto-cli", arguments);
 
 // Новий підхід (робочий)
 UniValue result = clientModel->node().executeRpc("generatetoaddress", params, "");
@@ -248,7 +248,7 @@ UniValue result = clientModel->node().executeRpc("generatetoaddress", params, ""
 
 ### 🔧 Технічний Стек
 
-- **Core**: Bitcoin Core 25.x форк
+- **Core**: Krepto Core 25.x форк
 - **GUI**: Qt 5.x з повним ребрендингом
 - **Майнінг**: Внутрішні RPC виклики
 - **Мережа**: Власна Krepto мережа
@@ -325,11 +325,11 @@ Krepto Проєкт:        █████████████████�
 - **kryptod.exe** - daemon
 - **krepto-cli.exe** - CLI інтерфейс
 - **krepto-tx.exe**, **krepto-util.exe**, **krepto-wallet.exe** - утиліти
-- **Конфігурація**: bitcoin.conf з seed nodes
+- **Конфігурація**: krepto.conf з seed nodes
 - **Пакування**: ZIP архів з усіма файлами
 
 ### 🔍 Моніторинг:
-- URL: https://github.com/AlexSerbinov/krepto-bitcoin-fork/actions/runs/15309830005
+- URL: https://github.com/AlexSerbinov/krepto-krepto-fork/actions/runs/15309830005
 - Job: Win64 native, VS 2022
 - Статус: Currently running
 
@@ -343,7 +343,7 @@ Krepto Проєкт:        █████████████████�
 - **Windows GUI**: 🔄 В процесі збірки
 
 ### 🚀 Фінальна Мета:
-Отримати повнофункціональний Windows GUI дистрибутив з Bitcoin Qt інтерфейсом та вбудованим майнінгом.
+Отримати повнофункціональний Windows GUI дистрибутив з Krepto Qt інтерфейсом та вбудованим майнінгом.
 
 ## 📝 Технічні Деталі GitHub Actions:
 
@@ -355,7 +355,7 @@ Krepto Проєкт:        █████████████████�
 - **Build Type**: Release
 
 ### Особливості:
-- Автоматичне перейменування bitcoin-qt.exe → krepto-qt.exe
+- Автоматичне перейменування krepto-qt.exe → krepto-qt.exe
 - Включення всіх Qt5 DLL та plugins
 - Конфігураційний файл з seed nodes
 - README та batch файли для запуску

@@ -1,11 +1,11 @@
 {
-	"name": "btc-rpc-explorer",
+	"name": "krepto-rpc-explorer",
 	"version": "3.4.0",
 	"lockfileVersion": 3,
 	"requires": true,
 	"packages": {
 		"": {
-			"name": "btc-rpc-explorer",
+			"name": "krepto-rpc-explorer",
 			"version": "3.4.0",
 			"license": "MIT",
 			"dependencies": {
@@ -15,7 +15,7 @@
 				"basic-auth": "^2.0.1",
 				"bech32": "2.0.0",
 				"bip32": "^4.0.0",
-				"bitcoinjs-lib": "^6.1.0",
+				"kreptojs-lib": "^6.1.0",
 				"body-parser": "^1.20.2",
 				"bootstrap": "^5.2.3",
 				"bs58check": "^4.0.0",
@@ -53,7 +53,7 @@
 				"zeromq": "^6.1.2"
 			},
 			"bin": {
-				"btc-rpc-explorer": "bin/cli.js"
+				"krepto-rpc-explorer": "bin/cli.js"
 			},
 			"devDependencies": {
 				"eslint": "^8.39.0",
@@ -2711,9 +2711,9 @@
 				"node": ">=6.0.0"
 			}
 		},
-		"node_modules/bitcoinjs-lib": {
+		"node_modules/kreptojs-lib": {
 			"version": "6.1.6",
-			"resolved": "https://registry.npmjs.org/bitcoinjs-lib/-/bitcoinjs-lib-6.1.6.tgz",
+			"resolved": "https://registry.npmjs.org/kreptojs-lib/-/kreptojs-lib-6.1.6.tgz",
 			"integrity": "sha512-Fk8+Vc+e2rMoDU5gXkW9tD+313rhkm5h6N9HfZxXvYU9LedttVvmXKTgd9k5rsQJjkSfsv6XRM8uhJv94SrvcA==",
 			"license": "MIT",
 			"dependencies": {
@@ -2722,19 +2722,19 @@
 				"bip174": "^2.1.1",
 				"bs58check": "^3.0.1",
 				"typeforce": "^1.11.3",
-				"varuint-bitcoin": "^1.1.2"
+				"varuint-krepto": "^1.1.2"
 			},
 			"engines": {
 				"node": ">=8.0.0"
 			}
 		},
-		"node_modules/bitcoinjs-lib/node_modules/base-x": {
+		"node_modules/kreptojs-lib/node_modules/base-x": {
 			"version": "4.0.0",
 			"resolved": "https://registry.npmjs.org/base-x/-/base-x-4.0.0.tgz",
 			"integrity": "sha512-FuwxlW4H5kh37X/oW59pwTzzTKRzfrrQwhmyspRM7swOEZcHtDZSCt45U6oKgtuFE+WYPblePMVIPR4RZrh/hw==",
 			"license": "MIT"
 		},
-		"node_modules/bitcoinjs-lib/node_modules/bs58": {
+		"node_modules/kreptojs-lib/node_modules/bs58": {
 			"version": "5.0.0",
 			"resolved": "https://registry.npmjs.org/bs58/-/bs58-5.0.0.tgz",
 			"integrity": "sha512-r+ihvQJvahgYT50JD05dyJNKlmmSlMoOGwn1lCcEzanPglg7TxYjioQUYehQ9mAR/+hOSd2jRc/Z2y5UxBymvQ==",
@@ -2743,7 +2743,7 @@
 				"base-x": "^4.0.0"
 			}
 		},
-		"node_modules/bitcoinjs-lib/node_modules/bs58check": {
+		"node_modules/kreptojs-lib/node_modules/bs58check": {
 			"version": "3.0.1",
 			"resolved": "https://registry.npmjs.org/bs58check/-/bs58check-3.0.1.tgz",
 			"integrity": "sha512-hjuuJvoWEybo7Hn/0xOrczQKKEKD63WguEjlhLExYs2wUBcebDC1jDNK17eEAD2lYfw82d5ASC1d7K3SWszjaQ==",
@@ -6538,7 +6538,7 @@
 		"node_modules/sass": {
 			"version": "1.81.0",
 			"resolved": "https://registry.npmjs.org/sass/-/sass-1.81.0.tgz",
-			"integrity": "sha512-Q4fOxRfhmv3sqCLoGfvrC9pRV8btc0UtqL9mN6Yrv6Qi9ScL55CVH1vlPP863ISLEEMNLLuu9P+enCeGHlnzhA==",
+			"integrity": "sha512-Q4fOxRfhmv3sqCLoGfvrC9pRV8krepto0UtqL9mN6Yrv6Qi9ScL55CVH1vlPP863ISLEEMNLLuu9P+enCeGHlnzhA==",
 			"dev": true,
 			"license": "MIT",
 			"dependencies": {
@@ -6647,7 +6647,7 @@
 		"node_modules/serve-static": {
 			"version": "1.16.2",
 			"resolved": "https://registry.npmjs.org/serve-static/-/serve-static-1.16.2.tgz",
-			"integrity": "sha512-VqpjJZKadQB/PEbEwvFdO43Ax5dFBZ2UECszz8bQ7pi7wt//PWe1P6MN7eCnjsatYtBT6EuiClbjSWP2WrIoTw==",
+			"integrity": "sha512-VqpjJZKadQB/PEbEwvFdO43Ax5dFBZ2UECszz8bQ7pi7wt//PWe1P6MN7eCnjkatYtBT6EuiClbjSWP2WrIoTw==",
 			"license": "MIT",
 			"dependencies": {
 				"encodeurl": "~2.0.0",
@@ -7298,9 +7298,9 @@
 				"spdx-expression-parse": "^3.0.0"
 			}
 		},
-		"node_modules/varuint-bitcoin": {
+		"node_modules/varuint-krepto": {
 			"version": "1.1.2",
-			"resolved": "https://registry.npmjs.org/varuint-bitcoin/-/varuint-bitcoin-1.1.2.tgz",
+			"resolved": "https://registry.npmjs.org/varuint-krepto/-/varuint-krepto-1.1.2.tgz",
 			"integrity": "sha512-4EVb+w4rx+YfVM32HQX42AbbT7/1f5zwAYhIujKXKk8NQK+JfRVl3pqT3hjNn/L+RstigmGGKVwHA/P0wgITZw==",
 			"license": "MIT",
 			"dependencies": {

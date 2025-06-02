@@ -20,7 +20,7 @@ LoadBlockIndexGuts: CheckProofOfWork failed: CBlockIndex(pprev=0x0, nHeight=0, m
 #### Початкові Параметри (Проблемні)
 - **Genesis hash**: `5e5d3365087e5962e40030aa9e43231c24f4057ddfbacb069fb19cfc935c23c9`
 - **nonce**: 0
-- **nBits**: 0x1d00ffff (Bitcoin стандарт)
+- **nBits**: 0x1d00ffff (Krepto стандарт)
 - **powLimit**: `00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff`
 
 ### Причина Проблеми
@@ -47,7 +47,7 @@ python genesis.py -z "Crypto is now Krepto" -n 0 -t 1748270717 -b 0x207fffff
 ```
 **Результат**: Миттєва генерація з nonce=0, але створила нову невідповідність
 
-#### 3. Третя Спроба - Генерація з Bitcoin Складністю
+#### 3. Третя Спроба - Генерація з Krepto Складністю
 ```bash
 python genesis.py -z "Crypto is now Krepto" -n 0 -t 1748270717 -b 0x1d00ffff
 ```
@@ -84,7 +84,7 @@ consensus.powLimit = uint256S("00000ffffffffffffffffffffffffffffffffffffffffffff
 
 **RPC Порт Конфлікт**:
 - **Проблема**: "Unable to bind to 127.0.0.1:12346 on this computer"
-- **Рішення**: Змінено RPC порт з 12346 на 12347 в `/Users/serbinov/.krepto/bitcoin.conf`
+- **Рішення**: Змінено RPC порт з 12346 на 12347 в `/Users/serbinov/.krepto/krepto.conf`
 
 ### Фінальні Параметри (Робочі)
 
@@ -101,7 +101,7 @@ nDefaultPort = 12345;
 ```
 
 ```ini
-# /Users/serbinov/.krepto/bitcoin.conf
+# /Users/serbinov/.krepto/krepto.conf
 rpcport=12347
 port=12345
 ```
@@ -118,10 +118,10 @@ rm -rf /Users/serbinov/.krepto/blocks
 rm -rf /Users/serbinov/.krepto/chainstate
 
 # Запуск
-./src/bitcoind -datadir=/Users/serbinov/.krepto -daemon
+./src/kreptod -datadir=/Users/serbinov/.krepto -daemon
 
 # Перевірка
-./src/bitcoin-cli -datadir=/Users/serbinov/.krepto -rpcport=12347 getblockchaininfo
+./src/krepto-cli -datadir=/Users/serbinov/.krepto -rpcport=12347 getblockchaininfo
 ```
 
 ### Успішний Результат
@@ -175,19 +175,19 @@ rm -rf /Users/serbinov/.krepto/chainstate
 4. **Очистити та перезапустити**:
    ```bash
    rm -rf ~/.krepto/blocks ~/.krepto/chainstate
-   make && ./src/bitcoind -daemon
+   make && ./src/kreptod -daemon
    ```
 
 5. **Перевірити успіх**:
    ```bash
-   ./src/bitcoin-cli getblockchaininfo
+   ./src/krepto-cli getblockchaininfo
    ```
 
 ### Інструменти та Ресурси
 
 - **GenesisH0**: `/Users/serbinov/Desktop/projects/upwork/GenesisH0`
 - **Python venv**: `/Users/serbinov/Desktop/projects/upwork/venv`
-- **Конфігурація**: `/Users/serbinov/.krepto/bitcoin.conf`
+- **Конфігурація**: `/Users/serbinov/.krepto/krepto.conf`
 - **Логи**: `/Users/serbinov/.krepto/debug.log`
 
 **Час вирішення**: 4+ години  
@@ -246,7 +246,7 @@ merkle hash: 5976614bb121054435ae20ef7100ecc07f176b54a7bf908493272d716f8409b4
 
 #### 1. Зупинка Daemon
 ```bash
-./src/bitcoin-cli -datadir=/root/.krepto -rpcport=12347 stop
+./src/krepto-cli -datadir=/root/.krepto -rpcport=12347 stop
 ```
 
 #### 2. Виправлення chainparams.cpp
@@ -279,12 +279,12 @@ rm -rf /root/.krepto/mempool.dat
 
 #### 5. Перезапуск Daemon
 ```bash
-./src/bitcoind -datadir=/root/.krepto -daemon
+./src/kreptod -datadir=/root/.krepto -daemon
 ```
 
 #### 6. Перевірка
 ```bash
-./src/bitcoin-cli -datadir=/root/.krepto -rpcport=12347 getblockchaininfo
+./src/krepto-cli -datadir=/root/.krepto -rpcport=12347 getblockchaininfo
 ```
 
 ### Результат
@@ -343,7 +343,7 @@ consensus.fPowAllowMinDifficultyBlocks = false; // БЛОКУВАЛО СИНХР
 
 #### Контекст Проблеми
 1. **Krepto використовує низьку складність** для швидкого майнінгу
-2. **Bitcoin mainnet налаштування** не дозволяють блоки з низькою складністю
+2. **Krepto mainnet налаштування** не дозволяють блоки з низькою складністю
 3. **Сервер генерував блоки** з низькою складністю (nBits: 0x207fffff)
 4. **Клієнт відхиляв ці блоки** через fPowAllowMinDifficultyBlocks = false
 
@@ -351,7 +351,7 @@ consensus.fPowAllowMinDifficultyBlocks = false; // БЛОКУВАЛО СИНХР
 
 #### Крок 1: Перевірка Підключення
 ```bash
-./src/bitcoin-cli getpeerinfo | jq '.[0] | {addr, startingheight, synced_headers, synced_blocks}'
+./src/krepto-cli getpeerinfo | jq '.[0] | {addr, startingheight, synced_headers, synced_blocks}'
 ```
 **Результат**: Підключення працювало, але synced_headers = -1
 
@@ -363,13 +363,13 @@ tail -30 /Users/serbinov/.krepto/debug.log | grep -E "(headers|getheaders)"
 
 #### Крок 3: Перевірка Genesis Блоків
 ```bash
-./src/bitcoin-cli getblockhash 0
+./src/krepto-cli getblockhash 0
 ```
 **Результат**: Genesis блоки співпадали
 
 #### Крок 4: Аналіз Difficulty
 ```bash
-./src/bitcoin-cli getblockchaininfo | jq '.difficulty'
+./src/krepto-cli getblockchaininfo | jq '.difficulty'
 ```
 **Результат**: Дуже низька складність (4.656542373906925E-10)
 
@@ -408,7 +408,7 @@ rm -rf /Users/serbinov/.krepto/mempool.dat
 
 4. **Перезапуск**:
 ```bash
-./src/bitcoind -datadir=/Users/serbinov/.krepto -daemon
+./src/kreptod -datadir=/Users/serbinov/.krepto -daemon
 ```
 
 ### Результат
@@ -417,7 +417,7 @@ rm -rf /Users/serbinov/.krepto/mempool.dat
 
 #### Синхронізація Працює
 ```bash
-./src/bitcoin-cli getblockchaininfo
+./src/krepto-cli getblockchaininfo
 ```
 **Результат**:
 - ✅ **blocks: 4663+** (було 0)
@@ -435,7 +435,7 @@ rm -rf /Users/serbinov/.krepto/mempool.dat
 
 #### Що робить fPowAllowMinDifficultyBlocks
 
-**false** (Bitcoin mainnet):
+**false** (Krepto mainnet):
 - Блокує блоки з difficulty нижче мінімального порогу
 - Захищає від атак з низькою складністю
 - Підходить для мереж з високою складністю
@@ -454,7 +454,7 @@ rm -rf /Users/serbinov/.krepto/mempool.dat
 
 ### Ключові Уроки
 
-1. **Mainnet != Bitcoin Mainnet**: Кастомні мережі потребують власних налаштувань
+1. **Mainnet != Krepto Mainnet**: Кастомні мережі потребують власних налаштувань
 2. **Difficulty Settings**: fPowAllowMinDifficultyBlocks критично важливий для низької складності
 3. **Debug Logs**: Порожні headers (1 byte) вказують на проблеми валідації
 4. **Тестування**: Завжди тестувати синхронізацію після змін consensus правил
@@ -465,7 +465,7 @@ rm -rf /Users/serbinov/.krepto/mempool.dat
 
 1. **Перевірити підключення**:
 ```bash
-./src/bitcoin-cli getpeerinfo
+./src/krepto-cli getpeerinfo
 ```
 
 2. **Аналізувати debug логи**:
@@ -475,7 +475,7 @@ tail -50 ~/.krepto/debug.log | grep headers
 
 3. **Перевірити difficulty налаштування**:
 ```bash
-./src/bitcoin-cli getblockchaininfo | jq '.difficulty'
+./src/krepto-cli getblockchaininfo | jq '.difficulty'
 ```
 
 4. **Якщо difficulty низька, увімкнути fPowAllowMinDifficultyBlocks**:
@@ -517,7 +517,7 @@ consensus.nPowTargetSpacing = 10 * 60; // 10 minutes
 - Майнінг та блокчейн: 3
 
 **Ключові уроки**:
-1. Завжди перевіряти hardcoded значення з Bitcoin
+1. Завжди перевіряти hardcoded значення з Krepto
 2. Тестувати з чистого стану після змін consensus
 3. Документувати всі зміни в chainparams
 4. Використовувати автоматичні fallback механізми
@@ -536,15 +536,15 @@ consensus.nPowTargetSpacing = 10 * 60; // 10 minutes
 - Користувач хоче standalone GUI без необхідності керувати демоном окремо
 
 ### Діагностика
-1. **Перевірка процесів**: `ps aux | grep bitcoind` - демон не запущений
+1. **Перевірка процесів**: `ps aux | grep kreptod` - демон не запущений
 2. **Перевірка виконуваних файлів**: `ls -la src/` - відсутні скомпільовані файли
-3. **Аналіз коду**: `miningdialog.cpp` використовував QProcess для виклику зовнішнього `bitcoin-cli`
+3. **Аналіз коду**: `miningdialog.cpp` використовував QProcess для виклику зовнішнього `krepto-cli`
 4. **Архітектурна проблема**: GUI вимагав окремо запущеного демона для майнінгу
 
 ### Технічні Деталі Проблеми
 ```cpp
 // Проблемний код - зовнішні процеси
-QString program = "./src/bitcoin-cli";
+QString program = "./src/krepto-cli";
 QStringList arguments;
 arguments << "-datadir=/Users/serbinov/.krepto" 
           << "-rpcport=12347" 
@@ -610,7 +610,7 @@ process->start(program, arguments); // Вимагає зовнішнього д�
 ### Запуск
 ```bash
 # Тепер достатньо одної команди
-./src/qt/bitcoin-qt -datadir=/Users/serbinov/.krepto
+./src/qt/krepto-qt -datadir=/Users/serbinov/.krepto
 
 # Майнінг: Tools → Mining Console → Start Mining
 ```
@@ -690,17 +690,17 @@ hash = 00000d2843e19d3f61aaf31f1f919a1be17fc1b814d43117f8f8a4b602a559f2
 **Складність**: Середня  
 
 ### Симптоми
-- Конфлікт портів з Bitcoin Core
+- Конфлікт портів з Krepto Core
 - Неправильні magic bytes в мережевих повідомленнях
 - Вузли не можуть з'єднатися
 
 ### Рішення
 1. **Унікальні порти**: mainnet 12345, testnet 12346, regtest 12347
-2. **Magic bytes**: "KREP" (0x4b524550) замість Bitcoin "main"
+2. **Magic bytes**: "KREP" (0x4b524550) замість Krepto "main"
 3. **Оновлення chainparams**: Всі мережеві параметри змінені
 
 ### Результат
-- ✅ Krepto працює незалежно від Bitcoin
+- ✅ Krepto працює незалежно від Krepto
 - ✅ Унікальна мережева ідентифікація
 - ✅ Немає конфліктів портів
 
@@ -713,14 +713,14 @@ hash = 00000d2843e19d3f61aaf31f1f919a1be17fc1b814d43117f8f8a4b602a559f2
 **Складність**: Висока  
 
 ### Симптоми
-- GUI все ще показує "Bitcoin Core"
-- Іконки залишаються Bitcoin
+- GUI все ще показує "Krepto Core"
+- Іконки залишаються Krepto
 - Меню та діалоги не змінені
 
 ### Рішення
-1. **Масова заміна тексту**: Всі "Bitcoin" → "Krepto"
+1. **Масова заміна тексту**: Всі "Krepto" → "Krepto"
 2. **Нові іконки**: Створені власні PNG/ICO файли
-3. **Оновлення ресурсів**: bitcoin.qrc → krepto.qrc
+3. **Оновлення ресурсів**: krepto.qrc → krepto.qrc
 
 ### Результат
 - ✅ Повний ребрендинг GUI
@@ -731,7 +731,7 @@ hash = 00000d2843e19d3f61aaf31f1f919a1be17fc1b814d43117f8f8a4b602a559f2
 
 *[Попередні 24 записи залишаються без змін]*
 
-## 🔧 Проблема #30: Windows GUI Build - Відсутній bitcoin-qt.exe в Артефакті (КРИТИЧНА)
+## 🔧 Проблема #30: Windows GUI Build - Відсутній krepto-qt.exe в Артефакті (КРИТИЧНА)
 
 **Дата**: 29 грудня 2024  
 **Статус**: ✅ ВИРІШЕНО  
@@ -739,27 +739,27 @@ hash = 00000d2843e19d3f61aaf31f1f919a1be17fc1b814d43117f8f8a4b602a559f2
 
 ### Опис Проблеми
 
-Windows build проходив успішно з зеленими чекмарками, але в результуючому артефакті `Krepto-Windows-GUI.zip` (41.2 МБ) **відсутній головний GUI executable** `bitcoin-qt.exe`.
+Windows build проходив успішно з зеленими чекмарками, але в результуючому артефакті `Krepto-Windows-GUI.zip` (41.2 МБ) **відсутній головний GUI executable** `krepto-qt.exe`.
 
 #### Симптоми
 - ✅ GitHub Actions Windows build: SUCCESS (зелений чекмарк)
 - ✅ Артефакт створюється: `Krepto-Windows-GUI.zip` (41.2 МБ)
 - ❌ В артефакті тільки 10 з 11 очікуваних файлів
-- ❌ **Відсутній `bitcoin-qt.exe`** - головний GUI клієнт
+- ❌ **Відсутній `krepto-qt.exe`** - головний GUI клієнт
 
 #### Вміст артефакту (проблемний)
 ```
-bitcoind.exe (15 MB) ✅
-bitcoin-cli.exe (2 MB) ✅
-bitcoin-tx.exe (4 MB) ✅
-bitcoin-util.exe (2 MB) ✅
-bitcoin-wallet.exe (9 MB) ✅
-test_bitcoin.exe (28 MB) ✅
-bench_bitcoin.exe (16 MB) ✅
+kreptod.exe (15 MB) ✅
+krepto-cli.exe (2 MB) ✅
+krepto-tx.exe (4 MB) ✅
+krepto-util.exe (2 MB) ✅
+krepto-wallet.exe (9 MB) ✅
+test_krepto.exe (28 MB) ✅
+bench_krepto.exe (16 MB) ✅
 fuzz.exe (17 MB) ✅
-bitcoin.conf ✅
+krepto.conf ✅
 README.txt ✅
-bitcoin-qt.exe ❌ ВІДСУТНІЙ!
+krepto-qt.exe ❌ ВІДСУТНІЙ!
 ```
 
 ### Причина Проблеми
@@ -768,7 +768,7 @@ bitcoin-qt.exe ❌ ВІДСУТНІЙ!
 
 #### Технічна деталізація
 1. **CLI tools** будуються через **autotools** і зберігаються в `src/`
-2. **GUI tool** (`bitcoin-qt.exe`) будується через **MSBuild** і зберігається в `build_msvc/x64/Release/`
+2. **GUI tool** (`krepto-qt.exe`) будується через **MSBuild** і зберігається в `build_msvc/x64/Release/`
 3. **Скрипт копіювання** в `.github/workflows/ci.yml` копіював **тільки з `src/`**
 
 #### Діагностика через GitHub Actions
@@ -777,13 +777,13 @@ bitcoin-qt.exe ❌ ВІДСУТНІЙ!
 dir /s *.exe
 
 # Результат показав:
-build_msvc/x64/Release/bitcoin-qt.exe - 41,009,664 bytes ✅ (ІСНУЄ!)
-src/bitcoin-cli.exe - 2,077,696 bytes ✅
-src/bitcoind.exe - 15,354,368 bytes ✅
+build_msvc/x64/Release/krepto-qt.exe - 41,009,664 bytes ✅ (ІСНУЄ!)
+src/krepto-cli.exe - 2,077,696 bytes ✅
+src/kreptod.exe - 15,354,368 bytes ✅
 # ... інші CLI файли
 
 # Але копіювання робилося тільки з src/:
-copy src\*.exe Krepto-Windows-GUI\ # ❌ bitcoin-qt.exe ТУТ НЕМАЄ!
+copy src\*.exe Krepto-Windows-GUI\ # ❌ krepto-qt.exe ТУТ НЕМАЄ!
 ```
 
 ### Кроки Діагностики
@@ -793,28 +793,28 @@ copy src\*.exe Krepto-Windows-GUI\ # ❌ bitcoin-qt.exe ТУТ НЕМАЄ!
 # Додано діагностичні команди до ci.yml:
 echo "=== Searching for ALL .exe files ==="
 dir /s *.exe
-echo "=== Specifically looking for bitcoin-qt.exe ==="
-dir /s bitcoin-qt.exe
+echo "=== Specifically looking for krepto-qt.exe ==="
+dir /s krepto-qt.exe
 ```
 
-**Результат**: `bitcoin-qt.exe` існує в `build_msvc\x64\Release\` (41 МБ)
+**Результат**: `krepto-qt.exe` існує в `build_msvc\x64\Release\` (41 МБ)
 
 #### 2. Перевірка MSBuild конфігурації
 ```bash
-# Перевірка bitcoin.sln:
-type build_msvc\bitcoin.sln | findstr bitcoin-qt
-# Результат: bitcoin-qt проєкт включений та налаштований правильно
+# Перевірка krepto.sln:
+type build_msvc\krepto.sln | findstr krepto-qt
+# Результат: krepto-qt проєкт включений та налаштований правильно
 ```
 
 #### 3. Аналіз структури директорій
 ```
 Windows build process:
 ├── src/ (autotools builds)
-│   ├── bitcoind.exe ✅
-│   ├── bitcoin-cli.exe ✅
+│   ├── kreptod.exe ✅
+│   ├── krepto-cli.exe ✅
 │   └── ... (CLI tools)
 └── build_msvc/x64/Release/ (MSBuild builds)
-    └── bitcoin-qt.exe ✅ (41 MB GUI)
+    └── krepto-qt.exe ✅ (41 MB GUI)
 ```
 
 ### Остаточне Рішення
@@ -829,27 +829,27 @@ copy src\*.exe Krepto-Windows-GUI\
 echo "=== Copying executables from multiple locations ==="
 
 REM Copy from src directory (CLI tools built with autotools)
-if exist src\bitcoind.exe copy src\bitcoind.exe Krepto-Windows-GUI\
-if exist src\bitcoin-cli.exe copy src\bitcoin-cli.exe Krepto-Windows-GUI\
-if exist src\bitcoin-tx.exe copy src\bitcoin-tx.exe Krepto-Windows-GUI\
-if exist src\bitcoin-util.exe copy src\bitcoin-util.exe Krepto-Windows-GUI\
-if exist src\bitcoin-wallet.exe copy src\bitcoin-wallet.exe Krepto-Windows-GUI\
-if exist src\test_bitcoin.exe copy src\test_bitcoin.exe Krepto-Windows-GUI\
-if exist src\bench_bitcoin.exe copy src\bench_bitcoin.exe Krepto-Windows-GUI\
+if exist src\kreptod.exe copy src\kreptod.exe Krepto-Windows-GUI\
+if exist src\krepto-cli.exe copy src\krepto-cli.exe Krepto-Windows-GUI\
+if exist src\krepto-tx.exe copy src\krepto-tx.exe Krepto-Windows-GUI\
+if exist src\krepto-util.exe copy src\krepto-util.exe Krepto-Windows-GUI\
+if exist src\krepto-wallet.exe copy src\krepto-wallet.exe Krepto-Windows-GUI\
+if exist src\test_krepto.exe copy src\test_krepto.exe Krepto-Windows-GUI\
+if exist src\bench_krepto.exe copy src\bench_krepto.exe Krepto-Windows-GUI\
 if exist src\fuzz.exe copy src\fuzz.exe Krepto-Windows-GUI\
 
-REM Copy bitcoin-qt.exe from MSBuild output directory (GUI built with MSBuild)
-if exist build_msvc\x64\Release\bitcoin-qt.exe copy build_msvc\x64\Release\bitcoin-qt.exe Krepto-Windows-GUI\
+REM Copy krepto-qt.exe from MSBuild output directory (GUI built with MSBuild)
+if exist build_msvc\x64\Release\krepto-qt.exe copy build_msvc\x64\Release\krepto-qt.exe Krepto-Windows-GUI\
 
 REM Show what we copied
 echo "=== Contents of Krepto-Windows-GUI directory ==="
 dir Krepto-Windows-GUI\
 
 REM Check if we have the main GUI executable
-if exist Krepto-Windows-GUI\bitcoin-qt.exe (
-  echo "SUCCESS: bitcoin-qt.exe found in package!"
+if exist Krepto-Windows-GUI\krepto-qt.exe (
+  echo "SUCCESS: krepto-qt.exe found in package!"
 ) else (
-  echo "ERROR: bitcoin-qt.exe missing from package!"
+  echo "ERROR: krepto-qt.exe missing from package!"
 )
 ```
 
@@ -881,29 +881,29 @@ NodeContext& node = EnsureAnyNodeContext(request.context);
 #### Автоматична валідація в CI/CD
 ```bash
 # Додано перевірки до Windows build:
-if exist Krepto-Windows-GUI\bitcoin-qt.exe (
-  echo "SUCCESS: bitcoin-qt.exe found in package!"
-  dir Krepto-Windows-GUI\bitcoin-qt.exe
+if exist Krepto-Windows-GUI\krepto-qt.exe (
+  echo "SUCCESS: krepto-qt.exe found in package!"
+  dir Krepto-Windows-GUI\krepto-qt.exe
 ) else (
-  echo "ERROR: bitcoin-qt.exe missing from package!"
-  echo "=== Searching for bitcoin-qt.exe in all locations ==="
-  dir /s bitcoin-qt.exe 2>nul || echo "bitcoin-qt.exe not found anywhere!"
+  echo "ERROR: krepto-qt.exe missing from package!"
+  echo "=== Searching for krepto-qt.exe in all locations ==="
+  dir /s krepto-qt.exe 2>nul || echo "krepto-qt.exe not found anywhere!"
 )
 ```
 
 ### Фінальний Результат
 
 #### Артефакт `Krepto-Windows-GUI.zip` тепер містить:
-- ✅ `bitcoin-qt.exe` (41 MB) - **ГОЛОВНИЙ GUI КЛІЄНТ** ⭐
-- ✅ `bitcoind.exe` (15 MB) - Daemon
-- ✅ `bitcoin-cli.exe` (2 MB) - CLI interface
-- ✅ `bitcoin-tx.exe` (4 MB) - Transaction tool
-- ✅ `bitcoin-util.exe` (2 MB) - Utility tool
-- ✅ `bitcoin-wallet.exe` (9 MB) - Wallet tool
-- ✅ `test_bitcoin.exe` (28 MB) - Unit tests
-- ✅ `bench_bitcoin.exe` (16 MB) - Benchmarks
+- ✅ `krepto-qt.exe` (41 MB) - **ГОЛОВНИЙ GUI КЛІЄНТ** ⭐
+- ✅ `kreptod.exe` (15 MB) - Daemon
+- ✅ `krepto-cli.exe` (2 MB) - CLI interface
+- ✅ `krepto-tx.exe` (4 MB) - Transaction tool
+- ✅ `krepto-util.exe` (2 MB) - Utility tool
+- ✅ `krepto-wallet.exe` (9 MB) - Wallet tool
+- ✅ `test_krepto.exe` (28 MB) - Unit tests
+- ✅ `bench_krepto.exe` (16 MB) - Benchmarks
 - ✅ `fuzz.exe` (17 MB) - Fuzz testing
-- ✅ `bitcoin.conf` - Configuration with seed nodes
+- ✅ `krepto.conf` - Configuration with seed nodes
 - ✅ `README.txt` - User instructions
 
 **Загальний розмір**: ~180 MB (включно з GUI)
@@ -916,23 +916,23 @@ if exist Krepto-Windows-GUI\bitcoin-qt.exe (
 cd krepto
 mkdir test-package
 copy src\*.exe test-package\ 2>nul
-copy build_msvc\x64\Release\bitcoin-qt.exe test-package\ 2>nul
+copy build_msvc\x64\Release\krepto-qt.exe test-package\ 2>nul
 dir test-package\
 ```
 
 #### GitHub commit workflow
 ```bash
 git add .github/workflows/ci.yml src/rpc/mining.cpp
-git commit -m "Fix Windows GUI build: Copy bitcoin-qt.exe from correct MSBuild directory + fix macOS unused variable error"
+git commit -m "Fix Windows GUI build: Copy krepto-qt.exe from correct MSBuild directory + fix macOS unused variable error"
 git push origin main
 ```
 
 ### Ключові Уроки
 
 #### Cross-platform Build Systems
-1. **Windows Bitcoin Core**: Використовує **два різні build systems**
-   - **MSBuild**: для GUI компонентів (`bitcoin-qt`)
-   - **Autotools**: для CLI компонентів (`bitcoind`, `bitcoin-cli`)
+1. **Windows Krepto Core**: Використовує **два різні build systems**
+   - **MSBuild**: для GUI компонентів (`krepto-qt`)
+   - **Autotools**: для CLI компонентів (`kreptod`, `krepto-cli`)
 
 2. **Output directories**: Різні системи → різні папки
    - MSBuild → `build_msvc/x64/Release/`
@@ -959,7 +959,7 @@ git push origin main
 1. **Діагностика build outputs**:
    ```bash
    dir /s *.exe
-   dir /s bitcoin-qt.exe
+   dir /s krepto-qt.exe
    dir build_msvc\x64\Release\
    ```
 
@@ -977,7 +977,7 @@ git push origin main
 
 4. **Валідація результату**:
    ```bash
-   if exist package\bitcoin-qt.exe echo SUCCESS
+   if exist package\krepto-qt.exe echo SUCCESS
    dir package\
    ```
 
@@ -985,7 +985,7 @@ git push origin main
 
 #### Windows Build Architecture
 ```
-Windows Bitcoin Core Build:
+Windows Krepto Core Build:
 ├── vcpkg dependencies
 ├── Static Qt build (MSBuild)
 ├── Core libraries (MSBuild)
@@ -996,10 +996,10 @@ Windows Bitcoin Core Build:
 #### Critical Files Mapping
 ```
 Tool               Build System    Output Location
-bitcoin-qt.exe    MSBuild        build_msvc/x64/Release/
-bitcoind.exe      Autotools      src/
-bitcoin-cli.exe   Autotools      src/
-test_bitcoin.exe  Autotools      src/
+krepto-qt.exe    MSBuild        build_msvc/x64/Release/
+kreptod.exe      Autotools      src/
+krepto-cli.exe   Autotools      src/
+test_krepto.exe  Autotools      src/
    ```
 
 ### Інструменти та Ресурси

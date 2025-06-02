@@ -7,8 +7,8 @@ const utils = require("./../utils.js");
 function getAddressDetails(address, scriptPubkey, sort, limit, offset) {
 	// Note: blockchair api seems to not respect the limit parameter, always using 100
 	return new Promise(async (resolve, reject) => {
-		var mainnetUrl = `https://api.blockchair.com/bitcoin/dashboards/address/${address}/?offset=${offset}`;
-		var testnetUrl = `https://api.blockchair.com/bitcoin/testnet/dashboards/address/${address}/?offset=${offset}`;
+		var mainnetUrl = `https://api.blockchair.com/krepto/dashboards/address/${address}/?offset=${offset}`;
+		var testnetUrl = `https://api.blockchair.com/krepto/testnet/dashboards/address/${address}/?offset=${offset}`;
 		var url = (global.activeBlockchain == "main") ? mainnetUrl : ((global.activeBlockchain == "test") ? testnetUrl : mainnetUrl);
 
 		var options = {
@@ -38,9 +38,9 @@ function getAddressDetails(address, scriptPubkey, sort, limit, offset) {
 			}
 
 			result.txCount = responseObj.address.transaction_count;
-			result.totalReceivedSat = responseObj.address.received;
-			result.totalSentSat = responseObj.address.spent;
-			result.balanceSat = responseObj.address.balance;
+			result.totalReceivedKat = responseObj.address.received;
+			result.totalSentKat = responseObj.address.spent;
+			result.balanceKat = responseObj.address.balance;
 			result.source = "blockchair.com";
 
 			resolve({addressDetails:result});

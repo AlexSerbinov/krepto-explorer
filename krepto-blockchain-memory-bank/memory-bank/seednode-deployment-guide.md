@@ -98,7 +98,7 @@ cd krepto
 make -j$(nproc)
 
 # Перевірка збірки
-ls -la src/bitcoind src/bitcoin-cli
+ls -la src/kreptod src/krepto-cli
 ```
 
 ### 2.3 Встановлення Бінарних Файлів
@@ -108,13 +108,13 @@ sudo mkdir -p /usr/local/bin
 sudo mkdir -p /home/krepto/.krepto
 
 # Скопіювати бінарні файли
-sudo cp src/bitcoind /usr/local/bin/kryptod
-sudo cp src/bitcoin-cli /usr/local/bin/krypto-cli
+sudo cp src/kreptod /usr/local/bin/kryptod
+sudo cp src/krepto-cli /usr/local/bin/krypto-cli
 sudo chmod +x /usr/local/bin/kryptod /usr/local/bin/krypto-cli
 
 # Створити симлінки для сумісності
-sudo ln -sf /usr/local/bin/kryptod /usr/local/bin/bitcoind
-sudo ln -sf /usr/local/bin/krypto-cli /usr/local/bin/bitcoin-cli
+sudo ln -sf /usr/local/bin/kryptod /usr/local/bin/kreptod
+sudo ln -sf /usr/local/bin/krypto-cli /usr/local/bin/krepto-cli
 ```
 
 ## ⚙️ КРОК 3: КОНФІГУРАЦІЯ KREPTO NODE
@@ -122,7 +122,7 @@ sudo ln -sf /usr/local/bin/krypto-cli /usr/local/bin/bitcoin-cli
 ### 3.1 Створення Конфігураційного Файлу
 ```bash
 # Створити конфігураційний файл
-cat > /home/krepto/.krepto/bitcoin.conf << 'EOF'
+cat > /home/krepto/.krepto/krepto.conf << 'EOF'
 # Krepto Seed Node Configuration
 
 # Network Settings
@@ -173,7 +173,7 @@ RPC_PASSWORD=$(openssl rand -base64 32)
 echo "Generated RPC Password: $RPC_PASSWORD"
 
 # Замінити пароль в конфігурації
-sed -i "s/GENERATE_STRONG_PASSWORD_HERE/$RPC_PASSWORD/" /home/krepto/.krepto/bitcoin.conf
+sed -i "s/GENERATE_STRONG_PASSWORD_HERE/$RPC_PASSWORD/" /home/krepto/.krepto/krepto.conf
 
 # Зберегти пароль для майбутнього використання
 echo "RPC_PASSWORD=$RPC_PASSWORD" > /home/krepto/.krepto/rpc_credentials
@@ -247,10 +247,10 @@ sudo systemctl status krepto
 sudo journalctl -u krepto -f
 
 # Перевірити RPC з'єднання
-bitcoin-cli -datadir=/home/krepto/.krepto getblockchaininfo
+krepto-cli -datadir=/home/krepto/.krepto getblockchaininfo
 
 # Перевірити майнінг
-bitcoin-cli -datadir=/home/krepto/.krepto getmininginfo
+krepto-cli -datadir=/home/krepto/.krepto getmininginfo
 ```
 
 ## ⛏️ КРОК 5: НАЛАШТУВАННЯ МАЙНІНГУ
@@ -258,10 +258,10 @@ bitcoin-cli -datadir=/home/krepto/.krepto getmininginfo
 ### 5.1 Створення Майнінг Адреси
 ```bash
 # Створити новий гаманець (якщо потрібно)
-bitcoin-cli -datadir=/home/krepto/.krepto createwallet "mining_wallet"
+krepto-cli -datadir=/home/krepto/.krepto createwallet "mining_wallet"
 
 # Створити адресу для майнінгу
-MINING_ADDRESS=$(bitcoin-cli -datadir=/home/krepto/.krepto getnewaddress "mining" "legacy")
+MINING_ADDRESS=$(krepto-cli -datadir=/home/krepto/.krepto getnewaddress "mining" "legacy")
 echo "Mining Address: $MINING_ADDRESS"
 
 # Зберегти адресу
@@ -289,15 +289,15 @@ log_message() {
 # Основний цикл майнінгу
 while true; do
     # Перевірити чи працює нода
-    if ! bitcoin-cli -datadir=$DATADIR getblockchaininfo > /dev/null 2>&1; then
+    if ! krepto-cli -datadir=$DATADIR getblockchaininfo > /dev/null 2>&1; then
         log_message "ERROR: Krepto node is not running"
         sleep 60
         continue
     fi
     
     # Отримати поточну інформацію
-    BLOCKS=$(bitcoin-cli -datadir=$DATADIR getblockcount)
-    DIFFICULTY=$(bitcoin-cli -datadir=$DATADIR getdifficulty)
+    BLOCKS=$(krepto-cli -datadir=$DATADIR getblockcount)
+    DIFFICULTY=$(krepto-cli -datadir=$DATADIR getdifficulty)
     
     log_message "Current blocks: $BLOCKS, Difficulty: $DIFFICULTY"
     
@@ -309,14 +309,14 @@ while true; do
     sleep $RANDOM_DELAY
     
     # Виконати майнінг
-    RESULT=$(bitcoin-cli -datadir=$DATADIR generatetoaddress 1 $MINING_ADDRESS $RANDOM_TRIES 2>&1)
+    RESULT=$(krepto-cli -datadir=$DATADIR generatetoaddress 1 $MINING_ADDRESS $RANDOM_TRIES 2>&1)
     
     if [[ $RESULT == *"["* ]]; then
         BLOCK_HASH=$(echo $RESULT | jq -r '.[0]' 2>/dev/null)
         log_message "SUCCESS: Block mined! Hash: $BLOCK_HASH"
         
         # Отримати оновлену інформацію
-        NEW_BLOCKS=$(bitcoin-cli -datadir=$DATADIR getblockcount)
+        NEW_BLOCKS=$(krepto-cli -datadir=$DATADIR getblockcount)
         log_message "New block count: $NEW_BLOCKS"
     else
         log_message "Mining attempt completed, no block found"
@@ -396,10 +396,10 @@ vSeeds.emplace_back("seed.krepto.org:12345");
 === КОМАНДИ ДЛЯ ТЕСТУВАННЯ З ЛОКАЛЬНОГО КОМП'ЮТЕРА ===
 
 # Підключитися до seed ноди
-./src/bitcoin-cli -datadir=/Users/serbinov/.krepto addnode "$SERVER_IP:12345" "add"
+./src/krepto-cli -datadir=/Users/serbinov/.krepto addnode "$SERVER_IP:12345" "add"
 
 # Перевірити підключення
-./src/bitcoin-cli -datadir=/Users/serbinov/.krepto getpeerinfo
+./src/krepto-cli -datadir=/Users/serbinov/.krepto getpeerinfo
 
 EOF
 ```
@@ -426,23 +426,23 @@ echo
 
 # Blockchain інформація
 echo "--- Blockchain Info ---"
-bitcoin-cli -datadir=$DATADIR getblockchaininfo | jq '{blocks, difficulty, chain, verificationprogress}'
+krepto-cli -datadir=$DATADIR getblockchaininfo | jq '{blocks, difficulty, chain, verificationprogress}'
 echo
 
 # Mining інформація
 echo "--- Mining Info ---"
-bitcoin-cli -datadir=$DATADIR getmininginfo | jq '{blocks, difficulty, networkhashps, pooledtx}'
+krepto-cli -datadir=$DATADIR getmininginfo | jq '{blocks, difficulty, networkhashps, pooledtx}'
 echo
 
 # Peer інформація
 echo "--- Network Peers ---"
-PEER_COUNT=$(bitcoin-cli -datadir=$DATADIR getconnectioncount)
+PEER_COUNT=$(krepto-cli -datadir=$DATADIR getconnectioncount)
 echo "Connected peers: $PEER_COUNT"
 echo
 
 # Останні блоки
 echo "--- Recent Blocks ---"
-bitcoin-cli -datadir=$DATADIR getbestblockhash | xargs bitcoin-cli -datadir=$DATADIR getblock | jq '{height, hash, time, tx: (.tx | length)}'
+krepto-cli -datadir=$DATADIR getbestblockhash | xargs krepto-cli -datadir=$DATADIR getblock | jq '{height, hash, time, tx: (.tx | length)}'
 echo
 
 # Використання ресурсів
@@ -499,7 +499,7 @@ else
 fi
 
 # 3. RPC connection
-if bitcoin-cli -datadir=/home/krepto/.krepto getblockchaininfo > /dev/null 2>&1; then
+if krepto-cli -datadir=/home/krepto/.krepto getblockchaininfo > /dev/null 2>&1; then
     echo "✅ RPC connection: OK"
 else
     echo "❌ RPC connection: FAILED"
@@ -519,7 +519,7 @@ else
 fi
 
 # 5. Mining status
-MINING_INFO=$(bitcoin-cli -datadir=/home/krepto/.krepto getmininginfo 2>/dev/null)
+MINING_INFO=$(krepto-cli -datadir=/home/krepto/.krepto getmininginfo 2>/dev/null)
 if [[ $? -eq 0 ]]; then
     echo "✅ Mining info: ACCESSIBLE"
     echo "   Blocks: $(echo $MINING_INFO | jq -r '.blocks')"
@@ -535,13 +535,13 @@ fi
 echo "=== COMMANDS FOR LOCAL COMPUTER ==="
 echo
 echo "# Підключитися до seed ноди:"
-echo "./src/bitcoin-cli -datadir=/Users/serbinov/.krepto addnode \"$SERVER_IP:12345\" \"add\""
+echo "./src/krepto-cli -datadir=/Users/serbinov/.krepto addnode \"$SERVER_IP:12345\" \"add\""
 echo
 echo "# Перевірити підключення:"
-echo "./src/bitcoin-cli -datadir=/Users/serbinov/.krepto getpeerinfo"
+echo "./src/krepto-cli -datadir=/Users/serbinov/.krepto getpeerinfo"
 echo
 echo "# Перевірити синхронізацію блоків:"
-echo "./src/bitcoin-cli -datadir=/Users/serbinov/.krepto getblockchaininfo"
+echo "./src/krepto-cli -datadir=/Users/serbinov/.krepto getblockchaininfo"
 echo
 ```
 
@@ -559,7 +559,7 @@ cat > /home/krepto/README.md << 'EOF'
 - **Data Directory**: /home/krepto/.krepto
 
 ## Important Files
-- **Config**: /home/krepto/.krepto/bitcoin.conf
+- **Config**: /home/krepto/.krepto/krepto.conf
 - **Credentials**: /home/krepto/.krepto/rpc_credentials
 - **Mining Script**: /home/krepto/mining_script.sh
 - **Monitor Script**: /home/krepto/monitor.sh
@@ -577,10 +577,10 @@ sudo journalctl -u krepto-mining -f
 tail -f /home/krepto/mining.log
 
 # Check blockchain
-bitcoin-cli -datadir=/home/krepto/.krepto getblockchaininfo
+krepto-cli -datadir=/home/krepto/.krepto getblockchaininfo
 
 # Check mining
-bitcoin-cli -datadir=/home/krepto/.krepto getmininginfo
+krepto-cli -datadir=/home/krepto/.krepto getmininginfo
 ```
 
 ## Maintenance
@@ -610,7 +610,7 @@ Add to src/kernel/chainparams.cpp:
 vSeeds.emplace_back("$SERVER_IP:12345");
 
 === FOR LOCAL CONNECTION ===
-./src/bitcoin-cli addnode "$SERVER_IP:12345" "add"
+./src/krepto-cli addnode "$SERVER_IP:12345" "add"
 
 === SERVICE COMMANDS ===
 sudo systemctl start/stop/restart krepto

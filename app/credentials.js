@@ -6,19 +6,19 @@ const url = require('url');
 const fs = require("fs");
 
 const debug = require("debug");
-const debugLog = debug("btcexp:config");
+const debugLog = debug("kreptoexp:config");
 
-const btcUri = process.env.BTCEXP_BITCOIND_URI ? url.parse(process.env.BTCEXP_BITCOIND_URI, true) : { query: { } };
-const btcAuth = btcUri.auth ? btcUri.auth.split(':') : [];
+const kreptoUri = process.env.KREPTOEXP_KREPTOD_URI ? url.parse(process.env.KREPTOEXP_KREPTOD_URI, true) : { query: { } };
+const kreptoAuth = kreptoUri.auth ? kreptoUri.auth.split(':') : [];
 
 
 
 
 function loadFreshRpcCredentials() {
-	let username = btcAuth[0] || process.env.BTCEXP_BITCOIND_USER;
-	let password = btcAuth[1] || process.env.BTCEXP_BITCOIND_PASS;
+	let username = kreptoAuth[0] || process.env.KREPTOEXP_KREPTOD_USER;
+	let password = kreptoAuth[1] || process.env.KREPTOEXP_KREPTOD_PASS;
 
-	let authCookieFilepath = btcUri.query.cookie || process.env.BTCEXP_BITCOIND_COOKIE || path.join(os.homedir(), '.bitcoin', '.cookie');
+	let authCookieFilepath = kreptoUri.query.cookie || process.env.KREPTOEXP_KREPTOD_COOKIE || path.join(os.homedir(), '.krepto', '.cookie');
 
 	let authType = "usernamePassword";
 
@@ -37,8 +37,8 @@ function loadFreshRpcCredentials() {
 	}
 
 	return {
-		host: btcUri.hostname || process.env.BTCEXP_BITCOIND_HOST || "127.0.0.1",
-		port: btcUri.port || process.env.BTCEXP_BITCOIND_PORT || 8332,
+		host: kreptoUri.hostname || process.env.KREPTOEXP_KREPTOD_HOST || "127.0.0.1",
+		port: kreptoUri.port || process.env.KREPTOEXP_KREPTOD_PORT || 8332,
 
 		authType: authType,
 
@@ -47,7 +47,7 @@ function loadFreshRpcCredentials() {
 		
 		authCookieFilepath: authCookieFilepath,
 		
-		timeout: parseInt(btcUri.query.timeout || process.env.BTCEXP_BITCOIND_RPC_TIMEOUT || 5000),
+		timeout: parseInt(kreptoUri.query.timeout || process.env.KREPTOEXP_KREPTOD_RPC_TIMEOUT || 5000),
 	};
 }
 
@@ -60,19 +60,19 @@ module.exports = {
 	// to include a map of the estimated locations of your node's
 	// peers
 	// format: "ID_FROM_IPSTACK"
-	ipStackComApiAccessKey: process.env.BTCEXP_IPSTACK_APIKEY,
+	ipStackComApiAccessKey: process.env.KREPTOEXP_IPSTACK_APIKEY,
 
 	// optional: enter your api access key from mapbox.com below
 	// to enable the tiles for map of the estimated locations of
 	// your node's peers
 	// format: "APIKEY_FROM_MAPBOX"
-	mapBoxComApiAccessKey: process.env.BTCEXP_MAPBOX_APIKEY,
+	mapBoxComApiAccessKey: process.env.KREPTOEXP_MAPBOX_APIKEY,
 
 	// optional: GA tracking code
 	// format: "UA-..."
-	googleAnalyticsTrackingId: process.env.BTCEXP_GANALYTICS_TRACKING,
+	googleAnalyticsTrackingId: process.env.KREPTOEXP_GANALYTICS_TRACKING,
 
 	// optional: sentry.io error-tracking url
 	// format: "SENTRY_IO_URL"
-	sentryUrl: process.env.BTCEXP_SENTRY_URL,
+	sentryUrl: process.env.KREPTOEXP_SENTRY_URL,
 };

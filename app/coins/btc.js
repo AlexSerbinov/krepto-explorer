@@ -3,7 +3,7 @@
 const Decimal = require("decimal.js");
 const Decimal8 = Decimal.clone({ precision:8, rounding:8 });
 
-const btcFun = require("./btcFun.js");
+const kreptoFun = require("./kreptoFun.js");
 
 const blockRewardEras = [ new Decimal8(50) ];
 for (let i = 1; i < 34; i++) {
@@ -14,17 +14,17 @@ for (let i = 1; i < 34; i++) {
 const currencyUnits = [
 	{
 		type:"native",
-		name:"BTC",
+		name:"KREPTO",
 		multiplier:1,
 		default:true,
-		values:["", "btc", "BTC"],
+		values:["", "krepto", "KREPTO"],
 		decimalPlaces:8
 	},
 	{
 		type:"native",
-		name:"mBTC",
+		name:"mKREPTO",
 		multiplier:1000,
-		values:["mbtc"],
+		values:["mkrepto"],
 		decimalPlaces:5
 	},
 	{
@@ -36,9 +36,9 @@ const currencyUnits = [
 	},
 	{
 		type:"native",
-		name:"sat",
+		name:"kat",
 		multiplier:100000000,
-		values:["sat", "satoshi"],
+		values:["kat", "katoshi"],
 		decimalPlaces:0
 	},
 	{
@@ -60,8 +60,8 @@ const currencyUnits = [
 ];
 
 module.exports = {
-	name:"Bitcoin",
-	ticker:"BTC",
+	name:"Krepto",
+	ticker:"KREPTO",
 	logoUrlsByNetwork:{
 		"main":"./img/network-mainnet/logo.svg",
 		"test":"./img/network-testnet/logo.svg",
@@ -81,15 +81,15 @@ module.exports = {
 		"regtest": "#777"
 	},
 	siteTitlesByNetwork: {
-		"main":"Bitcoin Explorer",
+		"main":"Krepto Explorer",
 		"test":"Testnet Explorer",
 		"regtest":"Regtest Explorer",
 		"signet":"Signet Explorer",
 	},
 	demoSiteUrlsByNetwork: {
-		"main": "https://bitcoinexplorer.org",
-		"test": "https://testnet.bitcoinexplorer.org",
-		"signet": "https://signet.bitcoinexplorer.org",
+		"main": "https://kreptoexplorer.org",
+		"test": "https://testnet.kreptoexplorer.org",
+		"signet": "https://signet.kreptoexplorer.org",
 	},
 	knownTransactionsByNetwork: {
 		main: "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
@@ -97,18 +97,18 @@ module.exports = {
 		signet: "39332e10af6fe491e8ae4ba1e2dd674698fedf8aa3c8c42bf71572debc1bb5b9"
 	},
 	miningPoolsConfigUrls:[
-		"https://raw.githubusercontent.com/btc21/Bitcoin-Known-Miners/master/miners.json",
-		"https://raw.githubusercontent.com/bitcoin-data/mining-pools/generated/pools.json",
-		"https://raw.githubusercontent.com/btccom/Blockchain-Known-Pools/master/pools.json",
+		"https://raw.githubusercontent.com/krepto21/Krepto-Known-Miners/master/miners.json",
+		"https://raw.githubusercontent.com/krepto-data/mining-pools/generated/pools.json",
+		"https://raw.githubusercontent.com/kreptocom/Blockchain-Known-Pools/master/pools.json",
 		"https://raw.githubusercontent.com/blockchain/Blockchain-Known-Pools/master/pools.json"
 	],
 	maxBlockWeight: 4000000,
 	maxBlockSize: 1000000,
-	minTxBytes: 166, // ref: https://en.bitcoin.it/wiki/Maximum_transaction_rate
+	minTxBytes: 166, // ref: https://en.krepto.it/wiki/Maximum_transaction_rate
 	minTxWeight: 166 * 4, // hack
 	difficultyAdjustmentBlockCount: 2016,
 	maxSupplyByNetwork: {
-		"main": new Decimal(20999817.31308491), // ref: https://bitcoin.stackexchange.com/a/38998
+		"main": new Decimal(20999817.31308491), // ref: https://krepto.stackexchange.com/a/38998
 		"test": new Decimal(21000000),
 		"regtest": new Decimal(21000000),
 		"signet": new Decimal(21000000)
@@ -116,10 +116,10 @@ module.exports = {
 	targetBlockTimeSeconds: 600,
 	targetBlockTimeMinutes: 10,
 	currencyUnits:currencyUnits,
-	currencyUnitsByName:{"BTC":currencyUnits[0], "mBTC":currencyUnits[1], "bits":currencyUnits[2], "sat":currencyUnits[3]},
+	currencyUnitsByName:{"KREPTO":currencyUnits[0], "mKREPTO":currencyUnits[1], "bits":currencyUnits[2], "kat":currencyUnits[3]},
 	baseCurrencyUnit:currencyUnits[3],
 	defaultCurrencyUnit:currencyUnits[0],
-	feeSatoshiPerByteBucketMaxima: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 75, 100, 150],
+	feeKatoshiPerByteBucketMaxima: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 75, 100, 150],
 	
 	halvingBlockIntervalsByNetwork: {
 		"main": 210000,
@@ -523,7 +523,7 @@ module.exports = {
 		}
 	},
 	genesisCoinbaseOutputAddressScripthash:"8b01df4e368ea28f8dc0423bcf7a4923e3a12d307c875e47a0cfbf90b5c39161",
-	historicalData: btcFun.items,
+	historicalData: kreptoFun.items,
 	exchangeRateData:{
 		jsonUrl:"https://api.coindesk.com/v1/bpi/currentprice.json",
 		responseBodySelectorFunction:function(responseBody) {

@@ -35,7 +35,7 @@
 - **Провайдер**: VPS з 4 CPU cores
 - **OS**: Ubuntu 24.04
 - **RAM**: Достатньо для стабільної роботи
-- **Location**: /opt/krepto/krepto-bitcoin-fork
+- **Location**: /opt/krepto/krepto-krepto-fork
 
 ## 📦 КРОК 1: ПІДГОТОВКА СЕРВЕРА
 
@@ -69,8 +69,8 @@ dpkg -l | grep -E "(libssl-dev|libboost|libdb)"
 cd /opt/krepto
 
 # Клонувати Krepto (якщо ще не зроблено)
-git clone [YOUR_REPO_URL] krepto-bitcoin-fork
-cd krepto-bitcoin-fork
+git clone [YOUR_REPO_URL] krepto-krepto-fork
+cd krepto-krepto-fork
 
 # Перевірити гілку
 git branch
@@ -91,8 +91,8 @@ make -j4  # Для 4-ядерного сервера
 >>>>>>> b3d9f9e3731be157b9ea4c2c9879a38bfc6a26fb
 
 # Перевірка збірки
-ls -la src/bitcoind src/bitcoin-cli
-file src/bitcoind  # Перевірити тип файлу
+ls -la src/kreptod src/krepto-cli
+file src/kreptod  # Перевірити тип файлу
 ```
 
 **⚠️ ВАЖЛИВО**: Обов'язково включити `--enable-wallet`, інакше майнінг не працюватиме!
@@ -105,7 +105,7 @@ file src/bitcoind  # Перевірити тип файлу
 mkdir -p /root/.krepto
 
 # Створити конфігураційний файл
-cat > /root/.krepto/bitcoin.conf << 'EOF'
+cat > /root/.krepto/krepto.conf << 'EOF'
 # Network Settings
 port=12345
 rpcport=12347
@@ -153,14 +153,14 @@ sudo ufw status
 ### 4.1 Проблема: Segmentation Fault
 **Симптом**: Daemon падає з segfault при запуску
 ```bash
-./src/bitcoind -datadir=/root/.krepto -daemon
+./src/kreptod -datadir=/root/.krepto -daemon
 # Segmentation fault (core dumped)
 ```
 
 **Діагностика**:
 ```bash
 # Запуск з gdb для отримання stack trace
-gdb ./src/bitcoind
+gdb ./src/kreptod
 (gdb) run -datadir=/root/.krepto
 # Program received signal SIGSEGV, Segmentation fault.
 # 0x0000555555a2c4a4 in CCheckpointData::GetHeight() const ()
@@ -203,7 +203,7 @@ make -j4
 >>>>>>> b3d9f9e3731be157b9ea4c2c9879a38bfc6a26fb
 
 # Перевірити збірку
-ls -la src/bitcoind
+ls -la src/kreptod
 ```
 
 ## 🚀 КРОК 5: ЗАПУСК ТА ТЕСТУВАННЯ
@@ -211,16 +211,16 @@ ls -la src/bitcoind
 ### 5.1 Перший Запуск
 ```bash
 # Запустити daemon
-./src/bitcoind -datadir=/root/.krepto -daemon
+./src/kreptod -datadir=/root/.krepto -daemon
 
 # Перевірити статус
-ps aux | grep bitcoind
+ps aux | grep kreptod
 
 # Перевірити логи
 tail -f /root/.krepto/debug.log
 
 # Тестувати RPC
-./src/bitcoin-cli -datadir=/root/.krepto -rpcport=12347 getblockchaininfo
+./src/krepto-cli -datadir=/root/.krepto -rpcport=12347 getblockchaininfo
 ```
 
 ### 5.2 Перевірка Портів
@@ -238,10 +238,10 @@ netstat -tlnp | grep -E "(12345|12347)"
 ### 6.1 Створення Гаманця та Адреси
 ```bash
 # Створити гаманець для майнінгу
-./src/bitcoin-cli -datadir=/root/.krepto -rpcport=12347 createwallet "mining_wallet"
+./src/krepto-cli -datadir=/root/.krepto -rpcport=12347 createwallet "mining_wallet"
 
 # Створити адресу для майнінгу
-./src/bitcoin-cli -datadir=/root/.krepto -rpcport=12347 getnewaddress "mining" "bech32"
+./src/krepto-cli -datadir=/root/.krepto -rpcport=12347 getnewaddress "mining" "bech32"
 
 # Результат: kr1q6hm2j68ynvtpmvylwnrztmp3j6p6c3fezugjdr
 ```
@@ -249,12 +249,12 @@ netstat -tlnp | grep -E "(12345|12347)"
 ### 6.2 Тестовий Майнінг
 ```bash
 # Спробувати намайнити перший блок
-./src/bitcoin-cli -datadir=/root/.krepto -rpcport=12347 \
+./src/krepto-cli -datadir=/root/.krepto -rpcport=12347 \
     generatetoaddress 1 kr1q6hm2j68ynvtpmvylwnrztmp3j6p6c3fezugjdr 10000000
 
 # Перевірити результат
-./src/bitcoin-cli -datadir=/root/.krepto -rpcport=12347 getblockcount
-./src/bitcoin-cli -datadir=/root/.krepto -rpcport=12347 getbalance
+./src/krepto-cli -datadir=/root/.krepto -rpcport=12347 getblockcount
+./src/krepto-cli -datadir=/root/.krepto -rpcport=12347 getbalance
 ```
 
 ### 6.3 Створення Автоматичного Майнінг Скрипта
@@ -274,7 +274,7 @@ MAX_TRIES=${3:-$DEFAULT_MAX_TRIES}
 
 DATADIR="/root/.krepto"
 RPC_PORT="12347"
-CLI_CMD="./src/bitcoin-cli -datadir=$DATADIR -rpcport=$RPC_PORT"
+CLI_CMD="./src/krepto-cli -datadir=$DATADIR -rpcport=$RPC_PORT"
 
 echo "🚀 Starting Krepto Server Mining"
 echo "📍 Mining Address: $MINING_ADDRESS"
@@ -363,13 +363,13 @@ ps aux | grep mine_krepto
 ### 7.2 Перевірка Результатів
 ```bash
 # Перевірити кількість блоків
-./src/bitcoin-cli -datadir=/root/.krepto -rpcport=12347 getblockcount
+./src/krepto-cli -datadir=/root/.krepto -rpcport=12347 getblockcount
 
 # Перевірити баланс
-./src/bitcoin-cli -datadir=/root/.krepto -rpcport=12347 getbalance
+./src/krepto-cli -datadir=/root/.krepto -rpcport=12347 getbalance
 
 # Перевірити останній блок
-./src/bitcoin-cli -datadir=/root/.krepto -rpcport=12347 getbestblockhash
+./src/krepto-cli -datadir=/root/.krepto -rpcport=12347 getbestblockhash
 ```
 
 ## 📊 КРОК 8: МОНІТОРИНГ ТА СТАТИСТИКА
@@ -380,7 +380,7 @@ cat > monitor_server.sh << 'EOF'
 #!/bin/bash
 
 DATADIR="/root/.krepto"
-CLI_CMD="./src/bitcoin-cli -datadir=$DATADIR -rpcport=12347"
+CLI_CMD="./src/krepto-cli -datadir=$DATADIR -rpcport=12347"
 
 echo "=== KREPTO SERVER STATUS ==="
 echo "Date: $(date)"
@@ -422,15 +422,15 @@ chmod +x monitor_server.sh
 
 ### 9.1 Конфігурація для Локального Комп'ютера
 ```bash
-# Додати в ~/.krepto/bitcoin.conf на локальному комп'ютері:
+# Додати в ~/.krepto/krepto.conf на локальному комп'ютері:
 addnode=164.68.117.90:12345
 connect=164.68.117.90:12345
 
 # Або підключитися через CLI:
-./src/bitcoin-cli -datadir=/Users/serbinov/.krepto addnode "164.68.117.90:12345" "add"
+./src/krepto-cli -datadir=/Users/serbinov/.krepto addnode "164.68.117.90:12345" "add"
 
 # Перевірити підключення:
-./src/bitcoin-cli -datadir=/Users/serbinov/.krepto getpeerinfo
+./src/krepto-cli -datadir=/Users/serbinov/.krepto getpeerinfo
 ```
 
 ### 9.2 Оновлення chainparams.cpp
@@ -455,11 +455,11 @@ vSeeds.emplace_back("164.68.117.90:12345");
 ```bash
 # Перевірити все одразу
 echo "=== QUICK STATUS CHECK ==="
-echo "Daemon: $(ps aux | grep bitcoind | grep -v grep | wc -l) processes"
+echo "Daemon: $(ps aux | grep kreptod | grep -v grep | wc -l) processes"
 echo "P2P Port: $(netstat -ln | grep :12345 | wc -l) listeners"
 echo "RPC Port: $(netstat -ln | grep :12347 | wc -l) listeners"
-echo "Blocks: $(./src/bitcoin-cli -datadir=/root/.krepto -rpcport=12347 getblockcount 2>/dev/null || echo 'ERROR')"
-echo "Balance: $(./src/bitcoin-cli -datadir=/root/.krepto -rpcport=12347 getbalance 2>/dev/null || echo 'ERROR')"
+echo "Blocks: $(./src/krepto-cli -datadir=/root/.krepto -rpcport=12347 getblockcount 2>/dev/null || echo 'ERROR')"
+echo "Balance: $(./src/krepto-cli -datadir=/root/.krepto -rpcport=12347 getbalance 2>/dev/null || echo 'ERROR')"
 ```
 
 ## 🚨 ВІДОМІ ПРОБЛЕМИ ТА РІШЕННЯ
@@ -482,30 +482,30 @@ echo "Balance: $(./src/bitcoin-cli -datadir=/root/.krepto -rpcport=12347 getbala
 ## 📝 ВАЖЛИВІ ФАЙЛИ ТА КОМАНДИ
 
 ### Ключові Файли
-- **Конфігурація**: `/root/.krepto/bitcoin.conf`
+- **Конфігурація**: `/root/.krepto/krepto.conf`
 - **Логи**: `/root/.krepto/debug.log`
-- **Бінарні файли**: `./src/bitcoind`, `./src/bitcoin-cli`
+- **Бінарні файли**: `./src/kreptod`, `./src/krepto-cli`
 - **Майнінг скрипт**: `./mine_krepto_server.sh`
 
 ### Корисні Команди
 ```bash
 # Статус daemon
-ps aux | grep bitcoind
+ps aux | grep kreptod
 
 # Перевірка портів
 netstat -tlnp | grep -E "(12345|12347)"
 
 # Blockchain інформація
-./src/bitcoin-cli -datadir=/root/.krepto -rpcport=12347 getblockchaininfo
+./src/krepto-cli -datadir=/root/.krepto -rpcport=12347 getblockchaininfo
 
 # Майнінг інформація
-./src/bitcoin-cli -datadir=/root/.krepto -rpcport=12347 getmininginfo
+./src/krepto-cli -datadir=/root/.krepto -rpcport=12347 getmininginfo
 
 # Баланс гаманця
-./src/bitcoin-cli -datadir=/root/.krepto -rpcport=12347 getbalance
+./src/krepto-cli -datadir=/root/.krepto -rpcport=12347 getbalance
 
 # Зупинка daemon
-./src/bitcoin-cli -datadir=/root/.krepto -rpcport=12347 stop
+./src/krepto-cli -datadir=/root/.krepto -rpcport=12347 stop
 ```
 
 ## 🎉 РЕЗУЛЬТАТ

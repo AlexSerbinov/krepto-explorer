@@ -1,14 +1,14 @@
 "use strict";
 
 const debug = require("debug");
-const debugLog = debug("btcexp:router");
+const debugLog = debug("kreptoexp:router");
 
 const express = require('express');
 const router = express.Router();
 const util = require('util');
 const moment = require('moment');
 const qrcode = require('qrcode');
-const bitcoinjs = require('bitcoinjs-lib');
+const kreptojs = require('kreptojs-lib');
 const sha256 = require("crypto-js/sha256");
 const hexEnc = require("crypto-js/enc-hex");
 const Decimal = require("decimal.js");
@@ -19,7 +19,7 @@ const coins = require("./../app/coins.js");
 const config = require("./../app/config.js");
 const coreApi = require("./../app/api/coreApi.js");
 const addressApi = require("./../app/api/addressApi.js");
-const btcQuotes = require("./../app/coins/btcQuotes.js");
+const kreptoQuotes = require("./../app/coins/kreptoQuotes.js");
 
 
 
@@ -37,8 +37,8 @@ router.get("/quote/random", function(req, res, next) {
 	let done = false;
 
 	while (!done) {
-		res.locals.quoteIndex = utils.randomInt(0, btcQuotes.items.length);
-		res.locals.quote = btcQuotes.items[res.locals.quoteIndex];
+		res.locals.quoteIndex = utils.randomInt(0, kreptoQuotes.items.length);
+		res.locals.quote = kreptoQuotes.items[res.locals.quoteIndex];
 
 		done = !utils.objHasProperty(res.locals.quote, "duplicateIndex");
 	}

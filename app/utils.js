@@ -3,9 +3,9 @@
 const fs = require("fs");
 
 const debug = require("debug");
-const debugLog = debug("btcexp:utils");
-const debugErrorLog = debug("btcexp:error");
-const debugErrorVerboseLog = debug("btcexp:errorVerbose");
+const debugLog = debug("kreptoexp:utils");
+const debugErrorLog = debug("kreptoexp:error");
+const debugErrorVerboseLog = debug("kreptoexp:errorVerbose");
 
 const Decimal = require("decimal.js");
 const axios = require("axios");
@@ -19,7 +19,7 @@ const { bech32, bech32m } = require("bech32");
 // You must wrap a tiny-secp256k1 compatible implementation
 const bip32 = BIP32Factory(ecc);
 
-const bitcoinjs = require('bitcoinjs-lib');
+const kreptojs = require('kreptojs-lib');
 
 
 
@@ -266,9 +266,9 @@ function formatCurrencyAmountWithForcedDecimalPlaces(amount, formatType, forcedD
 			// with Issue #500, the idea was raised that stripping trailing zeroes can
 			// make values more difficult to parse visually; now the stripping is
 			// dynamic, based on the value - if any of the 4 least-significant digits
-			// are non-zero (i.e. sat-value is NOT evenly divisible by 10,000), then
+			// are non-zero (i.e. kat-value is NOT evenly divisible by 10,000), then
 			// no stripping is performed, otherwise it is performed, to preserve some
-			// of the UX benefit of larger, "even" amounts (e.g. 0.1BTC).
+			// of the UX benefit of larger, "even" amounts (e.g. 0.1KREPTO).
 			let trailingZeroesStrippedStr = baseStr.replace(/0+$/, "");
 			if (baseStr.length - trailingZeroesStrippedStr.length >= 4) {
 				baseStr = trailingZeroesStrippedStr
@@ -335,7 +335,7 @@ function addThousandsSeparators(x) {
 	return parts.join(".");
 }
 
-function satoshisPerUnitOfLocalCurrency(localCurrency) {
+function katoshisPerUnitOfLocalCurrency(localCurrency) {
 	if (global.exchangeRates != null) {
 		let exchangeType = localCurrency;
 
@@ -348,19 +348,19 @@ function satoshisPerUnitOfLocalCurrency(localCurrency) {
 		let one = new Decimal(1);
 		dec = dec.times(global.exchangeRates[exchangeType]);
 		
-		// USD/BTC -> BTC/USD
+		// USD/KREPTO -> KREPTO/USD
 		dec = one.dividedBy(dec);
 
 		let unitName = coins[config.coin].baseCurrencyUnit.name;
-		let satCurrencyType = global.currencyTypes["sat"];
+		let katCurrencyType = global.currencyTypes["kat"];
 		let localCurrencyType = global.currencyTypes[localCurrency];
 
-		// BTC/USD -> sat/USD
-		dec = dec.times(satCurrencyType.multiplier);
+		// KREPTO/USD -> kat/USD
+		dec = dec.times(katCurrencyType.multiplier);
 
 		let exchangedAmt = parseInt(dec);
 
-		return {amt:addThousandsSeparators(exchangedAmt),amtRaw:exchangedAmt, unit:`sat/${localCurrencyType.symbol}`}
+		return {amt:addThousandsSeparators(exchangedAmt),amtRaw:exchangedAmt, unit:`kat/${localCurrencyType.symbol}`}
 	}
 
 	return null;
@@ -1316,7 +1316,7 @@ const xpubPrefixes = new Map([
 ]);
 
 const bip32TestnetNetwork = {
-	messagePrefix: '\x18Bitcoin Signed Message:\n',
+	messagePrefix: '\x18Krepto Signed Message:\n',
 	bech32: 'tb',
 	bip32: {
 		public: 0x043587cf,
@@ -1358,13 +1358,13 @@ function bip32Addresses(extPubkey, addressType, account, limit=10, offset=0) {
 		let publicKey = bip32Child.publicKey;
 
 		if (addressType == "p2pkh") {
-			addresses.push(bitcoinjs.payments.p2pkh({ pubkey: publicKey, network: network }).address);
+			addresses.push(kreptojs.payments.p2pkh({ pubkey: publicKey, network: network }).address);
 
 		} else if (addressType == "p2sh(p2wpkh)") {
-			addresses.push(bitcoinjs.payments.p2sh({ redeem: bitcoinjs.payments.p2wpkh({ pubkey: publicKey, network: network })}).address);
+			addresses.push(kreptojs.payments.p2sh({ redeem: kreptojs.payments.p2wpkh({ pubkey: publicKey, network: network })}).address);
 
 		} else if (addressType == "p2wpkh") {
-			addresses.push(bitcoinjs.payments.p2wpkh({ pubkey: publicKey, network: network }).address);
+			addresses.push(kreptojs.payments.p2wpkh({ pubkey: publicKey, network: network }).address);
 
 		} else {
 			throw new Error(`Unknown address type: "${addressType}" (should be one of ["p2pkh", "p2sh(p2wpkh)", "p2wpkh"])`)
@@ -1516,7 +1516,7 @@ function tryParseAddress(address) {
 	let b58prefix = (global.activeBlockchain == "main" ? /^[13].*$/ : /^[2mn].*$/);
 	if (address.match(b58prefix)) {
 		try {
-			parsedAddress = bitcoinjs.address.fromBase58Check(address);
+			parsedAddress = kreptojs.address.fromBase58Check(address);
 			parsedAddress.hash = parsedAddress.hash.toString("hex");
 
 			return {
@@ -1530,7 +1530,7 @@ function tryParseAddress(address) {
 	}
 
 	try {
-		parsedAddress = bitcoinjs.address.fromBech32(address);
+		parsedAddress = kreptojs.address.fromBech32(address);
 		parsedAddress.data = parsedAddress.data.toString("hex");
 
 		return {
@@ -1592,7 +1592,7 @@ const awaitPromises = async (promises) => {
 };
 
 const obfuscateProperties = (obj, properties) => {
-	if (process.env.BTCEXP_SKIP_LOG_OBFUSCATION) {
+	if (process.env.KREPTOEXP_SKIP_LOG_OBFUSCATION) {
 		return obj;
 	}
 	
@@ -1666,7 +1666,7 @@ module.exports = {
 	formatCurrencyAmountWithForcedDecimalPlaces: formatCurrencyAmountWithForcedDecimalPlaces,
 	formatExchangedCurrency: formatExchangedCurrency,
 	getExchangedCurrencyFormatData: getExchangedCurrencyFormatData,
-	satoshisPerUnitOfLocalCurrency: satoshisPerUnitOfLocalCurrency,
+	katoshisPerUnitOfLocalCurrency: katoshisPerUnitOfLocalCurrency,
 	addThousandsSeparators: addThousandsSeparators,
 	formatCurrencyAmountInSmallestUnits: formatCurrencyAmountInSmallestUnits,
 	seededRandom: seededRandom,

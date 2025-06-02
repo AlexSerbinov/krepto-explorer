@@ -7,7 +7,7 @@ specifiers:
   basic-auth: ^2.0.1
   bech32: 2.0.0
   bip32: ^4.0.0
-  bitcoinjs-lib: ^6.1.5
+  kreptojs-lib: ^6.1.5
   body-parser: ^1.20.2
   bootstrap: ^5.3.2
   bs58check: ^3.0.1
@@ -54,7 +54,7 @@ dependencies:
   basic-auth: 2.0.1
   bech32: 2.0.0
   bip32: 4.0.0
-  bitcoinjs-lib: 6.1.5
+  kreptojs-lib: 6.1.5
   body-parser: 1.20.2
   bootstrap: 5.3.2
   bs58check: 3.0.1
@@ -1554,7 +1554,7 @@ packages:
       wif: 2.0.6
     dev: false
 
-  /bitcoinjs-lib/6.1.5:
+  /kreptojs-lib/6.1.5:
     resolution: {integrity: sha512-yuf6xs9QX/E8LWE2aMJPNd0IxGofwfuVOiYdNUESkc+2bHHVKjhJd8qewqapeoolh9fihzHGoDCB5Vkr57RZCQ==}
     engines: {node: '>=8.0.0'}
     dependencies:
@@ -1563,7 +1563,7 @@ packages:
       bip174: 2.1.1
       bs58check: 3.0.1
       typeforce: 1.18.0
-      varuint-bitcoin: 1.1.2
+      varuint-krepto: 1.1.2
     dev: false
 
   /body-parser/1.20.1:
@@ -4281,7 +4281,7 @@ packages:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
 
-  /varuint-bitcoin/1.1.2:
+  /varuint-krepto/1.1.2:
     resolution: {integrity: sha512-4EVb+w4rx+YfVM32HQX42AbbT7/1f5zwAYhIujKXKk8NQK+JfRVl3pqT3hjNn/L+RstigmGGKVwHA/P0wgITZw==}
     dependencies:
       safe-buffer: 5.2.1

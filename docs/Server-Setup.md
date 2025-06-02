@@ -1,4 +1,4 @@
-### Setup of https://bitcoinexplorer.org on Ubuntu 20.04
+### Setup of https://kreptoexplorer.org on Ubuntu 20.04
 
 Update and install packages
 
@@ -18,28 +18,28 @@ Install NVM from https://github.com/nvm-sh/nvm
     
 Misc setup
 
-    # add user for btc-related stuff
-    adduser bitcoin # leave everything blank if you want
+    # add user for krepto-related stuff
+    adduser krepto # leave everything blank if you want
     
     # gen self-signed cert
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/selfsigned.key -out /etc/ssl/certs/selfsigned.crt
     
     # get nginx config
-    wget https://raw.githubusercontent.com/janoside/btc-rpc-explorer/master/docs/explorer.btc21.org.conf
-    mv explorer.btc21.org.conf /etc/nginx/sites-available/bitcoinexplorer.org
+    wget https://raw.githubusercontent.com/janoside/krepto-rpc-explorer/master/docs/explorer.krepto21.org.conf
+    mv explorer.krepto21.org.conf /etc/nginx/sites-available/kreptoexplorer.org
 
 Get source, npm install
 
-    cd /home/bitcoin
-    git clone https://github.com/janoside/btc-rpc-explorer.git
-    cd /home/bitcoin/btc-rpc-explorer
+    cd /home/krepto
+    git clone https://github.com/janoside/krepto-rpc-explorer.git
+    cd /home/krepto/krepto-rpc-explorer
     npm install
     
     # startup via pm2
-    pm2 start bin/www --name "btc"
+    pm2 start bin/www --name "krepto"
     
     # get letsencrypt cert
-    certbot --nginx -d bitcoinexplorer.org
+    certbot --nginx -d kreptoexplorer.org
     
 Tor setup
 
@@ -49,10 +49,10 @@ Edit /etc/tor/torrc
 
 1. Uncomment `ControlPort 9051`
 2. Uncomment `CookieAuthentication 1`
-3. If applicable, add Torv3 Hidden service credentials to `/var/lib/tor/btcexp...onion`
+3. If applicable, add Torv3 Hidden service credentials to `/var/lib/tor/kreptoexp...onion`
     * chmod 700 for directory, owned by the same "tor" user as other files in that dir
-    * chmod 600 for the files in the "btcexp...onion" dir)
-5. Add `HiddenServiceDir /var/lib/tor/btcexp...onion/`
+    * chmod 600 for the files in the "kreptoexp...onion" dir)
+5. Add `HiddenServiceDir /var/lib/tor/kreptoexp...onion/`
 6. Add `HiddenServicePort 80 127.0.0.1:3000`
 
 

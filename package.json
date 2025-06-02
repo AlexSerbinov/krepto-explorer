@@ -1,7 +1,7 @@
 {
-	"name": "btc-rpc-explorer",
+	"name": "krepto-rpc-explorer",
 	"version": "3.4.0",
-	"description": "Open-source, self-hosted Bitcoin explorer",
+	"description": "Open-source, self-hosted Krepto explorer",
 	"private": false,
 	"bin": "bin/cli.js",
 	"scripts": {
@@ -20,15 +20,15 @@
 		"css": "npm run css-light && npm run css-dark && npm run css-dark-v1 && npm run integrity"
 	},
 	"keywords": [
-		"bitcoin",
-		"btc",
+		"krepto",
+		"krepto",
 		"blockchain"
 	],
 	"author": "Dan Janosik <dan@47.io>",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/janoside/btc-rpc-explorer.git"
+		"url": "git+https://github.com/janoside/krepto-rpc-explorer.git"
 	},
 	"dependencies": {
 		"@janoside/app-utils": "github:janoside/app-utils#ba4c23d3f",
@@ -37,7 +37,7 @@
 		"basic-auth": "^2.0.1",
 		"bech32": "2.0.0",
 		"bip32": "^4.0.0",
-		"bitcoinjs-lib": "^6.1.0",
+		"kreptojs-lib": "^6.1.0",
 		"body-parser": "^1.20.2",
 		"bootstrap": "^5.2.3",
 		"bs58check": "^4.0.0",

@@ -36,16 +36,16 @@ sudo systemctl status krepto krepto-mining
 tail -f /home/krepto/mining.log
 
 # Перевірити blockchain
-bitcoin-cli -datadir=/home/krepto/.krepto getblockchaininfo
+krepto-cli -datadir=/home/krepto/.krepto getblockchaininfo
 ```
 
 ### На Локальному Комп'ютері
 ```bash
 # Підключитися до seed ноди (замінити IP)
-./src/bitcoin-cli -datadir=/Users/serbinov/.krepto addnode "SERVER_IP:12345" "add"
+./src/krepto-cli -datadir=/Users/serbinov/.krepto addnode "SERVER_IP:12345" "add"
 
 # Перевірити підключення
-./src/bitcoin-cli -datadir=/Users/serbinov/.krepto getpeerinfo
+./src/krepto-cli -datadir=/Users/serbinov/.krepto getpeerinfo
 
 # Оновити chainparams.cpp
 # Додати в src/kernel/chainparams.cpp:
@@ -69,7 +69,7 @@ bitcoin-cli -datadir=/home/krepto/.krepto getblockchaininfo
 ## 📁 ВАЖЛИВІ ФАЙЛИ
 
 ### На Сервері
-- `/home/krepto/.krepto/bitcoin.conf` - конфігурація
+- `/home/krepto/.krepto/krepto.conf` - конфігурація
 - `/home/krepto/.krepto/rpc_credentials` - паролі та адреси
 - `/home/krepto/mining_script.sh` - скрипт майнінгу
 - `/home/krepto/mining.log` - логи майнінгу

@@ -13,15 +13,15 @@
 - Krepto зараз на блоці **2101**, що означає SegWit активний з самого початку!
 - Це пояснює, чому SegWit транзакції з'являються в mempool
 
-### Порівняння з Bitcoin Core
-**Stack Overflow проблема**: Різні версії Bitcoin Core мали різні налаштування SegWit активації
+### Порівняння з Krepto Core
+**Stack Overflow проблема**: Різні версії Krepto Core мали різні налаштування SegWit активації
 - v0.14.3: SegWit статус "defined" (неактивний)
 - v0.16.3: SegWit статус "active" (активний)
 - **Результат**: `unexpected-witness, ContextualCheckBlock : unexpected witness data found (code 16)`
 
 ### Застосування до Krepto
 **НАША СИТУАЦІЯ**:
-- SegWit активний з блоку 481824 (Bitcoin mainnet значення)
+- SegWit активний з блоку 481824 (Krepto mainnet значення)
 - Поточний блок: 2101 (набагато менше за 481824)
 - **ПАРАДОКС**: SegWit повинен бути НЕактивний, але транзакції все одно створюються
 
@@ -103,15 +103,15 @@ rm -f /Users/serbinov/.krepto/mempool.dat
 # Результат: Транзакція повертається після запуску
 
 # Спроба 2: Запуск без збереження mempool
-./src/bitcoind -persistmempool=0
+./src/kreptod -persistmempool=0
 # Результат: Транзакція повертається
 
 # Спроба 3: Ізоляція від мережі
-./src/bitcoind -connect=0 -persistmempool=0
+./src/kreptod -connect=0 -persistmempool=0
 # Результат: Транзакція повертається
 
 # Спроба 4: Відключення гаманця
-./src/bitcoind -disablewallet
+./src/kreptod -disablewallet
 # Результат: ✅ Mempool порожній!
 ```
 
@@ -132,7 +132,7 @@ rm -f /Users/serbinov/.krepto/mempool.dat
 
 **Потрібно дослідити**:
 - Знайти функцію `CheckWitnessMalleation` в коді
-- Порівняти з Bitcoin Core реалізацією
+- Порівняти з Krepto Core реалізацією
 - Перевірити налаштування SegWit активації в chainparams.cpp
 
 ### Гіпотеза #2: SegWit Не Активований Правильно
@@ -157,32 +157,32 @@ rm -f /Users/serbinov/.krepto/mempool.dat
 
 #### Метод 1: Перезапуск без Mempool
 ```bash
-./src/bitcoin-cli stop
+./src/krepto-cli stop
 rm -f /Users/serbinov/.krepto/mempool.dat
-./src/bitcoind -datadir=/Users/serbinov/.krepto -daemon -persistmempool=0
-./src/bitcoin-cli getmempoolinfo
+./src/kreptod -datadir=/Users/serbinov/.krepto -daemon -persistmempool=0
+./src/krepto-cli getmempoolinfo
 ```
 
 #### Метод 2: Ізоляція від Мережі
 ```bash
-./src/bitcoin-cli stop
-./src/bitcoind -datadir=/Users/serbinov/.krepto -daemon -connect=0 -persistmempool=0
-./src/bitcoin-cli getmempoolinfo
+./src/krepto-cli stop
+./src/kreptod -datadir=/Users/serbinov/.krepto -daemon -connect=0 -persistmempool=0
+./src/krepto-cli getmempoolinfo
 ```
 
 #### Метод 3: Відключення Гаманця (ПРАЦЮЄ)
 ```bash
-./src/bitcoin-cli stop
-./src/bitcoind -datadir=/Users/serbinov/.krepto -daemon -disablewallet -persistmempool=0
-./src/bitcoin-cli getmempoolinfo  # Повинен показати size: 0
+./src/krepto-cli stop
+./src/kreptod -datadir=/Users/serbinov/.krepto -daemon -disablewallet -persistmempool=0
+./src/krepto-cli getmempoolinfo  # Повинен показати size: 0
 ```
 
 #### Метод 4: Резервне Копіювання Гаманця
 ```bash
-./src/bitcoin-cli stop
+./src/krepto-cli stop
 mv /Users/serbinov/.krepto/wallets /Users/serbinov/.krepto/wallets_backup
 rm -f /Users/serbinov/.krepto/mempool.dat
-./src/bitcoind -datadir=/Users/serbinov/.krepto -daemon
+./src/kreptod -datadir=/Users/serbinov/.krepto -daemon
 ```
 
 ### 🔧 АЛГОРИТМ #2: Відкат до Попереднього Блоку
@@ -192,24 +192,24 @@ rm -f /Users/serbinov/.krepto/mempool.dat
 # Отримати хеш блоку для інвалідації
 target_height=2100
 invalid_height=$((target_height + 1))
-invalid_hash=$(./src/bitcoin-cli getblockhash $invalid_height)
+invalid_hash=$(./src/krepto-cli getblockhash $invalid_height)
 
 # Інвалідувати блок
-./src/bitcoin-cli invalidateblock $invalid_hash
+./src/krepto-cli invalidateblock $invalid_hash
 
 # Перевірити результат
-./src/bitcoin-cli getblockchaininfo
+./src/krepto-cli getblockchaininfo
 ```
 
 #### Метод 2: Функція Відкату
 ```bash
 rollback_blocks() {
     local blocks_back=$1
-    current_height=$(./src/bitcoin-cli getblockchaininfo | jq -r '.blocks')
+    current_height=$(./src/krepto-cli getblockchaininfo | jq -r '.blocks')
     target_height=$((current_height - blocks_back))
     invalid_height=$((target_height + 1))
-    invalid_hash=$(./src/bitcoin-cli getblockhash $invalid_height)
-    ./src/bitcoin-cli invalidateblock $invalid_hash
+    invalid_hash=$(./src/krepto-cli getblockhash $invalid_height)
+    ./src/krepto-cli invalidateblock $invalid_hash
     echo "Rolled back $blocks_back blocks. New height: $target_height"
 }
 
@@ -223,18 +223,18 @@ rollback_blocks 100
 ```bash
 # Перевірити mempool на SegWit транзакції
 check_segwit_in_mempool() {
-    ./src/bitcoin-cli getrawmempool true | jq -r 'to_entries[] | select(.value.weight > (.value.vsize * 4)) | .key'
+    ./src/krepto-cli getrawmempool true | jq -r 'to_entries[] | select(.value.weight > (.value.vsize * 4)) | .key'
 }
 
 # Перевірити конкретну транзакцію
 check_transaction_segwit() {
     local txid=$1
-    ./src/bitcoin-cli getrawtransaction $txid true | jq -r '.txinwitness // empty'
+    ./src/krepto-cli getrawtransaction $txid true | jq -r '.txinwitness // empty'
 }
 
 # Тест майнінгу
 test_mining() {
-    result=$(./src/bitcoin-cli generatetoaddress 1 K9iZTbAUMnikKeQae4qwkYc8A5xpazEtTW 10000000 2>&1)
+    result=$(./src/krepto-cli generatetoaddress 1 K9iZTbAUMnikKeQae4qwkYc8A5xpazEtTW 10000000 2>&1)
     if echo "$result" | grep -q "unexpected-witness"; then
         echo "❌ SegWit проблема виявлена"
         return 1
@@ -251,7 +251,7 @@ diagnose_segwit_issue() {
     echo "🔍 Діагностика SegWit проблем..."
     
     # Перевірити mempool
-    mempool_size=$(./src/bitcoin-cli getmempoolinfo | jq -r '.size')
+    mempool_size=$(./src/krepto-cli getmempoolinfo | jq -r '.size')
     echo "📊 Mempool size: $mempool_size"
     
     if [ $mempool_size -gt 0 ]; then
@@ -282,25 +282,25 @@ diagnose_segwit_issue() {
 ### Діагностика
 ```bash
 # Перевірка SegWit транзакцій в mempool
-./src/bitcoin-cli getrawmempool true | jq -r 'to_entries[] | select(.value.weight > (.value.vsize * 4)) | .key'
+./src/krepto-cli getrawmempool true | jq -r 'to_entries[] | select(.value.weight > (.value.vsize * 4)) | .key'
 
 # Перевірка mempool
-./src/bitcoin-cli getmempoolinfo
+./src/krepto-cli getmempoolinfo
 
 # Тест майнінгу
-./src/bitcoin-cli generatetoaddress 1 K9iZTbAUMnikKeQae4qwkYc8A5xpazEtTW 10000000
+./src/krepto-cli generatetoaddress 1 K9iZTbAUMnikKeQae4qwkYc8A5xpazEtTW 10000000
 ```
 
 ### Тимчасове Виправлення
 ```bash
 # Швидке очищення для майнінгу
 quick_fix_mining() {
-    ./src/bitcoin-cli stop
+    ./src/krepto-cli stop
     sleep 3
     rm -f /Users/serbinov/.krepto/mempool.dat
-    ./src/bitcoind -datadir=/Users/serbinov/.krepto -daemon -disablewallet
+    ./src/kreptod -datadir=/Users/serbinov/.krepto -daemon -disablewallet
     sleep 5
-    ./src/bitcoin-cli generatetoaddress 1 K9iZTbAUMnikKeQae4qwkYc8A5xpazEtTW 10000000
+    ./src/krepto-cli generatetoaddress 1 K9iZTbAUMnikKeQae4qwkYc8A5xpazEtTW 10000000
 }
 ```
 
@@ -308,7 +308,7 @@ quick_fix_mining() {
 ```bash
 # Повернення до блоку 2100
 rollback_to_safe_state() {
-    ./src/bitcoin-cli invalidateblock $(./src/bitcoin-cli getblockhash 2101)
+    ./src/krepto-cli invalidateblock $(./src/krepto-cli getblockhash 2101)
     echo "Rolled back to block 2100 (safe state)"
 }
 ```
@@ -322,8 +322,8 @@ rollback_to_safe_state() {
    grep -r "unexpected-witness" src/
    ```
 
-2. **Порівняти з Bitcoin Core**:
-   - Завантажити Bitcoin Core останньої версії
+2. **Порівняти з Krepto Core**:
+   - Завантажити Krepto Core останньої версії
    - Порівняти реалізацію CheckWitnessMalleation
    - Знайти відмінності
 
@@ -380,4 +380,4 @@ rollback_to_safe_state() {
 4. **Потрібне дослідження коду**: CheckWitnessMalleation потребує аналізу
 5. **GUI потребує модифікації**: Змінити тип адрес за замовчуванням
 
-**Наступний крок**: Дослідити код CheckWitnessMalleation та порівняти з Bitcoin Core. 
+**Наступний крок**: Дослідити код CheckWitnessMalleation та порівняти з Krepto Core. 

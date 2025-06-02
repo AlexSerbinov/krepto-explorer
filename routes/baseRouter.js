@@ -1,7 +1,7 @@
 "use strict";
 
 const debug = require("debug");
-const debugLog = debug("btcexp:router");
+const debugLog = debug("kreptoexp:router");
 
 const express = require('express');
 const csrfApi = require('csurf');
@@ -9,7 +9,7 @@ const router = express.Router();
 const util = require('util');
 const moment = require('moment');
 const qrcode = require('qrcode');
-const bitcoinjs = require('bitcoinjs-lib');
+const kreptojs = require('kreptojs-lib');
 const bip32 = require('bip32');
 const bs58check = require('bs58check');
 const { bech32, bech32m } = require("bech32");
@@ -26,7 +26,7 @@ const config = require("./../app/config.js");
 const coreApi = require("./../app/api/coreApi.js");
 const addressApi = require("./../app/api/addressApi.js");
 const rpcApi = require("./../app/api/rpcApi.js");
-const btcQuotes = require("./../app/coins/btcQuotes.js");
+const kreptoQuotes = require("./../app/coins/kreptoQuotes.js");
 
 const forceCsrf = csrfApi({ ignoreMethods: [] });
 
@@ -297,7 +297,7 @@ router.get("/node-details", asyncHandler(async (req, res, next) => {
 
 router.get("/mempool-summary", asyncHandler(async (req, res, next) => {
 	try {
-		res.locals.satoshiPerByteBucketMaxima = coinConfig.feeSatoshiPerByteBucketMaxima;
+		res.locals.katoshiPerByteBucketMaxima = coinConfig.feeKatoshiPerByteBucketMaxima;
 
 		await utils.timePromise("mempool-summary/render", async () => {
 			res.render("mempool-summary");
@@ -385,7 +385,7 @@ router.post("/connect", function(req, res, next) {
 	req.session.port = port;
 	req.session.username = username;
 
-	let newClient = new bitcoinCore({
+	let newClient = new kreptoCore({
 		host: host,
 		port: port,
 		username: username,
@@ -783,15 +783,15 @@ router.get("/xyzpub/:extendedPubkey", asyncHandler(async (req, res, next) => {
 			res.locals.bip32Path = "-";
 		}
 
-		// Cumulate balanceSat of all addresses
-		res.locals.balanceSat = 0;
+		// Cumulate balanceKat of all addresses
+		res.locals.balanceKat = 0;
 
 		// Loop over the 2 types addresses (first receive and then change)
 		let allAddresses = [res.locals.receiveAddresses, res.locals.changeAddresses];
 		res.locals.receiveAddresses = [];
 		res.locals.changeAddresses = [];
 		for (let i = 0; i < allAddresses.length; i++) {
-			// Duplicate addresses and change them to addressDetails objects with 3 properties (address, balanceSat, txCount)
+			// Duplicate addresses and change them to addressDetails objects with 3 properties (address, balanceKat, txCount)
 			let addresses = [...allAddresses[i]];
 			for (let j = 0; j < addresses.length; j++) {
 				const address = addresses[j];
@@ -802,7 +802,7 @@ router.get("/xyzpub/:extendedPubkey", asyncHandler(async (req, res, next) => {
 
 				// In case of errors, we just skip this address result
 				if (Array.isArray(addressDetailsResult.errors) && addressDetailsResult.errors.length == 0) {
-					res.locals.balanceSat += addressDetailsResult.addressDetails.balanceSat;
+					res.locals.balanceKat += addressDetailsResult.addressDetails.balanceKat;
 					const addressDetails = { ...addressDetailsResult.addressDetails, address};
 					if (i == 0)
 						res.locals.receiveAddresses.push(addressDetails);
@@ -832,7 +832,7 @@ router.get("/xyzpub/:extendedPubkey", asyncHandler(async (req, res, next) => {
 }));
 
 router.get("/block-stats", asyncHandler(async (req, res, next) => {
-	if (semver.lt(global.btcNodeSemver, rpcApi.minRpcVersions.getblockstats)) {
+	if (semver.lt(global.kreptoNodeSemver, rpcApi.minRpcVersions.getblockstats)) {
 		res.locals.rpcApiUnsupportedError = {rpc:"getblockstats", version:rpcApi.minRpcVersions.getblockstats};
 	}
 
@@ -1101,7 +1101,7 @@ router.get("/block-height/:blockHeight", asyncHandler(async (req, res, next) => 
 				res.locals.metaDesc = "";
 			}
 		} else {
-			res.locals.metaTitle = `Bitcoin Block #${blockHeight.toLocaleString()}`;
+			res.locals.metaTitle = `Krepto Block #${blockHeight.toLocaleString()}`;
 			res.locals.metaDesc = "";
 		}
 		
@@ -1203,7 +1203,7 @@ router.get("/block/:blockHash", asyncHandler(async (req, res, next) => {
 			}
 
 		} else {
-			res.locals.metaTitle = `Bitcoin Block ${utils.ellipsizeMiddle(res.locals.result.getblock.hash, 16)}`;
+			res.locals.metaTitle = `Krepto Block ${utils.ellipsizeMiddle(res.locals.result.getblock.hash, 16)}`;
 			res.locals.metaDesc = "";
 		}
 
@@ -1229,7 +1229,7 @@ router.get("/block/:blockHash", asyncHandler(async (req, res, next) => {
 
 router.get("/predicted-blocks", asyncHandler(async (req, res, next) => {
 	try {
-		res.locals.satoshiPerByteBucketMaxima = coinConfig.feeSatoshiPerByteBucketMaxima;
+		res.locals.katoshiPerByteBucketMaxima = coinConfig.feeKatoshiPerByteBucketMaxima;
 
 		res.render("predicted-blocks");
 
@@ -1449,7 +1449,7 @@ router.get("/tx/:transactionId", asyncHandler(async (req, res, next) => {
 				res.locals.metaDesc = "";
 			}
 		} else {
-			res.locals.metaTitle = `Bitcoin Transaction ${utils.ellipsizeMiddle(txid, 16)}`;
+			res.locals.metaTitle = `Krepto Transaction ${utils.ellipsizeMiddle(txid, 16)}`;
 			res.locals.metaDesc = "";
 		}
 
@@ -1522,7 +1522,7 @@ router.get("/address/:address", asyncHandler(async (req, res, next) => {
 		}
 
 
-		res.locals.metaTitle = `Bitcoin Address ${address}`;
+		res.locals.metaTitle = `Krepto Address ${address}`;
 
 		res.locals.address = address;
 		res.locals.limit = limit;
@@ -1581,9 +1581,9 @@ router.get("/address/:address", asyncHandler(async (req, res, next) => {
 				if (addressDetails) {
 					res.locals.addressDetails = addressDetails;
 
-					if (addressDetails.balanceSat == 0) {
+					if (addressDetails.balanceKat == 0) {
 						// make sure zero balances pass the falsey check in the UI
-						addressDetails.balanceSat = "0";
+						addressDetails.balanceKat = "0";
 					}
 
 					if (addressDetails.txCount == 0) {
@@ -1805,7 +1805,7 @@ router.get("/next-halving", asyncHandler(async (req, res, next) => {
 
 router.get("/rpc-terminal", function(req, res, next) {
 	if (!config.demoSite && !req.authenticated) {
-		res.send("RPC Terminal / Browser require authentication. Set an authentication password via the 'BTCEXP_BASIC_AUTH_PASSWORD' environment variable (see .env-sample file for more info).");
+		res.send("RPC Terminal / Browser require authentication. Set an authentication password via the 'KREPTOEXP_BASIC_AUTH_PASSWORD' environment variable (see .env-sample file for more info).");
 		
 		next();
 
@@ -1819,7 +1819,7 @@ router.get("/rpc-terminal", function(req, res, next) {
 
 router.post("/rpc-terminal", asyncHandler(async (req, res, next) => {
 	if (!config.demoSite && !req.authenticated) {
-		res.send("RPC Terminal / Browser require authentication. Set an authentication password via the 'BTCEXP_BASIC_AUTH_PASSWORD' environment variable (see .env-sample file for more info).");
+		res.send("RPC Terminal / Browser require authentication. Set an authentication password via the 'KREPTOEXP_BASIC_AUTH_PASSWORD' environment variable (see .env-sample file for more info).");
 
 		next();
 
@@ -1879,7 +1879,7 @@ router.post("/rpc-terminal", asyncHandler(async (req, res, next) => {
 
 router.get("/rpc-browser", asyncHandler(async (req, res, next) => {
 	if (!config.demoSite && !req.authenticated) {
-		res.send("RPC Terminal / Browser require authentication. Set an authentication password via the 'BTCEXP_BASIC_AUTH_PASSWORD' environment variable (see .env-sample file for more info).");
+		res.send("RPC Terminal / Browser require authentication. Set an authentication password via the 'KREPTOEXP_BASIC_AUTH_PASSWORD' environment variable (see .env-sample file for more info).");
 
 		next();
 
@@ -2075,7 +2075,7 @@ router.post("/terminal", function(req, res, next) {
 	let paramsStr = req.body.cmd.trim().substring(cmd.length).trim();
 
 	if (cmd == "parsescript") {
-		const nbs = require('node-bitcoin-script');
+		const nbs = require('node-krepto-script');
 		let parsedScript = nbs.parseRawScript(paramsStr, "hex");
 
 		res.write(JSON.stringify({"parsed":parsedScript}, null, 4), function() {
@@ -2343,7 +2343,7 @@ router.get("/quotes", function(req, res, next) {
 		viewType = req.query.viewType;
 	}
 
-	let listNewFirst = btcQuotes.items;
+	let listNewFirst = kreptoQuotes.items;
 	for (let i = 0; i < listNewFirst.length; i++) {
 		listNewFirst[i].quoteIndex = i;
 	}
@@ -2412,7 +2412,7 @@ router.get("/quotes", function(req, res, next) {
 });
 
 router.get("/holidays", function(req, res, next) {
-	res.locals.btcHolidays = global.btcHolidays;
+	res.locals.kreptoHolidays = global.kreptoHolidays;
 
 	res.render("holidays");
 
@@ -2421,10 +2421,10 @@ router.get("/holidays", function(req, res, next) {
 
 router.get("/quote/:quoteIndex", function(req, res, next) {
 	res.locals.quoteIndex = parseInt(req.params.quoteIndex);
-	res.locals.btcQuotes = btcQuotes.items;
+	res.locals.kreptoQuotes = kreptoQuotes.items;
 
-	if (btcQuotes.items[res.locals.quoteIndex].duplicateIndex) {
-		let duplicateIndex = btcQuotes.items[res.locals.quoteIndex].duplicateIndex;
+	if (kreptoQuotes.items[res.locals.quoteIndex].duplicateIndex) {
+		let duplicateIndex = kreptoQuotes.items[res.locals.quoteIndex].duplicateIndex;
 
 		res.redirect(`${config.baseUrl}quote/${duplicateIndex}`);
 
@@ -2436,14 +2436,14 @@ router.get("/quote/:quoteIndex", function(req, res, next) {
 	next();
 });
 
-router.get("/bitcoin-whitepaper", function(req, res, next) {
-	res.render("bitcoin-whitepaper");
+router.get("/krepto-whitepaper", function(req, res, next) {
+	res.render("krepto-whitepaper");
 
 	next();
 });
 
-router.get("/bitcoin.pdf", function(req, res, next) {
-	// ref: https://bitcoin.stackexchange.com/questions/35959/how-is-the-whitepaper-decoded-from-the-blockchain-tx-with-1000x-m-of-n-multisi
+router.get("/krepto.pdf", function(req, res, next) {
+	// ref: https://krepto.stackexchange.com/questions/35959/how-is-the-whitepaper-decoded-from-the-blockchain-tx-with-1000x-m-of-n-multisi
 	const whitepaperTxid = "54e48e5f5c656b26c3bca14a8c95aa583d07ebe84dde3b7dd4a78f4e4186e713";
 
 	// get all outputs except the last 2 using `gettxout`

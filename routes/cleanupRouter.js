@@ -1,7 +1,7 @@
 "use strict";
 
 const debug = require("debug");
-const debugLog = debug("btcexp:cleanup");
+const debugLog = debug("kreptoexp:cleanup");
 
 const express = require('express');
 const csrfApi = require('csurf');
@@ -9,7 +9,7 @@ const router = express.Router();
 const util = require('util');
 const moment = require('moment');
 const qrcode = require('qrcode');
-const bitcoinjs = require('bitcoinjs-lib');
+const kreptojs = require('kreptojs-lib');
 const bip32 = require('bip32');
 const bs58check = require('bs58check');
 const { bech32, bech32m } = require("bech32");
@@ -26,7 +26,7 @@ const config = require("./../app/config.js");
 const coreApi = require("./../app/api/coreApi.js");
 const addressApi = require("./../app/api/addressApi.js");
 const rpcApi = require("./../app/api/rpcApi.js");
-const btcQuotes = require("./../app/coins/btcQuotes.js");
+const kreptoQuotes = require("./../app/coins/kreptoQuotes.js");
 
 
 

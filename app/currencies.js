@@ -1,16 +1,16 @@
 global.currencyTypes = {
-	"btc": {
-		id: "btc",
+	"krepto": {
+		id: "krepto",
 		type:"native",
-		name:"BTC",
+		name:"KREPTO",
 		multiplier:1,
 		default:true,
 		decimalPlaces:8
 	},
-	"sat": {
-		id: "sat",
+	"kat": {
+		id: "kat",
 		type:"native",
-		name:"sat",
+		name:"kat",
 		multiplier:100000000,
 		decimalPlaces:0
 	},
@@ -41,7 +41,7 @@ global.currencyTypes = {
 };
 
 global.currencySymbols = {
-	"btc": "₿",
+	"krepto": "₿",
 	"usd": "$",
 	"eur": "€",
 	"gbp": "£"

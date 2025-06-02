@@ -94,7 +94,7 @@ base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,50);  // 'M'
 ## Безпека та валідація
 
 ### Consensus Rules
-- Використання Bitcoin consensus rules
+- Використання Krepto consensus rules
 - Валідація блоків та транзакцій
 - Перевірка proof-of-work
 

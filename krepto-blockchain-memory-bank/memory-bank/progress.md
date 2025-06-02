@@ -6,10 +6,10 @@
 
 **Виправлення URI префіксу (Проблема #31)**
 - **Дата**: 19 грудня 2024
-- **Проблема**: В діалозі "Request payment" показувався URI з префіксом `bitcoin:` замість `krepto:`
+- **Проблема**: В діалозі "Request payment" показувався URI з префіксом `krepto:` замість `krepto:`
 - **Рішення**: 
-  - Виправлено функції `parseBitcoinURI` та `formatBitcoinURI` в `src/qt/guiutil.cpp`
-  - Замінено жорстко закодований префікс `"bitcoin:"` на `"krepto:"`
+  - Виправлено функції `parseKreptoURI` та `formatKreptoURI` в `src/qt/guiutil.cpp`
+  - Замінено жорстко закодований префікс `"krepto:"` на `"krepto:"`
   - Оновлено всі тести в `src/qt/test/uritests.cpp` та `src/qt/test/wallettests.cpp`
 - **Результат**: Тепер всі URI показуються з правильним префіксом `krepto:`
 
@@ -31,13 +31,13 @@
 ### ✅ Завершені Компоненти
 
 #### Основна Функціональність
-- ✅ Форк Bitcoin Core з повним ребрендингом на \"Krepto\"
+- ✅ Форк Krepto Core з повним ребрендингом на \"Krepto\"
 - ✅ Власна мережа з тікером \"KREPTO\"
 - ✅ Унікальні magic bytes: \"KREP\" (0x4b524550)
 - ✅ Власні порти: mainnet 12345, RPC 12347
 - ✅ Genesis блок з proof of work: `00000d2843e19d3f61aaf31f1f919a1be17fc1b814d43117f8f8a4b602a559f2`
 - ✅ SegWit активний з genesis блоку
-- ✅ Повна сумісність з Bitcoin Core API
+- ✅ Повна сумісність з Krepto Core API
 
 #### GUI Клієнт
 - ✅ Повний ребрендинг інтерфейсу на \"Krepto\"
@@ -82,7 +82,7 @@
 #### ✅ macOS Standalone GUI
 - **Файл**: Krepto.dmg (49MB)
 - **Функції**: Повний GUI з вбудованим майнінгом
-- **Запуск**: `./src/qt/bitcoin-qt -datadir=/Users/serbinov/.krepto`
+- **Запуск**: `./src/qt/krepto-qt -datadir=/Users/serbinov/.krepto`
 - **Статус**: 🎊 **ПОВНІСТЮ ГОТОВИЙ**
 
 #### ✅ Windows CLI
@@ -91,7 +91,7 @@
 - **Статус**: 🎊 **ПОВНІСТЮ ГОТОВИЙ**
 
 #### ✅ Standalone Функціональність
-- **Вбудований демон**: GUI запускає власний bitcoind
+- **Вбудований демон**: GUI запускає власний kreptod
 - **Внутрішній майнінг**: Без зовнішніх процесів
 - **Автоматичні адреси**: Створює mining адреси
 - **Реальний час логи**: Детальна статистика
@@ -101,7 +101,7 @@
 
 #### ✅ Успішні Тести (Грудень 2024)
 1. **Компіляція**: `make -j8` - успішно
-2. **Запуск GUI**: `./src/qt/bitcoin-qt` - працює
+2. **Запуск GUI**: `./src/qt/krepto-qt` - працює
 3. **Підключення до мережі**: автоматично
 4. **Синхронізація**: 4762+ блоків
 5. **Майнінг CLI**: блок #4762 знайдено (`000003539c03424492e962e2ac79e28877aa5eef75ee801f9b227635d1c1210f`)
@@ -117,13 +117,13 @@
 ### 🎯 Досягнення Цілей Користувача
 
 #### ✅ Основна Мета: Standalone GUI
-**Запит**: \"Зробити клієнт лише GUI, який юзери зможуть запускати і майнити без bitcoind, CLI і всяких таких штук\"
+**Запит**: \"Зробити клієнт лише GUI, який юзери зможуть запускати і майнити без kreptod, CLI і всяких таких штук\"
 
 **Результат**: ✅ **ПОВНІСТЮ ДОСЯГНУТО**
 - GUI працює як standalone додаток
-- Вбудований демон (не потребує окремого bitcoind)
+- Вбудований демон (не потребує окремого kreptod)
 - Майнінг через внутрішні RPC (не потребує CLI)
-- Одна команда запуску: `./src/qt/bitcoin-qt`
+- Одна команда запуску: `./src/qt/krepto-qt`
 - Майнінг одним кліком в GUI
 
 #### ✅ Технічна Реалізація
@@ -147,7 +147,7 @@
 1. **Простота**: Один файл для запуску всього
 2. **Автономність**: Не потребує технічних знань
 3. **Майнінг**: Одним кліком в GUI
-4. **Стабільність**: Базується на Bitcoin Core
+4. **Стабільність**: Базується на Krepto Core
 5. **Безпека**: Enterprise-grade захист
 
 ### 📈 Метрики Успіху
@@ -179,10 +179,10 @@
 ## 🚀 КРИТИЧНЕ ВИПРАВЛЕННЯ WINDOWS GUI BUILD (29 Грудня 2024)
 
 ### 🔍 Проблема що була виявлена
-**Артефакт не містив головний GUI файл**: У Windows артефакті `Krepto-Windows-GUI.zip` було тільки 10 з 11 очікуваних файлів - **відсутній `bitcoin-qt.exe`** (головний GUI клієнт)
+**Артефакт не містив головний GUI файл**: У Windows артефакті `Krepto-Windows-GUI.zip` було тільки 10 з 11 очікуваних файлів - **відсутній `krepto-qt.exe`** (головний GUI клієнт)
 
 #### Діагностика через GitHub Actions логи
-- **Знайдена проблема**: `bitcoin-qt.exe` (41МБ) будувався успішно в `build_msvc\x64\Release\`
+- **Знайдена проблема**: `krepto-qt.exe` (41МБ) будувався успішно в `build_msvc\x64\Release\`
 - **Корінь проблеми**: Скрипт копіювання в `.github/workflows/ci.yml` копіював тільки з директорії `src\`, де відсутній GUI executable
 - **Windows MSBuild**: GUI будується в `build_msvc\x64\Release\`, а CLI в `src\`
 
@@ -195,17 +195,17 @@ copy src\*.exe Krepto-Windows-GUI\
 
 # СТАЛО (правильно):
 REM Copy from src directory (CLI tools built with autotools)
-if exist src\bitcoind.exe copy src\bitcoind.exe Krepto-Windows-GUI\
-if exist src\bitcoin-cli.exe copy src\bitcoin-cli.exe Krepto-Windows-GUI\
+if exist src\kreptod.exe copy src\kreptod.exe Krepto-Windows-GUI\
+if exist src\krepto-cli.exe copy src\krepto-cli.exe Krepto-Windows-GUI\
 ...
 
-REM Copy bitcoin-qt.exe from MSBuild output directory (GUI built with MSBuild)
-if exist build_msvc\x64\Release\bitcoin-qt.exe copy build_msvc\x64\Release\bitcoin-qt.exe Krepto-Windows-GUI\
+REM Copy krepto-qt.exe from MSBuild output directory (GUI built with MSBuild)
+if exist build_msvc\x64\Release\krepto-qt.exe copy build_msvc\x64\Release\krepto-qt.exe Krepto-Windows-GUI\
 ```
 
 #### 2. Покращена діагностика в GitHub Actions
 - Детальний пошук всіх `.exe` файлів: `dir /s *.exe`
-- Спеціальна перевірка GUI файлу: `dir /s bitcoin-qt.exe`
+- Спеціальна перевірка GUI файлу: `dir /s krepto-qt.exe`
 - Логування структури директорій для дебагу
 - Автоматична перевірка наявності в пакеті
 
@@ -239,23 +239,23 @@ NodeContext& node = EnsureAnyNodeContext(request.context);
 4. **Packaging**: тепер копіює з обох локацій
 
 #### Артефакт `Krepto-Windows-GUI.zip` тепер містить:
-- ✅ `bitcoin-qt.exe` (41МБ) - **ГОЛОВНИЙ GUI** (виправлено!)
-- ✅ `bitcoind.exe` (15МБ) - Daemon
-- ✅ `bitcoin-cli.exe` (2МБ) - CLI interface
-- ✅ `bitcoin-tx.exe` (4МБ) - Transaction tool
-- ✅ `bitcoin-util.exe` (2МБ) - Utility tool
-- ✅ `bitcoin-wallet.exe` (9МБ) - Wallet tool
-- ✅ `test_bitcoin.exe` (28МБ) - Unit tests
-- ✅ `bench_bitcoin.exe` (16МБ) - Benchmarks
+- ✅ `krepto-qt.exe` (41МБ) - **ГОЛОВНИЙ GUI** (виправлено!)
+- ✅ `kreptod.exe` (15МБ) - Daemon
+- ✅ `krepto-cli.exe` (2МБ) - CLI interface
+- ✅ `krepto-tx.exe` (4МБ) - Transaction tool
+- ✅ `krepto-util.exe` (2МБ) - Utility tool
+- ✅ `krepto-wallet.exe` (9МБ) - Wallet tool
+- ✅ `test_krepto.exe` (28МБ) - Unit tests
+- ✅ `bench_krepto.exe` (16МБ) - Benchmarks
 - ✅ `fuzz.exe` (17МБ) - Fuzz testing
-- ✅ `bitcoin.conf` - Configuration with seed nodes
+- ✅ `krepto.conf` - Configuration with seed nodes
 - ✅ `README.txt` - User instructions
 
 ### 🔧 Використані інструменти та методи
 
 #### Дослідження та діагностика
 - **GitHub Actions**: Використання Windows runners для cross-platform builds
-- **MSBuild vs Autotools**: Розуміння різних build систем у Bitcoin Core
+- **MSBuild vs Autotools**: Розуміння різних build систем у Krepto Core
 - **Log Analysis**: Аналіз build outputs для знаходження точної локації файлів
 - **Directory Structure**: Картування build outputs у різних системах
 
@@ -289,8 +289,8 @@ NodeContext& node = EnsureAnyNodeContext(request.context);
 
 ### 🎯 Ключові навчення
 
-#### Розробка для Bitcoin Core forks
-1. **Build Systems**: Bitcoin Core використовує різні системи на різних платформах
+#### Розробка для Krepto Core forks
+1. **Build Systems**: Krepto Core використовує різні системи на різних платформах
 2. **GUI vs CLI**: Різні шляхи компіляції для різних компонентів  
 3. **Cross-platform**: Потребує розуміння особливостей кожної ОС
 4. **CI/CD**: GitHub Actions потребує точної конфігурації для кожної платформи
@@ -345,7 +345,7 @@ NodeContext& node = EnsureAnyNodeContext(request.context);
 - **Unique Parameters**: Each user gets different max_tries (500K-2M)
 - **Random Delays**: 0-5 second delays between mining attempts
 - **Fair Distribution**: Minimizes work duplication between parallel miners
-- **Difficulty Adjustment**: Bitcoin-compatible algorithm with MaxRise 4x
+- **Difficulty Adjustment**: Krepto-compatible algorithm with MaxRise 4x
 
 #### macOS Distribution (100% Complete)
 - **Professional DMG**: 38MB installer with drag-and-drop interface
@@ -359,7 +359,7 @@ NodeContext& node = EnsureAnyNodeContext(request.context);
 - **Dual Seed Nodes**: 
   * Primary: 164.68.117.90:12345 (stable)
   * Secondary: 5.189.133.204:12345 (user's server - to be deployed)
-- **Configuration Files**: All bitcoin.conf files updated with both nodes
+- **Configuration Files**: All krepto.conf files updated with both nodes
 - **DMG Rebuilt**: New version includes both seed nodes
 - **Fallback Support**: Clients can connect to either node
 
@@ -389,16 +389,16 @@ NodeContext& node = EnsureAnyNodeContext(request.context);
 
 ### Recent Updates (2024-05-28)
 - ✅ **Seed Node Addition**: Successfully added 5.189.133.204:12345 as secondary seed node
-- ✅ **Configuration Update**: All bitcoin.conf files now include both seed nodes
+- ✅ **Configuration Update**: All krepto.conf files now include both seed nodes
 - ✅ **DMG Rebuild**: New macOS installer (38MB) with updated network configuration
 - ✅ **Checksums Updated**: New SHA256: 7cc95a0a458e6e46cee0019eb087a0c03ca5c39e1fbeb62cd057dbed4660a224
 
 ### Technical Excellence
-- **Code Quality**: High (minimal changes to Bitcoin Core)
+- **Code Quality**: High (minimal changes to Krepto Core)
 - **Testing Coverage**: Complete (all features tested)
 - **Documentation**: Comprehensive
 - **User Experience**: Excellent
-- **Maintainability**: High (follows Bitcoin Core patterns)
+- **Maintainability**: High (follows Krepto Core patterns)
 
 ### Performance Metrics
 - **Mining Speed**: 5,400+ blocks/hour
@@ -418,46 +418,46 @@ NodeContext& node = EnsureAnyNodeContext(request.context);
 
 The project has achieved another major milestone with successful addition of the secondary seed node and DMG rebuild. Only Windows distribution remains to complete the project! 
 
-## 🎨 ВИПРАВЛЕННЯ БРЕНДИНГУ UI: Bitcoin → Krepto (29 Грудня 2024)
+## 🎨 ВИПРАВЛЕННЯ БРЕНДИНГУ UI: Krepto → Krepto (29 Грудня 2024)
 
 ### 🔍 Проблема що була виявлена
-У Windows GUI діалозі привітання залишилися згадки "Bitcoin" замість "Krepto":
-- Текст: "скачает і сохранит копию цепочки блоков Bitcoin"
-- Data directory: `C:\Users\User22\AppData\Local\Bitcoin` замість `Krepto`
+У Windows GUI діалозі привітання залишилися згадки "Krepto" замість "Krepto":
+- Текст: "скачает і сохранит копию цепочки блоков Krepto"
+- Data directory: `C:\Users\User22\AppData\Local\Krepto` замість `Krepto`
 
 ### ✅ Виправлені файли
 
 #### 1. Головний діалог привітання
 **Файл**: `src/qt/intro.cpp`
-- **Було**: `"Bitcoin block chain"`
+- **Було**: `"Krepto block chain"`
 - **Стало**: `"Krepto block chain"`
 
 #### 2. Валідація адрес
 **Файл**: `src/qt/editaddressdialog.cpp`
-- **Було**: `"not a valid Bitcoin address"`
+- **Було**: `"not a valid Krepto address"`
 - **Стало**: `"not a valid Krepto address"`
 
 #### 3. Папки даних (Windows/macOS/Linux)
 **Файл**: `src/common/args.cpp`
-- **Windows**: `AppData\Local\Bitcoin` → `AppData\Local\Krepto`
-- **Windows (legacy)**: `AppData\Roaming\Bitcoin` → `AppData\Roaming\Krepto`
-- **macOS**: `Library/Application Support/Bitcoin` → `Library/Application Support/Krepto`  
-- **Linux**: `.bitcoin` → `.krepto`
+- **Windows**: `AppData\Local\Krepto` → `AppData\Local\Krepto`
+- **Windows (legacy)**: `AppData\Roaming\Krepto` → `AppData\Roaming\Krepto`
+- **macOS**: `Library/Application Support/Krepto` → `Library/Application Support/Krepto`  
+- **Linux**: `.krepto` → `.krepto`
 
 #### 4. RPC команди mining
 **Файл**: `src/rpc/mining.cpp`
-- `generatetodescriptor`: "newly generated bitcoin" → "newly generated krepto"
-- `generatetoaddress`: "newly generated bitcoin" → "newly generated krepto"
-- `generateblock`: "newly generated bitcoin" → "newly generated krepto"
+- `generatetodescriptor`: "newly generated krepto" → "newly generated krepto"
+- `generatetoaddress`: "newly generated krepto" → "newly generated krepto"
+- `generateblock`: "newly generated krepto" → "newly generated krepto"
 
 ### 📊 Результат
-- ✅ **Повний брендинг**: Всі згадки Bitcoin замінені на Krepto
+- ✅ **Повний брендинг**: Всі згадки Krepto замінені на Krepto
 - ✅ **Правильні папки**: Windows створює `C:\Users\[User]\AppData\Local\Krepto\`
 - ✅ **Консистентність**: Однакове іменування у всіх платформах
 - ✅ **Користувацький досвід**: Професійний вигляд з правильним брендингом
 
 ### 🚀 GitHub Actions
-**Коміт**: `04c0410` - "Replace remaining 'Bitcoin' references with 'Krepto' in UI dialogs and data directory paths"
+**Коміт**: `04c0410` - "Replace remaining 'Krepto' references with 'Krepto' in UI dialogs and data directory paths"
 **Запущено**: Windows GUI Build для створення оновленого артефакту
 
 ### 🔄 Статус
@@ -495,7 +495,7 @@ Error: Process completed with exit code 2.
 - ✅ **App Bundle Creation** - правильна структура Krepto.app
 - ✅ **Wrapper Script** - автоматичне налаштування datadir
 - ✅ **Icon Generation** - професійна іконка всіх розмірів
-- ✅ **Network Configuration** - bitcoin.conf з seed nodes
+- ✅ **Network Configuration** - krepto.conf з seed nodes
 - ✅ **Code Signing** - підпис всіх frameworks та executables
 - ✅ **Professional DMG** - красивий інсталятор з drag&drop
 - ✅ **Checksums** - SHA256 та MD5 для верифікації

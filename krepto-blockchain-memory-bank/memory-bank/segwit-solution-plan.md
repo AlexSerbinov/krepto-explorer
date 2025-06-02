@@ -6,7 +6,7 @@
 ```cpp
 // В krepto/src/kernel/chainparams.cpp рядок 96
 // БУЛО:
-consensus.SegwitHeight = 481824; // Bitcoin mainnet значення
+consensus.SegwitHeight = 481824; // Krepto mainnet значення
 
 // СТАНЕ:
 consensus.SegwitHeight = 0; // Завжди активний (як в regtest)
@@ -15,7 +15,7 @@ consensus.SegwitHeight = 0; // Завжди активний (як в regtest)
 ### Крок 2: Очищення Існуючих Даних
 ```bash
 # Зупинити ноду
-./src/bitcoin-cli stop
+./src/krepto-cli stop
 
 # Видалити існуючий блокчейн
 rm -rf /Users/serbinov/.krepto/blocks
@@ -36,19 +36,19 @@ make -j8
 ### Крок 4: Запуск з Новими Налаштуваннями
 ```bash
 # Запустити демон
-./src/bitcoind -datadir=/Users/serbinov/.krepto -daemon
+./src/kreptod -datadir=/Users/serbinov/.krepto -daemon
 
 # Перевірити SegWit статус
-./src/bitcoin-cli getblockchaininfo
+./src/krepto-cli getblockchaininfo
 
 # Тест майнінгу
-./src/bitcoin-cli generatetoaddress 1 K9iZTbAUMnikKeQae4qwkYc8A5xpazEtTW 10000000
+./src/krepto-cli generatetoaddress 1 K9iZTbAUMnikKeQae4qwkYc8A5xpazEtTW 10000000
 ```
 
 ### Крок 5: Тестування GUI
 ```bash
 # Запустити GUI
-./src/qt/bitcoin-qt -datadir=/Users/serbinov/.krepto
+./src/qt/krepto-qt -datadir=/Users/serbinov/.krepto
 
 # Створити SegWit транзакцію в GUI
 # Перевірити, що майнінг працює після транзакції

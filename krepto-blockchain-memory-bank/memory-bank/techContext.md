@@ -50,7 +50,7 @@ krepto/
 ### Конфігураційні файли
 - `configure.ac` - Autotools конфігурація
 - `Makefile.am` - Make файли
-- `src/config/bitcoin-config.h.in` - Конфігурація компіляції
+- `src/config/krepto-config.h.in` - Конфігурація компіляції
 
 ## Система збірки
 

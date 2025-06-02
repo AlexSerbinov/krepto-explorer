@@ -12,7 +12,7 @@
 ## Ключові особливості продукту
 
 ### Технічні характеристики
-- **Алгоритм**: SHA256 (як у Bitcoin)
+- **Алгоритм**: SHA256 (як у Krepto)
 - **Тікер**: KREPTO
 - **Блок час**: ~10 хвилин
 - **Винагорода за блок**: 50 KREPTO
@@ -54,7 +54,7 @@
 
 #### Запуск GUI
 ```bash
-./src/qt/bitcoin-qt -datadir=/Users/serbinov/.krepto -conf=/Users/serbinov/.krepto/bitcoin.conf
+./src/qt/krepto-qt -datadir=/Users/serbinov/.krepto -conf=/Users/serbinov/.krepto/krepto.conf
 ```
 
 #### Налаштування майнінгу

@@ -16,13 +16,13 @@
             "name": "1THash",
             "link": "https://www.1thash.top"
         },
-        "/BTC.COM/" : {
-            "name" : "BTC.com",
-            "link" : "https://pool.btc.com"
+        "/KREPTO.COM/" : {
+            "name" : "KREPTO.com",
+            "link" : "https://pool.krepto.com"
         },
-        "/BTC.com/" : {
-            "name" : "BTC.com",
-            "link" : "https://pool.btc.com"
+        "/KREPTO.com/" : {
+            "name" : "KREPTO.com",
+            "link" : "https://pool.krepto.com"
         },
         "BITFARMS": {
             "name": "Bitfarms",
@@ -36,7 +36,7 @@
             "name": "Huobi.pool",
             "link": "https://www.hpt.com/"
         },
-        "/E2M & BTC.TOP/": {
+        "/E2M & KREPTO.TOP/": {
             "name": "WAYI.CN",
             "link": "http://www.easy2mine.com/"
         },
@@ -44,17 +44,17 @@
             "name": "CanoePool",
             "link": "https://www.canoepool.com/"
         },
-        "/BTC.TOP/": {
-            "name" : "BTC.TOP",
-            "link" : "http://www.btc.top/"
+        "/KREPTO.TOP/": {
+            "name" : "KREPTO.TOP",
+            "link" : "http://www.krepto.top/"
         },
-        "pool.bitcoin.com" : {
-            "name" : "Bitcoin.com",
-            "link" : "https://www.bitcoin.com/"
+        "pool.krepto.com" : {
+            "name" : "Krepto.com",
+            "link" : "https://www.krepto.com/"
         },
-        "Mined By 175btc.com" : {
-            "name" : "175btc",
-            "link" : "http://www.175btc.com/"
+        "Mined By 175krepto.com" : {
+            "name" : "175krepto",
+            "link" : "http://www.175krepto.com/"
         },
         "/mined by gbminers/" : {
             "name" : "GBMiners",
@@ -72,21 +72,21 @@
             "name" : "BitMinter",
             "link" : "https://bitminter.com/"
         },
-        "/Bitcoin-Russia.ru/" : {
-            "name" : "BitcoinRussia",
-            "link" : "https://bitcoin-russia.ru"
+        "/Krepto-Russia.ru/" : {
+            "name" : "KreptoRussia",
+            "link" : "https://krepto-russia.ru"
         },
-        "btcserv" : {
-            "name" : "BTCServ",
-            "link" : "http://btcserv.net/"
+        "kreptoserv" : {
+            "name" : "KREPTOServ",
+            "link" : "http://kreptoserv.net/"
         },
         "simplecoin" : {
             "name" : "simplecoin.us",
             "link" : "http://simplecoin.us/"
         },
-        "BTC Guild" : {
-            "name" : "BTC Guild",
-            "link" : "http://www.btcguild.com/"
+        "KREPTO Guild" : {
+            "name" : "KREPTO Guild",
+            "link" : "http://www.kreptoguild.com/"
         },
         "Eligius" : {
             "name" : "Eligius",
@@ -104,9 +104,9 @@
             "name" : "EclipseMC",
             "link" : "https://eclipsemc.com/"
         },
-        "MaxBTC" : {
-            "name" : "MaxBTC",
-            "link" : "http://maxbtc.com/"
+        "MaxKREPTO" : {
+            "name" : "MaxKREPTO",
+            "link" : "http://maxkrepto.com/"
         },
         "triplemining" : {
             "name" : "TripleMining",
@@ -120,9 +120,9 @@
             "name" : "CoinLab",
             "link" : "http://coinlab.com/"
         },
-        "50BTC" : {
-            "name" : "50BTC",
-            "link" : "https://www.50btc.com/"
+        "50KREPTO" : {
+            "name" : "50KREPTO",
+            "link" : "https://www.50krepto.com/"
         },
         "ghash.io" : {
             "name" : "GHash.IO",
@@ -130,7 +130,7 @@
         },
         "st mining corp" : {
             "name" : "ST Mining Corp",
-            "link" : "https://bitcointalk.org/index.php?topic=77000.msg3207708#msg3207708"
+            "link" : "https://kreptotalk.org/index.php?topic=77000.msg3207708#msg3207708"
         },
         "bitparking" : {
             "name" : "Bitparking",
@@ -180,9 +180,9 @@
             "name" : "NMCbit",
             "link" : "http://nmcbit.com/"
         },
-        "yourbtc.net" : {
-            "name" : "Yourbtc.net",
-            "link" : "http://yourbtc.net/"
+        "yourkrepto.net" : {
+            "name" : "Yourkrepto.net",
+            "link" : "http://yourkrepto.net/"
         },
         "Give-Me-Coins" : {
             "name" : "Give Me Coins",
@@ -236,25 +236,25 @@
             "name" : "BitClub",
             "link" : "https://bitclubpool.com/"
         },
-        "bitcoinaffiliatenetwork.com" : {
-            "name" : "Bitcoin Affiliate Network",
-            "link" : "https://mining.bitcoinaffiliatenetwork.com/"
+        "kreptoaffiliatenetwork.com" : {
+            "name" : "Krepto Affiliate Network",
+            "link" : "https://mining.kreptoaffiliatenetwork.com/"
         },
-        "BTCChina Pool" : {
-            "name" : "BTCC",
-            "link" : "https://pool.btcc.com/"
+        "KREPTOChina Pool" : {
+            "name" : "KREPTOC",
+            "link" : "https://pool.kreptoc.com/"
         },
-        "btcchina.com" : {
-            "name" : "BTCC",
-            "link" : "https://pool.btcc.com/"
+        "kreptochina.com" : {
+            "name" : "KREPTOC",
+            "link" : "https://pool.kreptoc.com/"
         },
-        "BTCChina.com" : {
-            "name" : "BTCC",
-            "link" : "https://pool.btcc.com/"
+        "KREPTOChina.com" : {
+            "name" : "KREPTOC",
+            "link" : "https://pool.kreptoc.com/"
         },
-        "/BTCC/" : {
-            "name" : "BTCC",
-            "link" : "https://pool.btcc.com/"
+        "/KREPTOC/" : {
+            "name" : "KREPTOC",
+            "link" : "https://pool.kreptoc.com/"
         },
         "BW Pool" : {
             "name" : "BWPool",
@@ -264,9 +264,9 @@
             "name" : "BWPool",
             "link" : "https://bwpool.net/"
         },
-        "xbtc.exx.com&bw.com" : {
+        "xkrepto.exx.com&bw.com" : {
             "name" : "EXX&BW",
-            "link" : "https://xbtc.exx.com/"
+            "link" : "https://xkrepto.exx.com/"
         },
         "Bitsolo Pool" : {
             "name" : "Bitsolo",
@@ -285,16 +285,16 @@
             "link" : "https://21.co/"
         },
         "/agentD/" : {
-            "name" : "digitalBTC",
-            "link" : "http://digitalbtc.com/"
+            "name" : "digitalKREPTO",
+            "link" : "http://digitalkrepto.com/"
         },
         "/八宝池 8baochi.com/" : {
             "name" : "8baochi",
             "link" : "http://8baochi.com/"
         },
-        "myBTCcoin Pool" : {
-            "name" : "myBTCcoin Pool",
-            "link" : "http://mybtccoin.com/"
+        "myKREPTOcoin Pool" : {
+            "name" : "myKREPTOcoin Pool",
+            "link" : "http://mykreptocoin.com/"
         },
         "TBDice" : {
             "name" : "TBDice",
@@ -328,11 +328,11 @@
             "name": "1Hash",
             "link": "http://www.1hash.com/"
         },
-        "/HaoBTC/" : {
+        "/HaoKREPTO/" : {
             "name": "Bixin",
             "link": "https://haopool.com/"
         },
-        "HAOBTC" : {
+        "HAOKREPTO" : {
             "name": "Bixin",
             "link": "https://haopool.com/"
         },
@@ -340,21 +340,21 @@
             "name": "Bixin",
             "link": "https://haopool.com/"
         },
-        "/ViaBTC/TATMAS Pool/" : {
+        "/ViaKREPTO/TATMAS Pool/" : {
             "name" : "TATMAS Pool",
             "link" : "https://tmsminer.com/"
         },
-        "viabtc.com deploy" : {
-            "name": "ViaBTC",
-            "link": "https://viabtc.com"
+        "viakrepto.com deploy" : {
+            "name": "ViaKREPTO",
+            "link": "https://viakrepto.com"
         },
-        "/ViaBTC/" : {
-            "name": "ViaBTC",
-            "link": "http://viabtc.com/"
+        "/ViaKREPTO/" : {
+            "name": "ViaKREPTO",
+            "link": "http://viakrepto.com/"
         },
-        "/ConnectBTC - Home for Miners/" : {
-            "name" : "ConnectBTC",
-            "link" : "https://www.connectbtc.com/"
+        "/ConnectKREPTO - Home for Miners/" : {
+            "name" : "ConnectKREPTO",
+            "link" : "https://www.connectkrepto.com/"
         },
         "/BATPOOL/" : {
             "name" : "BATPOOL",
@@ -362,11 +362,11 @@
         },
         "/CANOE/" : {
             "name" : "CanoePool",
-            "link" : "https://btc.canoepool.com/"
+            "link" : "https://krepto.canoepool.com/"
         },
         "/WATERHOLE.IO/" : {
             "name" : "Waterhole",
-            "link" : "https://btc.waterhole.io/"
+            "link" : "https://krepto.waterhole.io/"
         },
         "/DCExploration/" : {
             "name" : "DCExploration",
@@ -384,9 +384,9 @@
             "name" : "58COIN",
             "link" : "https://www.58coin.com"
         },
-        "/Bitcoin-India/" : {
-            "name": "Bitcoin India",
-            "link": "https://bitcoin-india.org"
+        "/Krepto-India/" : {
+            "name": "Krepto India",
+            "link": "https://krepto-india.org"
         },
         "--Nug--" : {
             "name": "shawnp0wers",
@@ -436,9 +436,9 @@
             "name": "Helix",
             "link": ""
         },
-        "/Bitcoin-Ukraine.com.ua/": {
-            "name": "Bitcoin-Ukraine",
-            "link": "https://bitcoin-ukraine.com.ua/"
+        "/Krepto-Ukraine.com.ua/": {
+            "name": "Krepto-Ukraine",
+            "link": "https://krepto-ukraine.com.ua/"
         },
         "/poolin.com": {
             "name" : "Poolin",
@@ -518,7 +518,7 @@
         },
         "/AAOPOOL/" : {
             "name" : "AAO Pool",
-            "link" : "https://btc.tmspool.top"
+            "link" : "https://krepto.tmspool.top"
         },
         "/one_more_mcd/" : {
             "name" : "EMCDPool",
@@ -548,9 +548,9 @@
             "name": "ArkPool",
             "link": "https://www.arkpool.com/"
         },
-        "/PureBTC.COM/": {
-            "name": "PureBTC.COM",
-            "link": "https://purebtc.com"
+        "/PureKREPTO.COM/": {
+            "name": "PureKREPTO.COM",
+            "link": "https://purekrepto.com"
         },
         "MARA Pool": {
             "name": "MARA Pool",
@@ -572,13 +572,13 @@
             "name": "OKMINER",
             "link": "https://okminer.com/"
         },
-        "btccom" : {
-            "name" : "BTC.com",
-            "link" : "https://pool.btc.com"
+        "kreptocom" : {
+            "name" : "KREPTO.com",
+            "link" : "https://pool.krepto.com"
         },
-        "btccomf" : {
-            "name" : "BTC.com",
-            "link" : "https://pool.btc.com"
+        "kreptocomf" : {
+            "name" : "KREPTO.com",
+            "link" : "https://pool.krepto.com"
         },
         "/pegapool/" : {
             "name" : "PEGA Pool",
@@ -615,12 +615,12 @@
             "link" : "https://ghash.io/"
         },
         "14R2r9FkyDmyxGB9xUVwVLdgsX9YfdVamk" : {
-            "name" : "BitcoinRussia",
-            "link" : "https://bitcoin-russia.ru/"
+            "name" : "KreptoRussia",
+            "link" : "https://krepto-russia.ru/"
         },
         "165GCEAx81wce33FWEnPCRhdjcXCrBJdKn" : {
-            "name" : "BitcoinRussia",
-            "link" : "https://bitcoin-russia.ru/"
+            "name" : "KreptoRussia",
+            "link" : "https://krepto-russia.ru/"
         },
         "17kkmDx8eSwj2JTTULb3HkJhCmexfysExz" : {
             "name" : "Polmine",
@@ -671,7 +671,7 @@
             "link" : "https://eclipsemc.com/"
         },
         "1BwZeHJo7b7M2op7VDfYnsmcpXsUYEcVHm" : {
-            "name" : "BTC Nuggets",
+            "name" : "KREPTO Nuggets",
             "link" : "http://104.197.8.250/"
         },
         "1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY" : {
@@ -712,7 +712,7 @@
         },
         "12QVFmJH2b4455YUHkMpEnWLeRY3eJ4Jb5" : {
             "name" : "AAO Pool",
-            "link" : "https://btc.tmspool.top "
+            "link" : "https://krepto.tmspool.top "
         },
         "1ALA5v7h49QT7WYLcRsxcXqXUqEqaWmkvw" : {
             "name" : "CloudHashing",
@@ -755,8 +755,8 @@
             "link" : "https://21.co/"
         },
         "1MimPd6LrPKGftPRHWdfk8S3KYBfN4ELnD" : {
-            "name" : "digitalBTC",
-            "link" : "http://digitalbtc.com/"
+            "name" : "digitalKREPTO",
+            "link" : "http://digitalkrepto.com/"
         },
         "1NY15MK947MLzmPUa2gL7UgyR8prLh2xfu" : {
             "name" : "digitalX Mintsy",
@@ -787,20 +787,20 @@
             "link" : "http://www.telco214.com/"
         },
         "152f1muMCNa7goXYhYAQC61hxEgGacmncB" : {
-            "name" : "BTCC",
-            "link" : "https://pool.btcc.com/"
+            "name" : "KREPTOC",
+            "link" : "https://pool.kreptoc.com/"
         },
         "1PmRrdp1YSkp1LxPyCfcmBHDEipG5X4eJB" : {
-            "name" : "BTC Pool Party",
-            "link" : "https://btcpoolparty.com/"
+            "name" : "KREPTO Pool Party",
+            "link" : "https://kreptopoolparty.com/"
         },
         "1Hk9gD8xMo2XBUhE73y5zXEM8xqgffTB5f" : {
             "name" : "8baochi",
             "link" : "http://8baochi.com/"
         },
         "151T7r1MhizzJV6dskzzUkUdr7V8JxV2Dx" : {
-            "name" : "myBTCcoin Pool",
-            "link" : "http://www.mybtccoin.com/"
+            "name" : "myKREPTOcoin Pool",
+            "link" : "http://www.mykreptocoin.com/"
         },
         "1MFsp2txCPwMMBJjNNeKaduGGs8Wi1Ce7X" : {
             "name" : "A-XBT",
@@ -819,15 +819,15 @@
             "link" : "http://sha256.transactioncoinmining.com/"
         },
         "15MxzsutVroEE9XiDckLxUHTCDAEZgPZJi" : {
-            "name" : "BTCDig",
-            "link" : "https://btcdig.com/"
+            "name" : "KREPTODig",
+            "link" : "https://kreptodig.com/"
         },
         "1GBo1f2tzVx5jScV9kJXPUP9RjvYXuNzV7" : {
             "name" : "Nexious",
             "link" : "https://nexious.com/"
         },
         "1AePMyovoijxvHuKhTqWvpaAkRCF4QswC6" : {
-            "name" : "Tricky's BTC Pool",
+            "name" : "Tricky's KREPTO Pool",
             "link" : "http://pool.wemine.uk/"
         },
         "17judvK4AC2M6KhaBbAEGw8CTKc9Pg8wup" : {
@@ -835,8 +835,8 @@
             "link" : "https://hotpool.co/"
         },
         "1jKSjMLnDNup6NPgCjveeP9tUn4YpT94Y" : {
-            "name" : "BTCMP",
-            "link" : "https://www.btcmp.com/"
+            "name" : "KREPTOMP",
+            "link" : "https://www.kreptomp.com/"
         },
         "1MPxhNkSzeTNTHSZAibMaS8HS1esmUL1ne" : {
             "name" : "Eobot",
@@ -863,32 +863,32 @@
             "link" : "http://patelsminingpool.com/"
         },
         "3NA8hsjfdgVkmmVS9moHmkZsVCoLxUkvvv" : {
-            "name" : "BTC.com",
-            "link" : "https://pool.btc.com"
+            "name" : "KREPTO.com",
+            "link" : "https://pool.krepto.com"
         },
         "34qkc2iac6RsyxZVfyE2S5U5WcRsbg2dpK" : {
-            "name" : "BTC.com",
-            "link" : "https://pool.btc.com"
+            "name" : "KREPTO.com",
+            "link" : "https://pool.krepto.com"
         },
         "3EhLZarJUNSfV6TWMZY1Nh5mi3FMsdHa5U" : {
-            "name" : "BTC.com",
-            "link" : "https://pool.btc.com"
+            "name" : "KREPTO.com",
+            "link" : "https://pool.krepto.com"
         },
         "bc1qjl8uwezzlech723lpnyuza0h2cdkvxvh54v3dn" : {
-            "name" : "BTC.com",
-            "link" : "https://pool.btc.com"
+            "name" : "KREPTO.com",
+            "link" : "https://pool.krepto.com"
         },
         "1Bf9sZvBHPFGVPX71WX2njhd1NXKv5y7v5" : {
-            "name" : "BTC.com",
-            "link" : "https://pool.btc.com"
+            "name" : "KREPTO.com",
+            "link" : "https://pool.krepto.com"
         },
         "18EPLvrs2UE11kWBB3ABS7Crwj5tTBYPoa" : {
             "name" : "GoGreenLight",
             "link" : "http://www.gogreenlight.se/"
         },
         "1KPQkehgYAqwiC6UCcbojM3mbGjURrQJF2" : {
-            "name" : "ConnectBTC",
-            "link" : "https://www.connectbtc.com/"
+            "name" : "ConnectKREPTO",
+            "link" : "https://www.connectkrepto.com/"
         },
         "167ApWWxUSFQmz2jdz9xop3oAKdLejvMML" : {
             "name" : "BATPOOL",
@@ -907,24 +907,24 @@
             "link" : "http://haozhuzhu.com"
         },
         "1AZ6BkCo4zgTuuLpRStJH8iNsehXTMp456" : {
-            "name" : "BitcoinIndia",
-            "link" : "https://pool.bitcoin-india.org/"
+            "name" : "KreptoIndia",
+            "link" : "https://pool.krepto-india.org/"
         },
         "1FLH1SoLv4U68yUERhDiWzrJn5TggMqkaZ" : {
             "name" : "Waterhole",
-            "link" : "https://btc.waterhole.io/"
+            "link" : "https://krepto.waterhole.io/"
         },
         "1GP8eWArgpwRum76saJS4cZKCHWJHs9PQo" : {
             "name" : "CanoePool",
-            "link" : "https://btc.canoepool.com/"
+            "link" : "https://krepto.canoepool.com/"
         },
         "199EDJoCpqV672qESEkfFgEqNT1iR2gj3t" : {
             "name" : "58COIN",
             "link" : "https://www.58coin.com/"
         },
         "1Cs5RT9SRk1hxsdzivAfkjesNmVVJqfqkw" : {
-            "name" : "EkanemBTC",
-            "link" : "https://ekanembtc.com/"
+            "name" : "EkanemKREPTO",
+            "link" : "https://ekanemkrepto.com/"
         },
         "13Sd8Y7nUao3z4bJFkZvCRXpFqHvLy49YY" : {
             "name" : "Telco 214",
@@ -959,8 +959,8 @@
             "link" : "https://www.brainofshawn.com"
         },
         "1Hz96kJKF2HLPGY15JWLB5m9qGNxvt8tHJ" : {
-            "name" : "BTC.TOP",
-            "link" : "http://btc.top"
+            "name" : "KREPTO.TOP",
+            "link" : "http://krepto.top"
         },
         "1Afcpc2FpPnREU6i52K3cicmHdvYRAH9Wo" : {
             "name" : "CANOE",
@@ -1315,8 +1315,8 @@
             "link": "https://terrapool.io"
         },
         "36cWgjEtxQSFgbHTJDw5AB96ZX7fJk1URd" : {
-            "name" : "BTC.com",
-            "link" : "https://pool.btc.com"
+            "name" : "KREPTO.com",
+            "link" : "https://pool.krepto.com"
         },
         "1BGFwRzjCfRR7EvRHnzfHyFjGR8XiBDFKa" : {
             "name" : "PEGA Pool",

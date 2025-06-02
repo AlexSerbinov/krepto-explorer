@@ -75,7 +75,7 @@ block content
 					- if (x.ismine) { flags.push(["Mine", "This address is owned by your node."]); }
 					- if (x.iswatchonly) { flags.push(["Watch-Only"]); }
 
-					- var summaryRowItemCount = ((addressEncoding && addressEncoding != "unknown") ? 1 : 0) + (addressDetails ? ((addressDetails.txCount != null ? 1 : 0) + (addressDetails.balanceSat ? 1 : 0) + (addressDetails.unconfirmedBalanceSat ? 1 : 0) + (addressDetails.totalReceivedSat ? 1 : 0)) : 0) + (flags.length > 0 ? 1 : 0);
+					- var summaryRowItemCount = ((addressEncoding && addressEncoding != "unknown") ? 1 : 0) + (addressDetails ? ((addressDetails.txCount != null ? 1 : 0) + (addressDetails.balanceKat ? 1 : 0) + (addressDetails.unconfirmedBalanceKat ? 1 : 0) + (addressDetails.totalReceivedKat ? 1 : 0)) : 0) + (flags.length > 0 ? 1 : 0);
 					if (summaryRowItemCount > 0)
 						.clearfix
 							.float-start
@@ -94,38 +94,38 @@ block content
 									+summaryItem("Transactions")
 										| #{addressDetails.txCount.toLocaleString()}
 
-								if (addressDetails && addressDetails.balanceSat)
+								if (addressDetails && addressDetails.balanceKat)
 									+summaryItem("Balance")
-										span(class=(addressDetails.balanceSat > 0 ? "text-success" : false))
-											- var currencyValue = new Decimal(addressDetails.balanceSat).dividedBy(coinConfig.baseCurrencyUnit.multiplier);
+										span(class=(addressDetails.balanceKat > 0 ? "text-success" : false))
+											- var currencyValue = new Decimal(addressDetails.balanceKat).dividedBy(coinConfig.baseCurrencyUnit.multiplier);
 											+valueDisplay(currencyValue)
 
-								if (addressDetails && addressDetails.unconfirmedBalanceSat)
+								if (addressDetails && addressDetails.unconfirmedBalanceKat)
 									+summaryItem("Unconfirmed Balance")
-										span(class=(addressDetails.unconfirmedBalanceSat > 0 ? "text-success" : "text-danger"))
-											if (addressDetails.unconfirmedBalanceSat > 0)
+										span(class=(addressDetails.unconfirmedBalanceKat > 0 ? "text-success" : "text-danger"))
+											if (addressDetails.unconfirmedBalanceKat > 0)
 												span +
 											else
 												span -
 
-											- var currencyValue = new Decimal(Math.abs(addressDetails.unconfirmedBalanceSat)).dividedBy(coinConfig.baseCurrencyUnit.multiplier);
+											- var currencyValue = new Decimal(Math.abs(addressDetails.unconfirmedBalanceKat)).dividedBy(coinConfig.baseCurrencyUnit.multiplier);
 											+valueDisplay(currencyValue)
 
-								if (addressDetails && addressDetails.totalReceivedSat)
+								if (addressDetails && addressDetails.totalReceivedKat)
 									+summaryItem("Total Received / Sent")
-										span(class=(addressDetails.totalReceivedSat > 0 ? "text-success" : false))
-											if (addressDetails.totalReceivedSat)
+										span(class=(addressDetails.totalReceivedKat > 0 ? "text-success" : false))
+											if (addressDetails.totalReceivedKat)
 												span.me-1 +
 
-											- var currencyValue = new Decimal(Math.abs(addressDetails.totalReceivedSat)).dividedBy(coinConfig.baseCurrencyUnit.multiplier);
+											- var currencyValue = new Decimal(Math.abs(addressDetails.totalReceivedKat)).dividedBy(coinConfig.baseCurrencyUnit.multiplier);
 											+valueDisplay(currencyValue)
 
 										br
-										span(class=(addressDetails.totalSentSat > 0 ? "text-danger" : false))
-											if (addressDetails.totalSentSat > 0)
+										span(class=(addressDetails.totalSentKat > 0 ? "text-danger" : false))
+											if (addressDetails.totalSentKat > 0)
 												span.me-1 -
 
-											- var currencyValue = new Decimal(Math.abs(addressDetails.totalSentSat)).dividedBy(coinConfig.baseCurrencyUnit.multiplier);
+											- var currencyValue = new Decimal(Math.abs(addressDetails.totalSentKat)).dividedBy(coinConfig.baseCurrencyUnit.multiplier);
 											+valueDisplay(currencyValue)
 
 								if (flags.length > 0)
@@ -212,7 +212,7 @@ block content
 						if (true)
 							if (addressApiError && addressApiError.error && addressApiError.error.code && addressApiError.error.code == -32600)
 								span Failed to retrieve transaction history from Electrum. See 
-								a(href="https://github.com/janoside/btc-rpc-explorer/issues/67") Issue #67
+								a(href="https://github.com/janoside/krepto-rpc-explorer/issues/67") Issue #67
 								span  for more information.
 
 
@@ -229,12 +229,12 @@ block content
 											
 										if (errorMsg == "history too large")
 											span Failed to retrieve transaction history from ElectrumX because this address is involved in too many transactions (more than ElectrumX currently supports retrieving). See 
-											a(href="https://github.com/janoside/btc-rpc-explorer/issues/67") Issue #67
+											a(href="https://github.com/janoside/krepto-rpc-explorer/issues/67") Issue #67
 											span  for more information.
 
 										else if (errorMsg == "failed to get confirmed status") 
 											span Failed to retrieve transaction history from Electrum Rust Server (electrs). See&nbsp;
-											a(href="https://github.com/janoside/btc-rpc-explorer/issues/67") Issue #67
+											a(href="https://github.com/janoside/krepto-rpc-explorer/issues/67") Issue #67
 											span  for more information.
 											.mt-2
 												| As a workaround, consider starting electrs with a custom&nbsp;
@@ -251,7 +251,7 @@ block content
 										else if (err == "No address API configured")
 											.mb-2 No address API is configured.
 											.mb-0 See 
-												| <a href="https://github.com/janoside/btc-rpc-explorer/blob/master/.env-sample">the example configuration file</a>
+												| <a href="https://github.com/janoside/krepto-rpc-explorer/blob/master/.env-sample">the example configuration file</a>
 												|  for help setting up an address API.
 
 										else

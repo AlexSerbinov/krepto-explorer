@@ -31,13 +31,13 @@
 cd /Users/serbinov/Desktop/projects/upwork/krepto
 
 # Перевірити чи є GUI
-ls -la src/qt/bitcoin-qt
+ls -la src/qt/krepto-qt
 
 # Перевірити daemon
-ls -la src/bitcoind
+ls -la src/kreptod
 
 # Перевірити CLI
-ls -la src/bitcoin-cli
+ls -la src/krepto-cli
 ```
 
 ### 1.2 Збірка з Оптимізацією для Релізу
@@ -61,10 +61,10 @@ make -j8
 ### 1.3 Перевірка Залежностей
 ```bash
 # Перевірити Qt залежності
-otool -L src/qt/bitcoin-qt
+otool -L src/qt/krepto-qt
 
 # Перевірити daemon залежності  
-otool -L src/bitcoind
+otool -L src/kreptod
 
 # Встановити додаткові інструменти якщо потрібно
 brew install create-dmg
@@ -83,7 +83,7 @@ Krepto.app/
 │   │   └── krypto-cli (CLI)
 │   ├── Resources/
 │   │   ├── krepto.icns (іконка)
-│   │   ├── bitcoin.conf (конфігурація)
+│   │   ├── krepto.conf (конфігурація)
 │   │   └── qt.conf (Qt конфігурація)
 │   └── Frameworks/ (Qt бібліотеки)
 ```
@@ -94,9 +94,9 @@ Krepto.app/
 mkdir -p Krepto.app/Contents/{MacOS,Resources,Frameworks}
 
 # Скопіювати основні файли
-cp src/qt/bitcoin-qt Krepto.app/Contents/MacOS/Krepto
-cp src/bitcoind Krepto.app/Contents/MacOS/kryptod
-cp src/bitcoin-cli Krepto.app/Contents/MacOS/krypto-cli
+cp src/qt/krepto-qt Krepto.app/Contents/MacOS/Krepto
+cp src/kreptod Krepto.app/Contents/MacOS/kryptod
+cp src/krepto-cli Krepto.app/Contents/MacOS/krypto-cli
 
 # Зробити виконуваними
 chmod +x Krepto.app/Contents/MacOS/*
@@ -157,21 +157,21 @@ EOF
 ```bash
 # Якщо є PNG іконка, конвертувати в ICNS
 # Потрібна іконка 1024x1024 PNG
-if [ -f "share/pixmaps/bitcoin.png" ]; then
+if [ -f "share/pixmaps/krepto.png" ]; then
     # Створити icns з PNG
     mkdir -p krepto.iconset
     
     # Створити різні розміри
-    sips -z 16 16 share/pixmaps/bitcoin.png --out krepto.iconset/icon_16x16.png
-    sips -z 32 32 share/pixmaps/bitcoin.png --out krepto.iconset/icon_16x16@2x.png
-    sips -z 32 32 share/pixmaps/bitcoin.png --out krepto.iconset/icon_32x32.png
-    sips -z 64 64 share/pixmaps/bitcoin.png --out krepto.iconset/icon_32x32@2x.png
-    sips -z 128 128 share/pixmaps/bitcoin.png --out krepto.iconset/icon_128x128.png
-    sips -z 256 256 share/pixmaps/bitcoin.png --out krepto.iconset/icon_128x128@2x.png
-    sips -z 256 256 share/pixmaps/bitcoin.png --out krepto.iconset/icon_256x256.png
-    sips -z 512 512 share/pixmaps/bitcoin.png --out krepto.iconset/icon_256x256@2x.png
-    sips -z 512 512 share/pixmaps/bitcoin.png --out krepto.iconset/icon_512x512.png
-    sips -z 1024 1024 share/pixmaps/bitcoin.png --out krepto.iconset/icon_512x512@2x.png
+    sips -z 16 16 share/pixmaps/krepto.png --out krepto.iconset/icon_16x16.png
+    sips -z 32 32 share/pixmaps/krepto.png --out krepto.iconset/icon_16x16@2x.png
+    sips -z 32 32 share/pixmaps/krepto.png --out krepto.iconset/icon_32x32.png
+    sips -z 64 64 share/pixmaps/krepto.png --out krepto.iconset/icon_32x32@2x.png
+    sips -z 128 128 share/pixmaps/krepto.png --out krepto.iconset/icon_128x128.png
+    sips -z 256 256 share/pixmaps/krepto.png --out krepto.iconset/icon_128x128@2x.png
+    sips -z 256 256 share/pixmaps/krepto.png --out krepto.iconset/icon_256x256.png
+    sips -z 512 512 share/pixmaps/krepto.png --out krepto.iconset/icon_256x256@2x.png
+    sips -z 512 512 share/pixmaps/krepto.png --out krepto.iconset/icon_512x512.png
+    sips -z 1024 1024 share/pixmaps/krepto.png --out krepto.iconset/icon_512x512@2x.png
     
     # Створити ICNS
     iconutil -c icns krepto.iconset
@@ -185,7 +185,7 @@ fi
 ### 2.5 Конфігурація для "З Коробки"
 ```bash
 # Створити стандартну конфігурацію
-cat > Krepto.app/Contents/Resources/bitcoin.conf << 'EOF'
+cat > Krepto.app/Contents/Resources/krepto.conf << 'EOF'
 # Krepto Default Configuration
 
 # Network
@@ -408,9 +408,9 @@ echo "📱 Creating app bundle..."
 mkdir -p Krepto.app/Contents/{MacOS,Resources,Frameworks}
 
 # Копіювати файли
-cp src/qt/bitcoin-qt Krepto.app/Contents/MacOS/Krepto
-cp src/bitcoind Krepto.app/Contents/MacOS/kryptod
-cp src/bitcoin-cli Krepto.app/Contents/MacOS/krypto-cli
+cp src/qt/krepto-qt Krepto.app/Contents/MacOS/Krepto
+cp src/kreptod Krepto.app/Contents/MacOS/kryptod
+cp src/krepto-cli Krepto.app/Contents/MacOS/krypto-cli
 chmod +x Krepto.app/Contents/MacOS/*
 
 # Створити Info.plist та конфігурацію
