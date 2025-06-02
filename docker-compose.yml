@@ -1,0 +1,26 @@
+networks:
+  default:
+    driver: bridge
+
+services:
+  explorer:
+    container_name: krepto-rpc-explorer
+    #define $UID, $GID in .env file the user to run docker and write in data folder
+    #user: "1000:1000"
+    environment:
+      KREPTOEXP_HOST: 0.0.0.0
+      KREPTOEXP_KREPTOD_URI: $KREPTOEXP_KREPTOD_URI
+      KREPTOEXP_ADDRESS_API: $KREPTOEXP_ADDRESS_API
+      KREPTOEXP_ELECTRUM_SERVERS: $KREPTOEXP_ELECTRUM_SERVERS
+      KREPTOEXP_SLOW_DEVICE_MODE: false
+      #More information mode, including Krepto exchange rates
+      #More privacy mode, no external queries
+      # KREPTOEXP_PRIVACY_MODE: true
+      # KREPTOEXP_NO_RATES: true
+      # KREPTOEXP_UI_THEME: dark
+    build:
+      context: ./
+    image: krepto-rpc-explorer:latest
+    #restart: "no"
+    ports:
+      - "3002:3002"
