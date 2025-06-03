@@ -10,14 +10,15 @@ if (false)
 							each toolIndex, toolIndexIndex in item
 								- var siteTool = config.siteTools[toolIndex];
 
-								li
-									div.float-start(style="height: 50px; width: 40px; margin-right: 10px;")
-										span
-											i.me-2(class=siteTool.iconClass, style="margin-top: 6px;")
+								if (siteTool)
+									li
+										div.float-start(style="height: 50px; width: 40px; margin-right: 10px;")
+											span
+												i.me-2(class=siteTool.iconClass, style="margin-top: 6px;")
 
-									a(href=siteTool.url) #{siteTool.name}
-									br
-									p #{siteTool.desc}
+										a(href=siteTool.url) #{siteTool.name}
+										br
+										p #{siteTool.desc}
 
 if (false)
 	div.row
@@ -26,11 +27,12 @@ if (false)
 				ul.list-unstyled
 					each listItem in list
 						- var siteTool = config.siteTools[listItem];
-						li.mb-2
-							span(title=siteTool.desc, data-bs-toggle="tooltip")
-								i.me-2(class=siteTool.iconClass, style="width: 30px;")
-							a(href=siteTool.url)
-								span #{siteTool.name}
+						if (siteTool)
+							li.mb-2
+								span(title=siteTool.desc, data-bs-toggle="tooltip")
+									i.me-2(class=siteTool.iconClass, style="width: 30px;")
+								a(href=siteTool.url)
+									span #{siteTool.name}
 
 if (false)
 	div.row
@@ -39,11 +41,12 @@ if (false)
 				ul.list-unstyled
 					each listItem in list
 						- var siteTool = config.siteTools[listItem];
-						li.mb-2
-							span(title=siteTool.desc, data-bs-toggle="tooltip")
-								i.me-2(class=siteTool.iconClass, style="width: 30px;")
-							a(href=siteTool.url)
-								span #{siteTool.name}
+						if (siteTool)
+							li.mb-2
+								span(title=siteTool.desc, data-bs-toggle="tooltip")
+									i.me-2(class=siteTool.iconClass, style="width: 30px;")
+								a(href=siteTool.url)
+									span #{siteTool.name}
 
 if (false)
 	div
@@ -61,16 +64,17 @@ if (false)
 							each toolsItemIndex in indexList
 								- var item = config.siteTools[toolsItemIndex];
 								
-								div.clearfix
-									div.float-start.pt-1(style="width: 38px;")
-										i(class=item.iconClass, style="width: 20px; margin-right: 10px;")
+								if (item)
+									div.clearfix
+										div.float-start.pt-1(style="width: 38px;")
+											i(class=item.iconClass, style="width: 20px; margin-right: 10px;")
 
-									div.float-start
-										div
-											a(href=item.url) #{item.name}
+										div.float-start
+											div
+												a(href=item.url) #{item.name}
 
-								div(style="padding-left: 39px;")
-									p #{item.desc}
+									div(style="padding-left: 39px;")
+										p #{item.desc}
 
 		// sm, md, lg
 		div.d-none.d-sm-block.d-xl-none(id="tools-2-col")
@@ -81,16 +85,17 @@ if (false)
 							each toolsItemIndex in indexList
 								- var item = config.siteTools[toolsItemIndex];
 								
-								div.clearfix
-									div.float-start.pt-1(style="width: 38px;")
-										i(class=item.iconClass, style="width: 20px; margin-right: 10px;")
+								if (item)
+									div.clearfix
+										div.float-start.pt-1(style="width: 38px;")
+											i(class=item.iconClass, style="width: 20px; margin-right: 10px;")
 
-									div.float-start
-										div
-											a(href=item.url) #{item.name}
+										div.float-start
+											div
+												a(href=item.url) #{item.name}
 
-								div(style="padding-left: 39px;")
-									p #{item.desc}
+									div(style="padding-left: 39px;")
+										p #{item.desc}
 
 		// xl, xxl
 		div.d-none.d-xl-block(id="tools-3-col")
@@ -101,16 +106,17 @@ if (false)
 							each toolsItemIndex in indexList
 								- var item = config.siteTools[toolsItemIndex];
 								
-								div.clearfix
-									div.float-start.pt-1(style="width: 38px;")
-										i(class=item.iconClass, style="width: 20px; margin-right: 10px;")
+								if (item)
+									div.clearfix
+										div.float-start.pt-1(style="width: 38px;")
+											i(class=item.iconClass, style="width: 20px; margin-right: 10px;")
 
-									div.float-start
-										div
-											a(href=item.url) #{item.name}
+										div.float-start
+											div
+												a(href=item.url) #{item.name}
 
-								div(style="padding-left: 39px;")
-									p #{item.desc}
+									div(style="padding-left: 39px;")
+										p #{item.desc}
 
 
 
@@ -131,16 +137,17 @@ mixin toolSections(sectionsData)
 							each itemIndex in section.items
 								- var item = config.siteTools[itemIndex];
 								
-								.clearfix
-									div.float-start(style="width: 38px;")
-										i.fs-5(class=item.iconClass, style="width: 20px; margin-right: 10px;")
+								if (item)
+									.clearfix
+										div.float-start(style="width: 38px;")
+											i.fs-5(class=item.iconClass, style="width: 20px; margin-right: 10px;")
 
-									.float-start
-										div
-											a(href=item.url) #{item.name}
+										.float-start
+											div
+												a(href=item.url) #{item.name}
 
-								.mt-n1(style="padding-left: 39px;")
-									p #{item.desc}
+									.mt-n1(style="padding-left: 39px;")
+										p #{item.desc}
 
 
 

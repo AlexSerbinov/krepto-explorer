@@ -2444,13 +2444,36 @@ router.get("/krepto-whitepaper", function(req, res, next) {
 });
 
 router.get("/krepto.pdf", function(req, res, next) {
-	// Use res.download() to force download with proper headers
 	const filePath = path.join(__dirname, '../krepto-whitepaper.pdf');
-	res.download(filePath, 'Krepto-Whitepaper.pdf', function(err) {
-		if (err) {
-			next(err);
+	
+	// Check if file exists first
+	const fs = require('fs');
+	if (!fs.existsSync(filePath)) {
+		res.status(404).send('PDF file not found');
+		return;
+	}
+	
+	// Set proper headers for forced PDF download
+	res.setHeader('Content-Type', 'application/pdf');
+	res.setHeader('Content-Disposition', 'attachment; filename="Krepto-Whitepaper.pdf"');
+	res.setHeader('Content-Transfer-Encoding', 'binary');
+	res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+	res.setHeader('Pragma', 'no-cache');
+	res.setHeader('Expires', '0');
+	res.setHeader('Content-Length', fs.statSync(filePath).size);
+	res.setHeader('Accept-Ranges', 'bytes');
+	
+	// Create read stream for better handling
+	const fileStream = fs.createReadStream(filePath);
+	
+	fileStream.on('error', function(err) {
+		console.error('Error reading PDF file:', err);
+		if (!res.headersSent) {
+			res.status(500).send('Error reading PDF file');
 		}
 	});
+	
+	fileStream.pipe(res);
 });
 
 module.exports = router;

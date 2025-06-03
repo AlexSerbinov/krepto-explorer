@@ -56,13 +56,13 @@ html(lang="en")
 	body.bg-header-footer
 		nav.navbar.navbar-expand-md.navbar-dark.bg-header-footer
 			.container
-				a.navbar-brand(href="https://krepto.com", target="_blank")
+				a.navbar-brand(href="https://krepto.com")
 					if (coinConfig.logoUrlsByNetwork && coinConfig.logoUrlsByNetwork[activeBlockchain])
 						img.header-image(src=assetUrl(coinConfig.logoUrlsByNetwork[activeBlockchain]), alt="logo")
 					else
 						img.header-image(src=assetUrl("./img/network-mainnet/logo.svg"), alt="logo")
 
-				a.navbar-brand(href="https://krepto.com/explorer", target="_blank")
+				a.navbar-brand(href="https://krepto.com/explorer/")
 					if (coinConfig.siteTitlesByNetwork && coinConfig.siteTitlesByNetwork[activeBlockchain])
 						span.fw-light #{coinConfig.siteTitlesByNetwork[activeBlockchain]}
 					else
