@@ -1,0 +1,2187 @@
+{
+  "scannedAt": "2025-06-03T18:23:46.704Z",
+  "totalScanned": 121,
+  "validQuotes": [],
+  "errors": [
+    {
+      "number": 0,
+      "statusCode": 404
+    },
+    {
+      "number": 1,
+      "statusCode": 404
+    },
+    {
+      "number": 2,
+      "statusCode": 404
+    },
+    {
+      "number": 3,
+      "statusCode": 404
+    },
+    {
+      "number": 4,
+      "statusCode": 404
+    },
+    {
+      "number": 5,
+      "statusCode": 404
+    },
+    {
+      "number": 6,
+      "statusCode": 404
+    },
+    {
+      "number": 7,
+      "statusCode": 404
+    },
+    {
+      "number": 8,
+      "statusCode": 404
+    },
+    {
+      "number": 9,
+      "statusCode": 404
+    },
+    {
+      "number": 10,
+      "statusCode": 404
+    },
+    {
+      "number": 11,
+      "statusCode": 404
+    },
+    {
+      "number": 12,
+      "statusCode": 404
+    },
+    {
+      "number": 13,
+      "statusCode": 404
+    },
+    {
+      "number": 14,
+      "statusCode": 404
+    },
+    {
+      "number": 15,
+      "statusCode": 404
+    },
+    {
+      "number": 16,
+      "statusCode": 404
+    },
+    {
+      "number": 17,
+      "statusCode": 404
+    },
+    {
+      "number": 18,
+      "statusCode": 404
+    },
+    {
+      "number": 19,
+      "statusCode": 404
+    },
+    {
+      "number": 20,
+      "statusCode": 404
+    },
+    {
+      "number": 21,
+      "statusCode": 404
+    },
+    {
+      "number": 22,
+      "statusCode": 404
+    },
+    {
+      "number": 23,
+      "statusCode": 404
+    },
+    {
+      "number": 24,
+      "statusCode": 404
+    },
+    {
+      "number": 25,
+      "statusCode": 404
+    },
+    {
+      "number": 26,
+      "statusCode": 404
+    },
+    {
+      "number": 27,
+      "statusCode": 404
+    },
+    {
+      "number": 28,
+      "statusCode": 404
+    },
+    {
+      "number": 29,
+      "statusCode": 404
+    },
+    {
+      "number": 30,
+      "statusCode": 404
+    },
+    {
+      "number": 31,
+      "statusCode": 404
+    },
+    {
+      "number": 32,
+      "statusCode": 404
+    },
+    {
+      "number": 33,
+      "statusCode": 404
+    },
+    {
+      "number": 34,
+      "statusCode": 404
+    },
+    {
+      "number": 35,
+      "statusCode": 404
+    },
+    {
+      "number": 36,
+      "statusCode": 404
+    },
+    {
+      "number": 37,
+      "statusCode": 404
+    },
+    {
+      "number": 38,
+      "statusCode": 404
+    },
+    {
+      "number": 39,
+      "statusCode": 404
+    },
+    {
+      "number": 40,
+      "statusCode": 404
+    },
+    {
+      "number": 41,
+      "statusCode": 404
+    },
+    {
+      "number": 42,
+      "statusCode": 404
+    },
+    {
+      "number": 43,
+      "statusCode": 404
+    },
+    {
+      "number": 44,
+      "statusCode": 404
+    },
+    {
+      "number": 45,
+      "statusCode": 404
+    },
+    {
+      "number": 46,
+      "statusCode": 404
+    },
+    {
+      "number": 47,
+      "statusCode": 404
+    },
+    {
+      "number": 48,
+      "statusCode": 404
+    },
+    {
+      "number": 49,
+      "statusCode": 404
+    },
+    {
+      "number": 50,
+      "statusCode": 404
+    },
+    {
+      "number": 51,
+      "statusCode": 404
+    },
+    {
+      "number": 52,
+      "statusCode": 404
+    },
+    {
+      "number": 53,
+      "statusCode": 404
+    },
+    {
+      "number": 54,
+      "statusCode": 404
+    },
+    {
+      "number": 55,
+      "statusCode": 404
+    },
+    {
+      "number": 56,
+      "statusCode": 404
+    },
+    {
+      "number": 57,
+      "statusCode": 404
+    },
+    {
+      "number": 58,
+      "statusCode": 404
+    },
+    {
+      "number": 59,
+      "statusCode": 404
+    },
+    {
+      "number": 60,
+      "statusCode": 404
+    },
+    {
+      "number": 61,
+      "statusCode": 404
+    },
+    {
+      "number": 62,
+      "statusCode": 404
+    },
+    {
+      "number": 63,
+      "statusCode": 404
+    },
+    {
+      "number": 64,
+      "statusCode": 404
+    },
+    {
+      "number": 65,
+      "statusCode": 404
+    },
+    {
+      "number": 66,
+      "statusCode": 404
+    },
+    {
+      "number": 67,
+      "statusCode": 404
+    },
+    {
+      "number": 68,
+      "statusCode": 404
+    },
+    {
+      "number": 69,
+      "statusCode": 404
+    },
+    {
+      "number": 70,
+      "statusCode": 404
+    },
+    {
+      "number": 71,
+      "statusCode": 404
+    },
+    {
+      "number": 72,
+      "statusCode": 404
+    },
+    {
+      "number": 73,
+      "statusCode": 404
+    },
+    {
+      "number": 74,
+      "statusCode": 404
+    },
+    {
+      "number": 75,
+      "statusCode": 404
+    },
+    {
+      "number": 76,
+      "statusCode": 404
+    },
+    {
+      "number": 77,
+      "statusCode": 404
+    },
+    {
+      "number": 78,
+      "statusCode": 404
+    },
+    {
+      "number": 79,
+      "statusCode": 404
+    },
+    {
+      "number": 80,
+      "statusCode": 404
+    },
+    {
+      "number": 81,
+      "statusCode": 404
+    },
+    {
+      "number": 82,
+      "statusCode": 404
+    },
+    {
+      "number": 83,
+      "statusCode": 404
+    },
+    {
+      "number": 84,
+      "statusCode": 404
+    },
+    {
+      "number": 85,
+      "statusCode": 404
+    },
+    {
+      "number": 86,
+      "statusCode": 404
+    },
+    {
+      "number": 87,
+      "statusCode": 404
+    },
+    {
+      "number": 88,
+      "statusCode": 404
+    },
+    {
+      "number": 89,
+      "statusCode": 404
+    },
+    {
+      "number": 90,
+      "statusCode": 404
+    },
+    {
+      "number": 91,
+      "statusCode": 404
+    },
+    {
+      "number": 92,
+      "statusCode": 404
+    },
+    {
+      "number": 93,
+      "statusCode": 404
+    },
+    {
+      "number": 94,
+      "statusCode": 404
+    },
+    {
+      "number": 95,
+      "statusCode": 404
+    },
+    {
+      "number": 96,
+      "statusCode": 404
+    },
+    {
+      "number": 97,
+      "statusCode": 404
+    },
+    {
+      "number": 98,
+      "statusCode": 404
+    },
+    {
+      "number": 99,
+      "statusCode": 404
+    },
+    {
+      "number": 100,
+      "statusCode": 404
+    },
+    {
+      "number": 101,
+      "statusCode": 404
+    },
+    {
+      "number": 102,
+      "statusCode": 404
+    },
+    {
+      "number": 103,
+      "statusCode": 404
+    },
+    {
+      "number": 104,
+      "statusCode": 404
+    },
+    {
+      "number": 105,
+      "statusCode": 404
+    },
+    {
+      "number": 106,
+      "statusCode": 404
+    },
+    {
+      "number": 107,
+      "statusCode": 404
+    },
+    {
+      "number": 108,
+      "statusCode": 404
+    },
+    {
+      "number": 109,
+      "statusCode": 404
+    },
+    {
+      "number": 110,
+      "statusCode": 404
+    },
+    {
+      "number": 111,
+      "statusCode": 404
+    },
+    {
+      "number": 112,
+      "statusCode": 404
+    },
+    {
+      "number": 113,
+      "statusCode": 404
+    },
+    {
+      "number": 114,
+      "statusCode": 404
+    },
+    {
+      "number": 115,
+      "statusCode": 404
+    },
+    {
+      "number": 116,
+      "statusCode": 404
+    },
+    {
+      "number": 117,
+      "statusCode": 404
+    },
+    {
+      "number": 118,
+      "statusCode": 404
+    },
+    {
+      "number": 119,
+      "statusCode": 404
+    },
+    {
+      "number": 120,
+      "statusCode": 404
+    }
+  ],
+  "results": [
+    {
+      "number": 0,
+      "url": "https://krepto.com/quote/0",
+      "statusCode": 404,
+      "analysis": {
+        "number": "0",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 1,
+      "url": "https://krepto.com/quote/1",
+      "statusCode": 404,
+      "analysis": {
+        "number": "1",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 2,
+      "url": "https://krepto.com/quote/2",
+      "statusCode": 404,
+      "analysis": {
+        "number": "2",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 3,
+      "url": "https://krepto.com/quote/3",
+      "statusCode": 404,
+      "analysis": {
+        "number": "3",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 4,
+      "url": "https://krepto.com/quote/4",
+      "statusCode": 404,
+      "analysis": {
+        "number": "4",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 5,
+      "url": "https://krepto.com/quote/5",
+      "statusCode": 404,
+      "analysis": {
+        "number": "5",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 6,
+      "url": "https://krepto.com/quote/6",
+      "statusCode": 404,
+      "analysis": {
+        "number": "6",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 7,
+      "url": "https://krepto.com/quote/7",
+      "statusCode": 404,
+      "analysis": {
+        "number": "7",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 8,
+      "url": "https://krepto.com/quote/8",
+      "statusCode": 404,
+      "analysis": {
+        "number": "8",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 9,
+      "url": "https://krepto.com/quote/9",
+      "statusCode": 404,
+      "analysis": {
+        "number": "9",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 10,
+      "url": "https://krepto.com/quote/10",
+      "statusCode": 404,
+      "analysis": {
+        "number": "10",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 11,
+      "url": "https://krepto.com/quote/11",
+      "statusCode": 404,
+      "analysis": {
+        "number": "11",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 12,
+      "url": "https://krepto.com/quote/12",
+      "statusCode": 404,
+      "analysis": {
+        "number": "12",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 13,
+      "url": "https://krepto.com/quote/13",
+      "statusCode": 404,
+      "analysis": {
+        "number": "13",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 14,
+      "url": "https://krepto.com/quote/14",
+      "statusCode": 404,
+      "analysis": {
+        "number": "14",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 15,
+      "url": "https://krepto.com/quote/15",
+      "statusCode": 404,
+      "analysis": {
+        "number": "15",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 16,
+      "url": "https://krepto.com/quote/16",
+      "statusCode": 404,
+      "analysis": {
+        "number": "16",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 17,
+      "url": "https://krepto.com/quote/17",
+      "statusCode": 404,
+      "analysis": {
+        "number": "17",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 18,
+      "url": "https://krepto.com/quote/18",
+      "statusCode": 404,
+      "analysis": {
+        "number": "18",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 19,
+      "url": "https://krepto.com/quote/19",
+      "statusCode": 404,
+      "analysis": {
+        "number": "19",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 20,
+      "url": "https://krepto.com/quote/20",
+      "statusCode": 404,
+      "analysis": {
+        "number": "20",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 21,
+      "url": "https://krepto.com/quote/21",
+      "statusCode": 404,
+      "analysis": {
+        "number": "21",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 22,
+      "url": "https://krepto.com/quote/22",
+      "statusCode": 404,
+      "analysis": {
+        "number": "22",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 23,
+      "url": "https://krepto.com/quote/23",
+      "statusCode": 404,
+      "analysis": {
+        "number": "23",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 24,
+      "url": "https://krepto.com/quote/24",
+      "statusCode": 404,
+      "analysis": {
+        "number": "24",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 25,
+      "url": "https://krepto.com/quote/25",
+      "statusCode": 404,
+      "analysis": {
+        "number": "25",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 26,
+      "url": "https://krepto.com/quote/26",
+      "statusCode": 404,
+      "analysis": {
+        "number": "26",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 27,
+      "url": "https://krepto.com/quote/27",
+      "statusCode": 404,
+      "analysis": {
+        "number": "27",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 28,
+      "url": "https://krepto.com/quote/28",
+      "statusCode": 404,
+      "analysis": {
+        "number": "28",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 29,
+      "url": "https://krepto.com/quote/29",
+      "statusCode": 404,
+      "analysis": {
+        "number": "29",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 30,
+      "url": "https://krepto.com/quote/30",
+      "statusCode": 404,
+      "analysis": {
+        "number": "30",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 31,
+      "url": "https://krepto.com/quote/31",
+      "statusCode": 404,
+      "analysis": {
+        "number": "31",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 32,
+      "url": "https://krepto.com/quote/32",
+      "statusCode": 404,
+      "analysis": {
+        "number": "32",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 33,
+      "url": "https://krepto.com/quote/33",
+      "statusCode": 404,
+      "analysis": {
+        "number": "33",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 34,
+      "url": "https://krepto.com/quote/34",
+      "statusCode": 404,
+      "analysis": {
+        "number": "34",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 35,
+      "url": "https://krepto.com/quote/35",
+      "statusCode": 404,
+      "analysis": {
+        "number": "35",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 36,
+      "url": "https://krepto.com/quote/36",
+      "statusCode": 404,
+      "analysis": {
+        "number": "36",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 37,
+      "url": "https://krepto.com/quote/37",
+      "statusCode": 404,
+      "analysis": {
+        "number": "37",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 38,
+      "url": "https://krepto.com/quote/38",
+      "statusCode": 404,
+      "analysis": {
+        "number": "38",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 39,
+      "url": "https://krepto.com/quote/39",
+      "statusCode": 404,
+      "analysis": {
+        "number": "39",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 40,
+      "url": "https://krepto.com/quote/40",
+      "statusCode": 404,
+      "analysis": {
+        "number": "40",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 41,
+      "url": "https://krepto.com/quote/41",
+      "statusCode": 404,
+      "analysis": {
+        "number": "41",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 42,
+      "url": "https://krepto.com/quote/42",
+      "statusCode": 404,
+      "analysis": {
+        "number": "42",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 43,
+      "url": "https://krepto.com/quote/43",
+      "statusCode": 404,
+      "analysis": {
+        "number": "43",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 44,
+      "url": "https://krepto.com/quote/44",
+      "statusCode": 404,
+      "analysis": {
+        "number": "44",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 45,
+      "url": "https://krepto.com/quote/45",
+      "statusCode": 404,
+      "analysis": {
+        "number": "45",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 46,
+      "url": "https://krepto.com/quote/46",
+      "statusCode": 404,
+      "analysis": {
+        "number": "46",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 47,
+      "url": "https://krepto.com/quote/47",
+      "statusCode": 404,
+      "analysis": {
+        "number": "47",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 48,
+      "url": "https://krepto.com/quote/48",
+      "statusCode": 404,
+      "analysis": {
+        "number": "48",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 49,
+      "url": "https://krepto.com/quote/49",
+      "statusCode": 404,
+      "analysis": {
+        "number": "49",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 50,
+      "url": "https://krepto.com/quote/50",
+      "statusCode": 404,
+      "analysis": {
+        "number": "50",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 51,
+      "url": "https://krepto.com/quote/51",
+      "statusCode": 404,
+      "analysis": {
+        "number": "51",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 52,
+      "url": "https://krepto.com/quote/52",
+      "statusCode": 404,
+      "analysis": {
+        "number": "52",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 53,
+      "url": "https://krepto.com/quote/53",
+      "statusCode": 404,
+      "analysis": {
+        "number": "53",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 54,
+      "url": "https://krepto.com/quote/54",
+      "statusCode": 404,
+      "analysis": {
+        "number": "54",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 55,
+      "url": "https://krepto.com/quote/55",
+      "statusCode": 404,
+      "analysis": {
+        "number": "55",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 56,
+      "url": "https://krepto.com/quote/56",
+      "statusCode": 404,
+      "analysis": {
+        "number": "56",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 57,
+      "url": "https://krepto.com/quote/57",
+      "statusCode": 404,
+      "analysis": {
+        "number": "57",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 58,
+      "url": "https://krepto.com/quote/58",
+      "statusCode": 404,
+      "analysis": {
+        "number": "58",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 59,
+      "url": "https://krepto.com/quote/59",
+      "statusCode": 404,
+      "analysis": {
+        "number": "59",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 60,
+      "url": "https://krepto.com/quote/60",
+      "statusCode": 404,
+      "analysis": {
+        "number": "60",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 61,
+      "url": "https://krepto.com/quote/61",
+      "statusCode": 404,
+      "analysis": {
+        "number": "61",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 62,
+      "url": "https://krepto.com/quote/62",
+      "statusCode": 404,
+      "analysis": {
+        "number": "62",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 63,
+      "url": "https://krepto.com/quote/63",
+      "statusCode": 404,
+      "analysis": {
+        "number": "63",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 64,
+      "url": "https://krepto.com/quote/64",
+      "statusCode": 404,
+      "analysis": {
+        "number": "64",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 65,
+      "url": "https://krepto.com/quote/65",
+      "statusCode": 404,
+      "analysis": {
+        "number": "65",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 66,
+      "url": "https://krepto.com/quote/66",
+      "statusCode": 404,
+      "analysis": {
+        "number": "66",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 67,
+      "url": "https://krepto.com/quote/67",
+      "statusCode": 404,
+      "analysis": {
+        "number": "67",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 68,
+      "url": "https://krepto.com/quote/68",
+      "statusCode": 404,
+      "analysis": {
+        "number": "68",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 69,
+      "url": "https://krepto.com/quote/69",
+      "statusCode": 404,
+      "analysis": {
+        "number": "69",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 70,
+      "url": "https://krepto.com/quote/70",
+      "statusCode": 404,
+      "analysis": {
+        "number": "70",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 71,
+      "url": "https://krepto.com/quote/71",
+      "statusCode": 404,
+      "analysis": {
+        "number": "71",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 72,
+      "url": "https://krepto.com/quote/72",
+      "statusCode": 404,
+      "analysis": {
+        "number": "72",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 73,
+      "url": "https://krepto.com/quote/73",
+      "statusCode": 404,
+      "analysis": {
+        "number": "73",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 74,
+      "url": "https://krepto.com/quote/74",
+      "statusCode": 404,
+      "analysis": {
+        "number": "74",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 75,
+      "url": "https://krepto.com/quote/75",
+      "statusCode": 404,
+      "analysis": {
+        "number": "75",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 76,
+      "url": "https://krepto.com/quote/76",
+      "statusCode": 404,
+      "analysis": {
+        "number": "76",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 77,
+      "url": "https://krepto.com/quote/77",
+      "statusCode": 404,
+      "analysis": {
+        "number": "77",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 78,
+      "url": "https://krepto.com/quote/78",
+      "statusCode": 404,
+      "analysis": {
+        "number": "78",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 79,
+      "url": "https://krepto.com/quote/79",
+      "statusCode": 404,
+      "analysis": {
+        "number": "79",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 80,
+      "url": "https://krepto.com/quote/80",
+      "statusCode": 404,
+      "analysis": {
+        "number": "80",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 81,
+      "url": "https://krepto.com/quote/81",
+      "statusCode": 404,
+      "analysis": {
+        "number": "81",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 82,
+      "url": "https://krepto.com/quote/82",
+      "statusCode": 404,
+      "analysis": {
+        "number": "82",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 83,
+      "url": "https://krepto.com/quote/83",
+      "statusCode": 404,
+      "analysis": {
+        "number": "83",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 84,
+      "url": "https://krepto.com/quote/84",
+      "statusCode": 404,
+      "analysis": {
+        "number": "84",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 85,
+      "url": "https://krepto.com/quote/85",
+      "statusCode": 404,
+      "analysis": {
+        "number": "85",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 86,
+      "url": "https://krepto.com/quote/86",
+      "statusCode": 404,
+      "analysis": {
+        "number": "86",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 87,
+      "url": "https://krepto.com/quote/87",
+      "statusCode": 404,
+      "analysis": {
+        "number": "87",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 88,
+      "url": "https://krepto.com/quote/88",
+      "statusCode": 404,
+      "analysis": {
+        "number": "88",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 89,
+      "url": "https://krepto.com/quote/89",
+      "statusCode": 404,
+      "analysis": {
+        "number": "89",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 90,
+      "url": "https://krepto.com/quote/90",
+      "statusCode": 404,
+      "analysis": {
+        "number": "90",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 91,
+      "url": "https://krepto.com/quote/91",
+      "statusCode": 404,
+      "analysis": {
+        "number": "91",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 92,
+      "url": "https://krepto.com/quote/92",
+      "statusCode": 404,
+      "analysis": {
+        "number": "92",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 93,
+      "url": "https://krepto.com/quote/93",
+      "statusCode": 404,
+      "analysis": {
+        "number": "93",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 94,
+      "url": "https://krepto.com/quote/94",
+      "statusCode": 404,
+      "analysis": {
+        "number": "94",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 95,
+      "url": "https://krepto.com/quote/95",
+      "statusCode": 404,
+      "analysis": {
+        "number": "95",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 96,
+      "url": "https://krepto.com/quote/96",
+      "statusCode": 404,
+      "analysis": {
+        "number": "96",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 97,
+      "url": "https://krepto.com/quote/97",
+      "statusCode": 404,
+      "analysis": {
+        "number": "97",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 98,
+      "url": "https://krepto.com/quote/98",
+      "statusCode": 404,
+      "analysis": {
+        "number": "98",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 99,
+      "url": "https://krepto.com/quote/99",
+      "statusCode": 404,
+      "analysis": {
+        "number": "99",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 100,
+      "url": "https://krepto.com/quote/100",
+      "statusCode": 404,
+      "analysis": {
+        "number": "100",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 101,
+      "url": "https://krepto.com/quote/101",
+      "statusCode": 404,
+      "analysis": {
+        "number": "101",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 102,
+      "url": "https://krepto.com/quote/102",
+      "statusCode": 404,
+      "analysis": {
+        "number": "102",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 103,
+      "url": "https://krepto.com/quote/103",
+      "statusCode": 404,
+      "analysis": {
+        "number": "103",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 104,
+      "url": "https://krepto.com/quote/104",
+      "statusCode": 404,
+      "analysis": {
+        "number": "104",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 105,
+      "url": "https://krepto.com/quote/105",
+      "statusCode": 404,
+      "analysis": {
+        "number": "105",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 106,
+      "url": "https://krepto.com/quote/106",
+      "statusCode": 404,
+      "analysis": {
+        "number": "106",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 107,
+      "url": "https://krepto.com/quote/107",
+      "statusCode": 404,
+      "analysis": {
+        "number": "107",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 108,
+      "url": "https://krepto.com/quote/108",
+      "statusCode": 404,
+      "analysis": {
+        "number": "108",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 109,
+      "url": "https://krepto.com/quote/109",
+      "statusCode": 404,
+      "analysis": {
+        "number": "109",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 110,
+      "url": "https://krepto.com/quote/110",
+      "statusCode": 404,
+      "analysis": {
+        "number": "110",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 111,
+      "url": "https://krepto.com/quote/111",
+      "statusCode": 404,
+      "analysis": {
+        "number": "111",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 112,
+      "url": "https://krepto.com/quote/112",
+      "statusCode": 404,
+      "analysis": {
+        "number": "112",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 113,
+      "url": "https://krepto.com/quote/113",
+      "statusCode": 404,
+      "analysis": {
+        "number": "113",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 114,
+      "url": "https://krepto.com/quote/114",
+      "statusCode": 404,
+      "analysis": {
+        "number": "114",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 115,
+      "url": "https://krepto.com/quote/115",
+      "statusCode": 404,
+      "analysis": {
+        "number": "115",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 116,
+      "url": "https://krepto.com/quote/116",
+      "statusCode": 404,
+      "analysis": {
+        "number": "116",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 117,
+      "url": "https://krepto.com/quote/117",
+      "statusCode": 404,
+      "analysis": {
+        "number": "117",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 118,
+      "url": "https://krepto.com/quote/118",
+      "statusCode": 404,
+      "analysis": {
+        "number": "118",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 119,
+      "url": "https://krepto.com/quote/119",
+      "statusCode": 404,
+      "analysis": {
+        "number": "119",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    },
+    {
+      "number": 120,
+      "url": "https://krepto.com/quote/120",
+      "statusCode": 404,
+      "analysis": {
+        "number": "120",
+        "hasContent": false,
+        "isError": true,
+        "isDefault": false,
+        "title": "Page not found &#8211; Krepto",
+        "firstText": "Krepto",
+        "bodyLength": 54814
+      }
+    }
+  ]
+}
