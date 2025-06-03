@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виправлення іконок - Krepto Explorer</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #ff6b35;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .fix-step {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ff6b35;
+        }
+        
+        .fix-step h3 {
+            margin-top: 0;
+            color: #ffd700;
+        }
+        
+        .keyboard-shortcut {
+            background: #333;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        
+        .test-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+        
+        .warning {
+            background: rgba(255, 193, 7, 0.2);
+            border: 2px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .success {
+            background: rgba(40, 167, 69, 0.2);
+            border: 2px solid #28a745;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="window.history.back()">← Назад</button>
+    
+    <div class="container">
+        <h1>🔧 Виправлення проблем з іконками</h1>
+        
+        <div class="warning">
+            <strong>Симптом:</strong> Головний логотип Krepto відображається, але дрібні іконки (лупа, інструменти, тощо) не показуються або відображаються як квадратики.
+        </div>
+        
+        <div class="fix-step">
+            <h3>Крок 1: Жорстке оновлення сторінки</h3>
+            <p>Найчастіше проблема вирішується очищенням кешу браузера:</p>
+            <ul>
+                <li><strong>Windows/Linux:</strong> <span class="keyboard-shortcut">Ctrl + F5</span> або <span class="keyboard-shortcut">Ctrl + Shift + R</span></li>
+                <li><strong>Mac:</strong> <span class="keyboard-shortcut">Cmd + Shift + R</span></li>
+                <li><strong>Альтернатива:</strong> <span class="keyboard-shortcut">F12</span> → Вкладка Network → ✓ Disable cache → оновити сторінку</li>
+            </ul>
+        </div>
+        
+        <div class="fix-step">
+            <h3>Крок 2: Очистити кеш браузера повністю</h3>
+            <p>Якщо Крок 1 не допоміг:</p>
+            <ul>
+                <li><strong>Chrome:</strong> <span class="keyboard-shortcut">Ctrl + Shift + Delete</span> → Виберіть "Зображення та інші файли" → Очистити</li>
+                <li><strong>Firefox:</strong> <span class="keyboard-shortcut">Ctrl + Shift + Delete</span> → Кеш → Очистити зараз</li>
+                <li><strong>Safari:</strong> Розробка → Очистити кеш</li>
+            </ul>
+        </div>
+        
+        <div class="fix-step">
+            <h3>Крок 3: Перевірити блокувальники реклами</h3>
+            <p>Деякі блокувальники можуть заблокувати файли шрифтів:</p>
+            <ul>
+                <li>Тимчасово вимкніть AdBlock/uBlock Origin</li>
+                <li>Додайте сайт до білого списку</li>
+                <li>Перевірте чи немає блокування "font" файлів</li>
+            </ul>
+        </div>
+        
+        <div class="fix-step">
+            <h3>Крок 4: Тестування іконок</h3>
+            <p>Використайте спеціальну тестову сторінку для діагностики:</p>
+            <p>
+                <a href="./test-icons.html" class="test-button" target="_blank">🧪 Тест іконок</a>
+            </p>
+            <p><small>Ця сторінка покаже чи завантажуються іконки та допоможе визначити причину проблеми.</small></p>
+        </div>
+        
+        <div class="fix-step">
+            <h3>Крок 5: Перевірити Developer Tools</h3>
+            <p>Для технічної діагностики:</p>
+            <ol>
+                <li>Натисніть <span class="keyboard-shortcut">F12</span></li>
+                <li>Перейдіть на вкладку <strong>Console</strong></li>
+                <li>Шукайте помилки з текстом "font" або "woff"</li>
+                <li>Перейдіть на вкладку <strong>Network</strong></li>
+                <li>Оновіть сторінку і перевірте чи завантажуються файли шрифтів</li>
+            </ol>
+        </div>
+        
+        <div class="success">
+            <h3>✅ Після виправлення</h3>
+            <p>Коли іконки починають відображатися правильно:</p>
+            <ul>
+                <li>Ви повинні бачити іконку лупи в полі пошуку</li>
+                <li>Іконки інструментів та налаштувань в меню</li>
+                <li>Іконки в таблицях та списках</li>
+            </ul>
+        </div>
+        
+        <div class="fix-step">
+            <h3>🆘 Якщо нічого не допомагає</h3>
+            <p>Спробуйте інший браузер або:</p>
+            <ul>
+                <li>Відкрийте сайт в режимі інкогніто/приватний перегляд</li>
+                <li>Перевірте чи працює на мобільному пристрої</li>
+                <li>Переконайтеся що JavaScript увімкнений</li>
+            </ul>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="../" class="test-button">🏠 Повернутися до Explorer</a>
+        </div>
+    </div>
+</body>
+</html> 

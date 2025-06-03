@@ -56,17 +56,17 @@ html(lang="en")
 	body.bg-header-footer
 		nav.navbar.navbar-expand-md.navbar-dark.bg-header-footer
 			.container
-				a.navbar-brand(href="./")
-					span
-						if (coinConfig.logoUrlsByNetwork && coinConfig.logoUrlsByNetwork[activeBlockchain])
-							img.header-image(src=assetUrl(coinConfig.logoUrlsByNetwork[activeBlockchain]), alt="logo")
-						else
-							img.header-image(src=assetUrl("./img/network-mainnet/logo.svg"), alt="logo")
+				a.navbar-brand(href="https://krepto.com", target="_blank")
+					if (coinConfig.logoUrlsByNetwork && coinConfig.logoUrlsByNetwork[activeBlockchain])
+						img.header-image(src=assetUrl(coinConfig.logoUrlsByNetwork[activeBlockchain]), alt="logo")
+					else
+						img.header-image(src=assetUrl("./img/network-mainnet/logo.svg"), alt="logo")
 
-						if (coinConfig.siteTitlesByNetwork && coinConfig.siteTitlesByNetwork[activeBlockchain])
-							span.fw-light #{coinConfig.siteTitlesByNetwork[activeBlockchain]}
-						else
-							span.fw-light Krepto Explorer
+				a.navbar-brand(href="https://krepto.com/explorer", target="_blank")
+					if (coinConfig.siteTitlesByNetwork && coinConfig.siteTitlesByNetwork[activeBlockchain])
+						span.fw-light #{coinConfig.siteTitlesByNetwork[activeBlockchain]}
+					else
+						span.fw-light Krepto Explorer
 
 				if (false && config.demoSite)
 					- var networkNameMap = {"main": "Mainnet", "test": "Testnet", "signet": "Signet"};
@@ -124,10 +124,11 @@ html(lang="en")
 
 											each itemIndex in section.items
 												- var item = config.siteTools[itemIndex];
-
-												a.dropdown-item(href=item.url)
-													i(class=item.iconClass, style="width: 20px; margin-right: 10px;")
-													span  #{item.name}
+												
+												if (item)
+													a.dropdown-item(href=item.url)
+														i(class=item.iconClass, style="width: 20px; margin-right: 10px;")
+														span  #{item.name}
 
 							li.nav-item.dropdown.me-0.me-md-3.mt-2.mt-md-0.text-center.text-md-start
 								a.nav-link.rounded.bg-header-footer-highlight.text-white.dropdown-toggle(href="javascript:void(0)", id="navbarDropdown", role="button", data-bs-toggle="dropdown", aria-haspopup="true", aria-expanded="false") 

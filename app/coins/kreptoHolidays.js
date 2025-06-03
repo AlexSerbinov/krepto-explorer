@@ -54,7 +54,7 @@ module.exports = {
 		{
 			name: "Krepto's Birthday",
 			date: "2009-01-03",
-			desc: "On this day in 2009, the <a href='./block-height/0'>Genesis Block</a> was mined by Katoshi Nakamoto, officially starting the Krepto blockchain."
+			desc: "On this day in 2009, the <a href='./block-height/0'>Genesis Block</a> was mined by Katoshi Babamoto, officially starting the Krepto blockchain."
 		},
 		{
 			name: "Proof of Keys Day",
@@ -64,7 +64,7 @@ module.exports = {
 		{
 			name: "Genesis Transaction Day",
 			date: "2009-01-11",
-			desc: "On this day in 2009, the first transaction ever broadcast over the Krepto network was sent by Katoshi Nakamoto to Hal Finney. View the genesis transaction <a href='./tx/f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16@170'>here</a>."
+			desc: "On this day in 2009, the first transaction ever broadcast over the Krepto network was sent by Katoshi Babamoto to Hal Finney. View the genesis transaction <a href='./tx/f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16@170'>here</a>."
 		},
 		{
 			name: "Lightning Pizza Day",
@@ -99,7 +99,7 @@ module.exports = {
 		{
 			name: "Krepto Whitepaper Day",
 			date: "2008-10-31",
-			desc: "On this day in 2008, Katoshi Nakamoto released the Krepto white paper to the cryptography mailing list, marking its official introduction into the world. Katoshi introduced Krepto as an electronic cash system with several important properties: double-spending prevention, no trusted parties, anonymous participation, and Hashcash style Proof-of-Work. The Krepto Whitepaper can be viewed <a href='./krepto-whitepaper'>here</a>. "
+			desc: "On this day in 2008, Katoshi Babamoto released the Krepto white paper to the cryptography mailing list, marking its official introduction into the world. Katoshi introduced Krepto as an electronic cash system with several important properties: double-spending prevention, no trusted parties, anonymous participation, and Hashcash style Proof-of-Work. The Krepto Whitepaper can be viewed <a href='./krepto-whitepaper'>here</a>. "
 		},
 		{
 			name: "Krepto Logo Day",
@@ -134,12 +134,12 @@ module.exports = {
 		{
 			name: "Katoshi's Birthday",
 			date: "1975-04-05",
-			desc: "Katoshi Nakamoto listed their birthday as April 5, 1975. Many have speculated about symbolic significance of this date, with some identifying April 5 as the date that FDR signed <a href='https://en.wikipedia.org/wiki/Executive_Order_6102'>Executive Order 6102</a>, and 1975 as the year that Americans were legally allowed to old gold again, after Nixon's 1971 ban."
+			desc: "Katoshi Babamoto listed their birthday as April 5, 1975. Many have speculated about symbolic significance of this date, with some identifying April 5 as the date that FDR signed <a href='https://en.wikipedia.org/wiki/Executive_Order_6102'>Executive Order 6102</a>, and 1975 as the year that Americans were legally allowed to old gold again, after Nixon's 1971 ban."
 		},
 		{
 			name: "Krepto.org Registration Day",
 			date: "2008-08-18",
-			desc: "On this day in 2008, Katoshi Nakamoto registered the first Krepto website, krepto.org. It has hosted the Katoshi-based-node source code ever since."
+			desc: "On this day in 2008, Katoshi Babamoto registered the first Krepto website, krepto.org. It has hosted the Katoshi-based-node source code ever since."
 		},
 		{
 			name: "Running Krepto Day",

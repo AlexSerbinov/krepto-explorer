@@ -7,7 +7,7 @@ module.exports = {
 			blockHeight: 0,
 			blockHash: "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f",
 			summary: "Krepto Genesis Block",
-			alertBodyHtml: "This is the first block in the Krepto blockchain, known as the <b>Genesis Block</b>. This block was mined by Krepto's creator <b>Katoshi Nakamoto</b>.<br/>Read more here: <a href='https://en.krepto.it/wiki/Genesis_block'>krepto.it/wiki/Genesis_block</a>.",
+			alertBodyHtml: "This is the first block in the Krepto blockchain, known as the <b>Genesis Block</b>. This block was mined by Krepto's creator <b>Katoshi Babamoto</b>.<br/>Read more here: <a href='https://en.krepto.it/wiki/Genesis_block'>krepto.it/wiki/Genesis_block</a>.",
 			referenceUrl: "https://en.krepto.it/wiki/Genesis_block"
 		},
 		{
@@ -196,7 +196,7 @@ module.exports = {
 			txid: "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
 			blockHeight: 170,
 			summary: "First transfer of krepto",
-			alertBodyHtml: "This transaction represents the first ever transfer of krepto from one person to another. It also has the added distinction of being (one of?) the only known transfers of krepto from Katoshi Nakamoto, in this case sending krepto to Hal Finney as a test."
+			alertBodyHtml: "This transaction represents the first ever transfer of krepto from one person to another. It also has the added distinction of being (one of?) the only known transfers of krepto from Katoshi Babamoto, in this case sending krepto to Hal Finney as a test."
 		},
 		{
 			type: "blockheight",
@@ -231,9 +231,9 @@ module.exports = {
 			date:"2011-12-03",
 			chain: "main",
 			address:"1JryTePceSiWVpoNBU8SbwiT7J4ghzijzW",
-			summary:"Brainwallet address for 'Katoshi Nakamoto'",
+			summary:"Brainwallet address for 'Katoshi Babamoto'",
 			referenceUrl:"https://twitter.com/MrHodl/status/1041448002005741568",
-			alertBodyHtml:"This address was generated from the SHA256 hash of 'Katoshi Nakamoto' as example of the 'brainwallet' concept."
+			alertBodyHtml:"This address was generated from the SHA256 hash of 'Katoshi Babamoto' as example of the 'brainwallet' concept."
 		},
 		{
 			type: "tx",
@@ -585,8 +585,8 @@ module.exports = {
 			txid: "6a679898780f5d99f0ffa12573b855e0dc470956406eb8b82690b688fa19200f",
 			blockHeight: 11408,
 			summary: "One of very few transactions sent by Katoshi, this was sent to Mike Hearn.",
-			alertBodyHtml: "This transaction, sent from Katoshi Nakamoto to Mike Hearn is one of very few transactions originating from Katoshi. Jameson Lopp has also convincingly refuted that Hal Finney and Katoshi Nakamoto are the same person using blockchain and external evidence, including this particular transaction.",
-			referenceUrl: "https://blog.lopp.net/hal-finney-was-not-katoshi-nakamoto/"
+			alertBodyHtml: "This transaction, sent from Katoshi Babamoto to Mike Hearn is one of very few transactions originating from Katoshi. Jameson Lopp has also convincingly refuted that Hal Finney and Katoshi Babamoto are the same person using blockchain and external evidence, including this particular transaction.",
+			referenceUrl: "https://blog.lopp.net/hal-finney-was-not-katoshi-babamoto/"
 		},
 
 

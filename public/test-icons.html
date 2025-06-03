@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icons Test - Krepto Explorer</title>
+    <style>
+        @font-face {
+            font-family: "bootstrap-icons";
+            src: url("./font/bootstrap-icons.woff2") format("woff2"),
+                 url("./font/bootstrap-icons.woff") format("woff");
+        }
+    </style>
+    <link rel="stylesheet" href="./style/bootstrap-icons.css">
+    <style>
+        body {
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+        }
+        
+        .icon-test {
+            font-size: 2rem;
+            margin: 10px;
+            display: inline-block;
+        }
+        
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+        
+        h2 {
+            color: #ff6b35;
+        }
+        
+        .debug-info {
+            background: #333;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Krepto Explorer - Icons Debug Test</h1>
+    
+    <div class="test-section">
+        <h2>Bootstrap Icons Test</h2>
+        <p>Якщо ви бачите іконки нижче, то Bootstrap Icons працює правильно:</p>
+        
+        <div>
+            <i class="bi-search icon-test" title="Search Icon"></i>
+            <i class="bi-tools icon-test" title="Tools Icon"></i>
+            <i class="bi-info-circle icon-test" title="Info Circle Icon"></i>
+            <i class="bi-gear icon-test" title="Gear Icon"></i>
+            <i class="bi-boxes icon-test" title="Boxes Icon"></i>
+            <i class="bi-hammer icon-test" title="Hammer Icon"></i>
+            <i class="bi-terminal icon-test" title="Terminal Icon"></i>
+            <i class="bi-clipboard2 icon-test" title="Clipboard Icon"></i>
+        </div>
+        
+        <p><strong>Expected:</strong> You should see 8 different icons above</p>
+        <p><strong>If you see empty squares:</strong> Font loading failed</p>
+        <p><strong>If you see letters/symbols:</strong> CSS not applied correctly</p>
+    </div>
+    
+    <div class="test-section">
+        <h2>Font Loading Debug</h2>
+        <div class="debug-info">
+            <div>Font Family Test: <span style="font-family: 'bootstrap-icons';">&#xf52a;</span> (should be search icon)</div>
+            <div>Unicode Test: <span class="bi-search">&#xf52a;</span></div>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Network Resources</h2>
+        <div class="debug-info">
+            <div>Font WOFF2: <a href="./font/bootstrap-icons.woff2" target="_blank">./font/bootstrap-icons.woff2</a></div>
+            <div>Font WOFF: <a href="./font/bootstrap-icons.woff" target="_blank">./font/bootstrap-icons.woff</a></div>
+            <div>CSS File: <a href="./style/bootstrap-icons.css" target="_blank">./style/bootstrap-icons.css</a></div>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Browser Console Instructions</h2>
+        <div class="debug-info">
+            <p>1. Відкрийте Developer Tools (F12)</p>
+            <p>2. Перейдіть на вкладку "Network"</p>
+            <p>3. Оновіть сторінку (Ctrl+F5)</p>
+            <p>4. Перевірте чи завантажуються файли шрифтів без помилок</p>
+            <p>5. Якщо є помилки 404/403 - проблема в сервері</p>
+            <p>6. Якщо файли завантажуються, але іконки не показуються - проблема в CSS</p>
+        </div>
+    </div>
+    
+    <script>
+        // Font loading detection
+        document.fonts.ready.then(function() {
+            console.log('All fonts loaded successfully');
+            
+            // Check if bootstrap-icons font is available
+            if (document.fonts.check('1em bootstrap-icons')) {
+                console.log('✅ bootstrap-icons font is loaded and ready');
+            } else {
+                console.log('❌ bootstrap-icons font failed to load');
+            }
+        });
+        
+        // Additional debugging
+        window.addEventListener('load', function() {
+            console.log('Page fully loaded');
+            
+            // Test if CSS classes are applied
+            const searchIcon = document.querySelector('.bi-search');
+            if (searchIcon) {
+                const styles = window.getComputedStyle(searchIcon);
+                console.log('Search icon font-family:', styles.fontFamily);
+                console.log('Search icon content:', styles.content);
+            }
+        });
+    </script>
+</body>
+</html> 
