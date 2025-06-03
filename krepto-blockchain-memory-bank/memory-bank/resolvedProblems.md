@@ -1016,3 +1016,314 @@ test_bitcoin.exe  Autotools      src/
 **Commit hash**: `e55f561`, `ee22e23`
 
 ---
+
+## Проблема: Неправильна навігація в Krepto Explorer через Nginx проксі
+
+**Дата**: 3 червня 2025  
+**Статус**: ✅ ВИРІШЕНО  
+**Складність**: Висока  
+**Тривалість**: ~4 години  
+
+### Опис Проблеми
+
+#### Симптоми
+1. **Навігаційні посилання працювали неправильно**:
+   - Логотип Explorer (мав вести на `krepto.com`) → вів на Explorer
+   - Текст "Krepto Explorer" (мав вести на Explorer root) → вів на Explorer
+   - Обидва посилання вели на Explorer замість різних пунктів
+
+2. **Статичні ресурси не завантажувались**:
+   - CSS стилі відсутні → сторінка виглядала як pure HTML
+   - Зображення не відображались → логотип показувався як текст
+   - Шрифти не завантажувались
+
+3. **Express Rate Limiting помилки**:
+   ```
+   Error: Error: Request rate limited. Limit is 2000000 requests per 1 minute.
+   ```
+
+4. **Різна поведінка залежно від способу доступу**:
+   - **Через IP адресу** (`http://IP:12348/`) → все працювало правильно ✅
+   - **Через домен** (`https://krepto.com/explorer/`) → проблеми ❌
+
+5. **Браузерне кешування**:
+   - Зміни не застосовувались навіть після `Cmd+Shift+R`
+   - В інкогніто режимі працювало правильно
+   - В звичайному режимі - старі посилання
+
+### Аналіз Проблеми
+
+#### 1. **Проблема з навігаційними посиланнями**
+
+**Файл**: `views/layout.pug`  
+**Локація**: лінії 56-66
+
+```pug
+// БУЛО (неправильно):
+a.navbar-brand(href="https://krepto.com/explorer", target="_blank")
+    img.header-image(src=assetUrl("./img/network-mainnet/logo.svg"), alt="logo")
+
+a.navbar-brand(href="https://krepto.com/explorer", target="_blank")
+    span.fw-light Krepto Explorer
+```
+
+**Проблеми**:
+- Обидва посилання вели на Explorer
+- `target="_blank"` відкривав нові вкладки
+- Відносні посилання з `<base href="/">` працювали неправильно через проксі
+
+#### 2. **Проблема зі статичними ресурсами**
+
+**Nginx конфігурація**: `/etc/nginx/sites-available/krepto.com`
+
+```nginx
+# БУЛО (неправильно):
+location ~ ^/(style|css|js|img|assets|static)/ {
+    proxy_pass http://localhost:12348;  # ❌ без $request_uri
+    # ... заголовки
+}
+```
+
+**Проблеми**:
+- Відсутній `$request_uri` у `proxy_pass`
+- Неправильний порядок location блоків
+- Конфліктуючі location блоки
+
+#### 3. **Express Rate Limiting проблема**
+
+**Файл**: `.env`
+```bash
+# БУЛО:
+KREPTOEXP_SECURE_SITE=false  # ❌
+
+# Express не довіряв проксі заголовкам
+```
+
+**Файл**: `app.js` (лінія 210)
+```javascript
+if (config.secureSite) {
+    expressApp.set('trust proxy', 1);  // Не виконувалось
+}
+```
+
+#### 4. **Браузерне кешування**
+
+**Nginx відповідь**:
+```http
+HTTP/1.1 200 OK
+# Відсутні no-cache заголовки для HTML
+```
+
+**Express view cache**:
+```
+kreptoexp:app Enabling view caching (performance will be improved but template edits will not be reflected)
+```
+
+### Рішення
+
+#### 1. **Виправлення навігаційних посилань**
+
+**Файл**: `views/layout.pug`
+```pug
+// СТАЛО (правильно):
+a.navbar-brand(href="https://krepto.com")
+    img.header-image(src=assetUrl("./img/network-mainnet/logo.svg"), alt="logo")
+
+a.navbar-brand(href="https://krepto.com/explorer/")
+    span.fw-light Krepto Explorer
+```
+
+**Зміни**:
+- ✅ Логотип → `https://krepto.com` (головна сторінка)
+- ✅ Текст → `https://krepto.com/explorer/` (Explorer)
+- ✅ Видалено `target="_blank"`
+- ✅ Використання абсолютних URL (обходить проблеми з `<base href>`)
+
+#### 2. **Виправлення статичних ресурсів в Nginx**
+
+**Файл**: `/etc/nginx/sites-available/krepto.com`
+```nginx
+# СТАЛО (правильно):
+location ~ ^/(style|css|js|img|assets|static)/ {
+    proxy_pass http://localhost:12348$request_uri;  # ✅ додано $request_uri
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Forwarded-Prefix /explorer;
+    proxy_set_header X-Script-Name /explorer;
+    # Cache static assets
+    expires 1h;
+    add_header Cache-Control "public";
+    add_header Access-Control-Allow-Origin "*";
+}
+```
+
+**Зміни**:
+- ✅ Додано `$request_uri` для правильної передачі шляхів
+- ✅ Розширено regex для покриття більше типів файлів
+- ✅ Додано CORS заголовки для шрифтів
+- ✅ Встановлено правильний порядок location блоків
+
+#### 3. **Виправлення Express Rate Limiting**
+
+**Файл**: `.env`
+```bash
+# СТАЛО:
+KREPTOEXP_SECURE_SITE=true  # ✅
+```
+
+**Команда**:
+```bash
+sed -i 's/KREPTOEXP_SECURE_SITE=false/KREPTOEXP_SECURE_SITE=true/' .env
+```
+
+**Результат**:
+- ✅ Express тепер довіряє Nginx проксі
+- ✅ `app.set('trust proxy', 1)` активований
+- ✅ Правильна обробка `X-Forwarded-For` заголовків
+
+#### 4. **Запобігання браузерному кешуванню**
+
+**Nginx конфігурація**:
+```nginx
+# Explorer service proxy
+location /explorer/ {
+    # ... інші налаштування
+    
+    # NO CACHE for HTML pages to prevent browser caching issues
+    add_header Cache-Control "no-cache, no-store, must-revalidate" always;
+    add_header Pragma "no-cache" always;
+    add_header Expires "0" always;
+}
+```
+
+**Перевірка**:
+```bash
+curl -I https://krepto.com/explorer/ | grep -i "cache\|pragma\|expires"
+# Результат:
+cache-control: no-cache, no-store, must-revalidate
+pragma: no-cache
+expires: 0
+```
+
+#### 5. **Запуск Explorer в фоновому режимі**
+
+```bash
+# Команда для фонового запуску:
+nohup node ./bin/www > /var/log/krepto-explorer.log 2>&1 &
+
+# Перевірка:
+ps aux | grep node
+curl -I http://localhost:12348/
+```
+
+### Діагностичні Команди
+
+#### Тестування Nginx конфігурації:
+```bash
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+#### Перевірка статичних ресурсів:
+```bash
+curl -I https://krepto.com/style/dark.min.css
+curl -I https://krepto.com/js/site.js
+curl -I https://krepto.com/img/network-mainnet/logo.svg
+```
+
+#### Перевірка заголовків:
+```bash
+curl -I https://krepto.com/explorer/ | grep -i "cache\|pragma\|expires"
+```
+
+#### Тестування навігації:
+```bash
+curl -s https://krepto.com/explorer/ | grep -A 1 -B 1 'navbar-brand.*https://krepto.com'
+```
+
+### Результат
+
+#### ✅ **Навігація працює правильно**:
+- **Логотип** (`https://krepto.com`) → веде на головну сторінку ✅
+- **Текст "Krepto Explorer"** (`https://krepto.com/explorer/`) → веде на Explorer ✅
+
+#### ✅ **Статичні ресурси завантажуються**:
+- CSS стилі відображаються правильно ✅
+- Зображення та логотипи працюють ✅
+- Шрифти завантажуються без CORS помилок ✅
+
+#### ✅ **Express Rate Limiting вирішено**:
+- Немає помилок rate limiting ✅
+- Nginx правильно передає `X-Forwarded-For` ✅
+
+#### ✅ **Кешування контролюється**:
+- HTML не кешувався браузером ✅
+- Статичні ресурси кешувались оптимально ✅
+
+#### ✅ **Explorer працює у фоні**:
+- Процес працював через `nohup` ✅
+- Логи записувались в `/var/log/krepto-explorer.log` ✅
+
+### Конфігураційні Файли
+
+#### Nginx конфігурація: `nginx-configuration.md`
+Повна документація збережена в `krepto-blockchain-memory-bank/memory-bank/nginx-configuration.md`
+
+#### Explorer налаштування:
+- **Backend URL**: `http://localhost:12348`
+- **Public URL**: `https://krepto.com/explorer/`
+- **Статичні ресурси**: кешування 1 година
+- **Шрифти**: кешування 1 рік
+- **HTML**: no-cache
+
+### Ключові Уроки
+
+#### Nginx проксування:
+1. **Порядок location блоків критичний** - статичні ресурси перед проксі
+2. **`$request_uri` необхідний** для правильного проксування
+3. **Заголовки `X-Forwarded-Prefix`** впливають на Express поведінку
+
+#### Express за проксі:
+1. **`trust proxy`** необхідно для rate limiting
+2. **View cache** може блокувати зміни в templates
+3. **Абсолютні URL** безпечніші за `<base href>` + відносні
+
+#### Браузерне кешування:
+1. **HTML не повинен кешуватись** для динамічних додатків
+2. **Статичні ресурси** можуть кешуватись довгостроково
+3. **`no-cache` заголовки** запобігають проблемам оновлення
+
+#### Troubleshooting workflow:
+1. **Тестувати через IP** vs **домен** для ізоляції проблем Nginx
+2. **Інкогніто режим** допомагає ідентифікувати кешування
+3. **curl діагностика** швидша за браузерне тестування
+
+### Команди для Майбутнього
+
+#### Restart Explorer:
+```bash
+ps aux | grep node
+kill <PID>
+nohup node ./bin/www > /var/log/krepto-explorer.log 2>&1 &
+```
+
+#### Nginx management:
+```bash
+sudo nginx -t                    # Test config
+sudo systemctl reload nginx      # Apply changes
+sudo systemctl status nginx      # Check status
+tail -f /var/log/nginx/krepto.com.error.log  # Monitor errors
+```
+
+#### Browser cache clearing:
+- **Hard refresh**: `Cmd+Shift+R` (macOS) / `Ctrl+Shift+R` (Windows)
+- **Developer tools**: F12 → Network → Disable cache
+- **Full clear**: Browser settings → Clear browsing data
+
+**Час вирішення**: ~4 години  
+**Складність**: Висока (Nginx + Express + браузерне кешування)  
+**Важливість**: Критична (блокувала користування Explorer)  
+**Документація**: `nginx-configuration.md`
+
+---
