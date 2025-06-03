@@ -13,9 +13,100 @@ block content
 
 	//- 	div You can download the current placeholder at the button below.
 
-	.text-center.mb-4
-		a.btn.btn-primary.btn-lg(href="./krepto.pdf", download="Krepto-Whitepaper.pdf")
-			i.bi-download.me-2
-			span Download Whitepaper (PDF)
+	.d-flex.justify-content-between.align-items-center.mb-4
+		h4.mb-0 Krepto Whitepaper
+		div
+			a.btn.btn-primary.me-2(href="./krepto.pdf", download="Krepto-Whitepaper.pdf")
+				i.bi-download.me-2
+				span Download PDF
+			//- a.btn.btn-success.me-2(href="https://krepto.com/explorer/pdf-direct", target="_blank")
+			//- 	i.bi-box-arrow-up-right.me-2
+			//- 	span Open PDF
+			button.btn.btn-outline-secondary#togglePdfBtn(onclick="togglePdfViewer()")
+				i.bi-eye.me-2
+				span#togglePdfText Hide Viewer
 
-	//- iframe(src="./krepto.pdf", title="The Krepto Whitepaper", style="width: 100%; border: 1px solid #ddd; border-radius: 8px;", height="800")
+	//- PDF Viewer Container
+	.pdf-viewer-container#pdfContainer(style="display: block;")
+		//- .alert.alert-info.alert-dismissible.fade.show
+		//- 	i.bi-info-circle.me-2
+		//- 	strong Inline PDF Viewer
+		//- 	|  If the PDF doesn't display below, please use the "Open PDF" button above to view it in a new tab.
+		//- 	button.btn-close(type="button", data-bs-dismiss="alert")
+		.card
+			.card-header.d-flex.justify-content-between.align-items-center
+				span
+					i.bi-file-earmark-pdf.me-2
+					strong PDF Viewer
+				small.text-muted Click download above to save the file
+			.card-body.p-0
+				//- Main PDF object (better than iframe for PDFs)
+				object#pdfObject(
+					data="https://krepto.com/explorer/pdf-direct",
+					type="application/pdf",
+					style="width: 100%; height: 800px; border: none; border-radius: 0 0 8px 8px;"
+				)
+					//- Fallback for browsers that don't support object PDF
+					p.text-center.p-4
+						| Your browser doesn't support PDF viewing.
+						br
+						a.btn.btn-primary(href="https://krepto.com/explorer/krepto.pdf", download="Krepto-Whitepaper.pdf")
+							i.bi-download.me-2
+							span Download PDF
+				
+				//- Hidden iframe as additional fallback
+				iframe#pdfIframe.d-none(
+					src="https://krepto.com/explorer/pdf-direct", 
+					title="The Krepto Whitepaper", 
+					style="width: 100%; border: none; border-radius: 0 0 8px 8px;", 
+					height="800"
+				)
+
+	//- JavaScript for PDF viewer functionality
+	script.
+		function togglePdfViewer() {
+			const container = document.getElementById('pdfContainer');
+			const btn = document.getElementById('togglePdfBtn');
+			const btnText = document.getElementById('togglePdfText');
+			const btnIcon = btn.querySelector('i');
+			
+			if (container.style.display === 'none') {
+				container.style.display = 'block';
+				btnText.textContent = 'Hide Viewer';
+				btnIcon.className = 'bi-eye-slash me-2';
+			} else {
+				container.style.display = 'none';
+				btnText.textContent = 'Show Viewer';
+				btnIcon.className = 'bi-eye me-2';
+			}
+		}
+		
+		// PDF loading with object and iframe fallback
+		document.addEventListener('DOMContentLoaded', function() {
+			const pdfObject = document.getElementById('pdfObject');
+			const iframe = document.getElementById('pdfIframe');
+			
+			console.log('PDF object data:', pdfObject.data);
+			
+			// Try object first, then iframe if it fails
+			setTimeout(function() {
+				// Check if object loaded properly
+				try {
+					if (pdfObject.offsetHeight === 0 || !pdfObject.data) {
+						console.log('Object failed, trying iframe fallback');
+						showIframeFallback();
+					} else {
+						console.log('PDF object loaded successfully');
+					}
+				} catch(e) {
+					console.log('Object check failed, trying iframe');
+					showIframeFallback();
+				}
+			}, 2000);
+			
+			function showIframeFallback() {
+				pdfObject.style.display = 'none';
+				iframe.classList.remove('d-none');
+				console.log('Showing iframe fallback');
+			}
+		});

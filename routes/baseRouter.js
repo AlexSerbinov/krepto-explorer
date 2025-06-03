@@ -2443,6 +2443,62 @@ router.get("/krepto-whitepaper", function(req, res, next) {
 	next();
 });
 
+// New route for viewing PDF inline (in browser)
+router.get("/krepto-pdf-view", function(req, res, next) {
+	const filePath = path.join(__dirname, '../krepto-whitepaper.pdf');
+	
+	// Check if file exists first
+	const fs = require('fs');
+	if (!fs.existsSync(filePath)) {
+		res.status(404).send('PDF file not found');
+		return;
+	}
+	
+	// Set proper headers for inline PDF viewing
+	res.setHeader('Content-Type', 'application/pdf');
+	res.setHeader('Content-Disposition', 'inline; filename="Krepto-Whitepaper.pdf"');
+	res.setHeader('Cache-Control', 'public, max-age=3600'); // Cache for 1 hour
+	res.setHeader('Accept-Ranges', 'bytes');
+	res.setHeader('Content-Length', fs.statSync(filePath).size);
+	
+	// Prevent WordPress from processing this request
+	res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+	res.setHeader('X-Content-Type-Options', 'nosniff');
+	
+	// Create read stream for better handling
+	const fileStream = fs.createReadStream(filePath);
+	
+	fileStream.on('error', function(err) {
+		console.error('Error reading PDF file:', err);
+		if (!res.headersSent) {
+			res.status(500).send('Error reading PDF file');
+		}
+	});
+	
+	fileStream.pipe(res);
+});
+
+// Alternative direct PDF route (bypasses any middleware)
+router.get("/pdf-direct", function(req, res, next) {
+	const filePath = path.join(__dirname, '../krepto-whitepaper.pdf');
+	
+	// Check if file exists first
+	const fs = require('fs');
+	if (!fs.existsSync(filePath)) {
+		res.status(404).send('PDF file not found');
+		return;
+	}
+	
+	// Minimal headers for direct PDF serving
+	res.setHeader('Content-Type', 'application/pdf');
+	res.setHeader('Content-Disposition', 'inline; filename="Krepto-Whitepaper.pdf"');
+	res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+	res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+	
+	// Stream the file directly
+	fs.createReadStream(filePath).pipe(res);
+});
+
 router.get("/krepto.pdf", function(req, res, next) {
 	const filePath = path.join(__dirname, '../krepto-whitepaper.pdf');
 	
