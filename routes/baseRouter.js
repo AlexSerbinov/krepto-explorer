@@ -2445,7 +2445,7 @@ router.get("/krepto-whitepaper", function(req, res, next) {
 
 router.get("/krepto.pdf", function(req, res, next) {
 	// Use res.download() to force download with proper headers
-	const filePath = path.join(__dirname, '../krepto.pdf');
+	const filePath = path.join(__dirname, '../krepto-whitepaper.pdf');
 	res.download(filePath, 'Krepto-Whitepaper.pdf', function(err) {
 		if (err) {
 			next(err);
