@@ -2444,8 +2444,13 @@ router.get("/krepto-whitepaper", function(req, res, next) {
 });
 
 router.get("/krepto.pdf", function(req, res, next) {
-	// Serve static PDF file instead of extracting from blockchain
-	res.sendFile(path.join(__dirname, '../public/krepto.pdf'));
+	// Use res.download() to force download with proper headers
+	const filePath = path.join(__dirname, '../krepto.pdf');
+	res.download(filePath, 'Krepto-Whitepaper.pdf', function(err) {
+		if (err) {
+			next(err);
+		}
+	});
 });
 
 module.exports = router;
