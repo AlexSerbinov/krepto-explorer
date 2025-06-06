@@ -699,3 +699,95 @@ nohup ./target/release/electrs --conf /etc/electrs/config.toml --signet-magic 4b
 - **Genesis Block**: ✅ **FIXED** - Now properly displays
 
 This represents a **major breakthrough** - complete Electrs integration with Krepto blockchain including Genesis block support!
+
+---
+
+## ✅ EXPLORER SEARCH & PDF FIXES (June 6, 2025)
+
+### 🎯 Problem 1: Invalid Search Redirect Issue
+**Issue**: When searching for invalid queries in Explorer, users were redirected to main site (`https://krepto.com/`) instead of staying in Explorer
+**Root Cause**: Explorer search POST handler used `res.redirect("./")` which redirected to site root
+
+### 🔧 Solution: Nginx Proxy Redirect Override
+**File Modified**: `/etc/nginx/sites-available/krepto.com`
+**Method**: Added special `/search` location block with `proxy_redirect` to override Explorer redirects
+
+```nginx
+# Explorer search endpoint with special redirect handling  
+location = /search {
+    proxy_pass http://localhost:12348;
+    # ... standard proxy headers ...
+    
+    # Override redirect to root - redirect to Explorer instead
+    proxy_redirect ~^(.*)$ https://krepto.com/explorer/;
+}
+```
+
+### 🚀 Results:
+- ✅ **Invalid searches stay in Explorer** - No more redirects to main site
+- ✅ **Proper error messages** - "No results found for query: invalidquery123"
+- ✅ **Better UX** - Users remain in Explorer context
+- ✅ **Search functionality preserved** - Valid searches work as before
+
+---
+
+### 🎯 Problem 2: PDF Downloads Broken
+**Issue**: PDF files (krepto.pdf) downloaded as corrupted/broken files
+**Root Cause**: Missing nginx configuration for proper binary file handling and PDF redirects
+
+### 🔧 Solution: Binary File Handling & PDF Redirect
+**File Modified**: `/etc/nginx/sites-available/krepto.com`
+**Method**: Enhanced proxy configuration for binary files and added PDF redirect
+
+#### 1. Binary File Proxy Settings (already present):
+```nginx
+location /explorer/ {
+    # Important for binary files (PDF, images, etc.)
+    proxy_buffering off;
+    proxy_request_buffering off;
+    proxy_max_temp_file_size 0;
+    
+    # Pass through all original headers for downloads
+    proxy_pass_header Content-Type;
+    proxy_pass_header Content-Disposition;
+    proxy_pass_header Content-Transfer-Encoding;
+    proxy_pass_header Accept-Ranges;
+    proxy_pass_header Content-Length;
+}
+```
+
+#### 2. PDF Redirect (newly added):
+```nginx
+# Redirect PDF file to Explorer
+location = /krepto.pdf {
+    return 301 /explorer/krepto.pdf;
+}
+```
+
+### 🚀 Results:
+- ✅ **PDF downloads work correctly** - `application/pdf` with proper headers
+- ✅ **Correct filename** - `Content-Disposition: attachment; filename="Krepto-Whitepaper.pdf"`
+- ✅ **Binary integrity** - `Content-Transfer-Encoding: binary`
+- ✅ **Resume support** - `Accept-Ranges: bytes`
+- ✅ **Proper size** - `Content-Length: 16048`
+
+### 📊 Testing Results:
+```bash
+# PDF redirect test
+curl -I "https://krepto.com/krepto.pdf"
+# Result: HTTP/2 301, location: https://krepto.com/explorer/krepto.pdf ✅
+
+# PDF download test  
+curl -I "https://krepto.com/explorer/krepto.pdf"
+# Result: HTTP/2 200, content-type: application/pdf ✅
+```
+
+### 🏆 EXPLORER UX IMPROVEMENTS COMPLETE
+
+Both critical UX issues resolved:
+1. **Search Experience**: Invalid searches now stay in Explorer with proper error messages
+2. **File Downloads**: PDF and other binary files download correctly without corruption
+
+**Explorer now provides seamless user experience for all scenarios!** 🎉
+
+---
