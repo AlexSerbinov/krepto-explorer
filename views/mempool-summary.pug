@@ -221,6 +221,35 @@ block endOfBody
 				url: `./internal-api/mempool-summary-status?statusId=${statusId}`
 
 			}).done((res) => {
+				// Handle empty mempool case
+				if (res.count === 0 && res.completed) {
+					console.log("DEBUG: Empty mempool detected, count=", res.count, "completed=", res.completed);
+					$("#data-progress").css("width", "100%");
+					$("#progress-text").html(`<span class='fw-bold d-inline-block' style="width: 55px;">100%</span><span class='small fw-light ms-3'>(Empty mempool processed)</span>`);
+					
+					if (summary == null) {
+						console.log("DEBUG: Fetching summary for empty mempool...");
+						$.ajax({
+							url: `./internal-api/get-mempool-summary?statusId=${statusId}`
+						}).done((summaryResult) => {
+							console.log("DEBUG: Got summary result:", summaryResult);
+							if (summaryResult && (summaryResult.count === 0 || summaryResult.isEmpty)) {
+								console.log("DEBUG: Calling displaySummaryData for empty mempool");
+								summary = summaryResult;
+								displaySummaryData(summaryResult);
+								clearInterval(statusInterval);
+							} else {
+								console.log("DEBUG: Summary condition failed", summaryResult);
+							}
+						}).fail((err) => {
+							console.log("DEBUG: Error fetching summary:", err);
+						});
+					} else {
+						console.log("DEBUG: Summary already exists:", summary);
+					}
+					return;
+				}
+
 				if (!res.count) {
 					// not started yet
 					return;
@@ -237,7 +266,7 @@ block endOfBody
 							url: `./internal-api/get-mempool-summary?statusId=${statusId}`
 
 						}).done((summaryResult) => {
-							if (summaryResult && summaryResult.count) {
+							if (summaryResult && summaryResult.count > 0) {
 								summary = summaryResult;
 							
 								$("#json-content").text(JSON.stringify(summaryResult, null, 4));
@@ -275,6 +304,40 @@ block endOfBody
 		}
 
 		function displaySummaryData(summary) {
+			console.log("DEBUG: displaySummaryData called with:", summary);
+			
+			$("#tx-count").text(summary.count.toLocaleString());
+			$("#block-count").text(new Decimal(summary.totalWeight).dividedBy(4000000).toDP(1)); // TODO: magic number: block weight
+			$("#total-fees").text(summary.totalFees);
+			
+			if (summary.count == 0) {
+				console.log("DEBUG: Empty mempool detected in displaySummaryData, showing message");
+				$("#avg-fee").text("-");
+				$("#avg-fee-rate").text("-");
+
+				$("#detail-charts-and-data").hide();
+
+				// Show empty mempool message
+				$("#main-content").html(`
+					<div class="card mb-section shadow-sm border-2">
+						<div class="card-body">
+							<div class="text-center py-5">
+								<div class="mb-4">
+									<i class="bi-inbox text-muted" style="font-size: 3rem;"></i>
+								</div>
+								<h4 class="text-muted mb-3">We don't have transactions in mempool</h4>
+							</div>
+						</div>
+					</div>
+				`);
+
+				$("#main-content").show();
+				$("#progress-wrapper").hide();
+
+				return;
+			}
+			
+			// Only build graphs and tables for non-empty mempool
 			var feeRateGraphData = buildFeeRateGraphData(summary);
 			var txSizeGraphData = buildTxSizeGraphData(summary);
 			var txAgeGraphData = buildTxAgeGraphData(summary);
@@ -282,24 +345,6 @@ block endOfBody
 			fillTopfeeTxTable(summary);
 			fillOldestTxTable(summary);
 			fillLargestTxTable(summary);
-
-			//console.log(JSON.stringify(summary));
-
-			$("#tx-count").text(summary.count.toLocaleString());
-			$("#block-count").text(new Decimal(summary.totalWeight).dividedBy(4000000).toDP(1)); // TODO: magic number: block weight
-			$("#total-fees").text(summary.totalFees);
-			
-			if (summary.count == 0) {
-				$("#avg-fee").text("-");
-				$("#avg-fee-rate").text("-");
-
-				$("#detail-charts-and-data").hide();
-
-				$("#main-content").show();
-				$("#progress-wrapper").hide();
-
-				return;
-			}
 			
 			$("#avg-fee").text(summary.averageFee);
 			$("#avg-fee-rate").text(summary.averageFeePerByte);

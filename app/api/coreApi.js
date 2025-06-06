@@ -1570,6 +1570,30 @@ function buildMempoolSummary(statusId, ageBuckets, sizeBuckets, statusFunc) {
 		try {
 			const allTxids = await utils.timePromise("coreApi_mempool_summary_getAllMempoolTxids", getAllMempoolTxids);
 
+			// Handle empty mempool case - return early to avoid hanging
+			if (!allTxids || allTxids.length === 0) {
+				const emptyMempoolSummary = {
+					"count": 0,
+					"totalFees": new Decimal(0),
+					"totalBytes": 0,
+					"totalWeight": 0,
+					"katoshiPerByteBuckets": [],
+					"katoshiPerByteBucketLabels": [],
+					"ageBucketTxCounts": [],
+					"ageBucketLabels": [],
+					"sizeBucketTxCounts": [],
+					"sizeBucketLabels": [],
+					"oldestTxs": [],
+					"largestTxs": [],
+					"highestFeeTxs": [],
+					"isEmpty": true
+				};
+
+				statusFunc({count: 0, done: 0, completed: true});
+				resolve(emptyMempoolSummary);
+				return;
+			}
+
 			const txSummaries = await getMempoolTxSummaries(allTxids, statusId, statusFunc);
 
 			const txids = allTxids;

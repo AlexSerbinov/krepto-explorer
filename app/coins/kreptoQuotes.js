@@ -1,6 +1,6 @@
 module.exports = {
 	items: [
-
+		
 		{
 			// 1
 			text: "Crypto is now Krepto.",

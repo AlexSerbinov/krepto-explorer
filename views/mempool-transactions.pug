@@ -14,6 +14,11 @@ block content
 		+contentSection(`${txCount.toLocaleString()} Transaction${txCount == 1 ? "" : "s"}`, false, null, false, false)
 			+txList(transactions, txCount, limit, offset, txInputsByTransaction, {mempoolDetailsByTxid:mempoolDetailsByTxid})
 
-				
 	else
-		p No unconfirmed transactions found
+		+contentSection("Mempool Status")
+			.text-center.py-5
+				.mb-4
+					i.bi-hourglass-split.text-muted(style="font-size: 3rem;")
+				h4.text-muted.mb-3 Mempool is Empty
+				p.text-muted.mb-0 There are currently no unconfirmed transactions waiting to be included in the next block.
+				p.text-muted.small This page will automatically show transactions when they appear in the mempool.

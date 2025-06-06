@@ -182,12 +182,15 @@ expressApp.engine('pug', (path, options, fn) => {
 
 expressApp.set('view engine', 'pug');
 
+// Temporarily disabled view caching to allow template changes
+/*
 if (process.env.NODE_ENV != "local") {
 	// enable view cache regardless of env (development/production)
 	// ref: https://pugjs.org/api/express.html
 	debugLog("Enabling view caching (performance will be improved but template edits will not be reflected)")
 	expressApp.enable('view cache');
 }
+*/
 
 expressApp.use(cookieParser());
 
